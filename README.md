@@ -93,9 +93,17 @@ Versionning régulier avec GIT.
 - USERS : Mots de passes et identifiants.
 - AUTHORITIES : Rôles.
 
+**Explication de chaque package (back)** :
+
+- Model : Les classes java représentant les tables des bases de données.
+- Repository : Contient les interfaces qui utilisent Hibernate JPA pour stocker/récupérer les données de la BDD.
+- Controller : Définit les adresses RestApi pour le partage des données en JSON entre les Front et le Back.
+- Service : Définit le CRUD (méthodes en lien direct avec le repository).
+- Security : Partie sécurité du projet (Spring Security, jwt security).
+
 **Rôles (Authorities)** :
-- Logistique
-- Commerce
-- Finance
-- Direction
-- Admin
+- ROLE_LOGISTIQUE
+- ROLE_COMMERCE
+- ROLE_FINANCE
+- ROLE_DIRECTION
+- ROLE_ADMIN
