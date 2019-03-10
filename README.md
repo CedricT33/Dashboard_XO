@@ -11,8 +11,8 @@
 *rajouter contact technique
 
 **Technologie** :
-- Front : HTML, CSS (Bootstrap et angular materiel), Angular
-- Back : Java (SpringBoot, Hibernate) SQL (MySql + H5 ou SQlite)
+- Front : HTML, CSS (Angular material), Angular.
+- Back : Java (SpringBoot, Hibernate) SQL (MySql + H2).
 
 **Fonctionnalités demandées** : 
 - Authentification et autorisations (rôles).
