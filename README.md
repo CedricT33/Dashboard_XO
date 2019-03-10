@@ -87,8 +87,8 @@ Versionning régulier avec GIT.
 - F_COMPTEG : Comptes Généraux (toutes les sortes de comptes: clients, fournisseurs, banques...).
 
 *CRUD*
-- MESSAGE : Messages pour un service.
-- OBJECTIFCOMMERCE : Objectifs commerciaux.
+- MESSAGES : Messages pour un service.
+- OBJECTIFSCOMMERCE : Objectifs commerciaux.
 - COLISEXPEDIES : Colis expédiés.
 - USERS : Mots de passes et identifiants.
 - AUTHORITIES : Rôles.
