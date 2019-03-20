@@ -90,7 +90,8 @@ Versionning régulier avec GIT.
 - MESSAGES : Messages pour un service.
 - OBJECTIFSCOMMERCE : Objectifs commerciaux.
 - COLISEXPEDIES : Colis expédiés.
-- USERS : Mots de passes, identifiants et rôles.
+- USERS : Mots de passes, identifiants.
+- ROLES : liste des rôles.
 
 **Explication de chaque package (back)** :
 
@@ -131,3 +132,5 @@ Versionning régulier avec GIT.
 - EcritureComptable (model)
 - CompteTiers (model)
 - Document (model)
+- User (model)
+- Role (model)
