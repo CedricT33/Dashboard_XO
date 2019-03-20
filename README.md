@@ -118,6 +118,7 @@ Versionning régulier avec GIT.
 - DashboardCommerceComponent
 - DashboardFinanceComponent
 - DashboardDirectionComponent
+- AdminComponent
 - LogInService
 - XoService
 - MessagesService
