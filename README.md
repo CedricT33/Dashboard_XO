@@ -11,8 +11,8 @@
 *rajouter contact technique
 
 **Technologie** :
-- Front : HTML, CSS (Bootstrap et angular materiel), Angular
-- Back : Java (SpringBoot, Hibernate) SQL (MySql + H5 ou SQlite)
+- Front : HTML, CSS (Angular material), Angular.
+- Back : Java (SpringBoot, Hibernate) SQL (MySql + H2).
 
 **Fonctionnalités demandées** : 
 - Authentification et autorisations (rôles).
@@ -49,7 +49,7 @@ Elle devra également respecter les règles d'éco-conception ( éviter les requ
 excessives aux BDD, éviter les imports inutils, consommation de ressources...).
 
 *Convention de nommage* : 
-- Langue utilisé dans le code : Francais (attributs classes) et Anglais (méthodes...).
+- Langue utilisé dans le code : Francais (attributs, classes) et Anglais (méthodes, variables, commentaires...).
 - CamelCase.
 - Méthodes courtes.
 - Pas de répétions de code.
@@ -87,15 +87,50 @@ Versionning régulier avec GIT.
 - F_COMPTEG : Comptes Généraux (toutes les sortes de comptes: clients, fournisseurs, banques...).
 
 *CRUD*
-- MESSAGE : Messages pour un service.
-- OBJECTIFCOMMERCE : Objectifs commerciaux.
+- MESSAGES : Messages pour un service.
+- OBJECTIFSCOMMERCE : Objectifs commerciaux.
 - COLISEXPEDIES : Colis expédiés.
-- USERS : Mots de passes et identifiants.
-- AUTHORITIES : Rôles.
+- USERS : Mots de passes, identifiants.
+- ROLES : liste des rôles.
+
+**Explication de chaque package (back)** :
+
+- Model : Les classes java représentant les tables des bases de données.
+- Repository : Contient les interfaces qui utilisent Hibernate JPA pour stocker/récupérer les données de la BDD.
+- Controller : Définit les adresses RestApi pour le partage des données en JSON entre les Front et le Back.
+- Service : Définit le CRUD (méthodes en lien direct avec le repository).
+- Security : Partie sécurité du projet (Spring Security, jwt security).
+- Exception : Gestion des exceptions.
 
 **Rôles (Authorities)** :
-- Logistique
-- Commerce
-- Finance
-- Direction
-- Admin
+
+- ROLE_LOGISTIQUE
+- ROLE_COMMERCE
+- ROLE_FINANCE
+- ROLE_DIRECTION
+- ROLE_ADMIN
+
+**Components Angular (front)** :
+
+- LogInComponent
+- HeaderComponent
+- FooterComponent
+- DashboardLogisticComponent
+- DashboardCommerceComponent
+- DashboardFinanceComponent
+- DashboardDirectionComponent
+- AdminComponent
+- LogInService
+- XoService
+- MessagesService
+- ObjectifsService
+- ColisService
+- Message (model)
+- Objectif (model)
+- Colis (model)
+- Collaborateur (model)
+- EcritureComptable (model)
+- CompteTiers (model)
+- Document (model)
+- User (model)
+- Role (model)
