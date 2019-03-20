@@ -49,7 +49,7 @@ Elle devra également respecter les règles d'éco-conception ( éviter les requ
 excessives aux BDD, éviter les imports inutils, consommation de ressources...).
 
 *Convention de nommage* : 
-- Langue utilisé dans le code : Francais (attributs classes) et Anglais (méthodes...).
+- Langue utilisé dans le code : Francais (attributs, classes) et Anglais (méthodes, variables, commentaires...).
 - CamelCase.
 - Méthodes courtes.
 - Pas de répétions de code.
