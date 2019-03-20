@@ -90,8 +90,7 @@ Versionning régulier avec GIT.
 - MESSAGES : Messages pour un service.
 - OBJECTIFSCOMMERCE : Objectifs commerciaux.
 - COLISEXPEDIES : Colis expédiés.
-- USERS : Mots de passes et identifiants.
-- AUTHORITIES : Rôles.
+- USERS : Mots de passes, identifiants et rôles.
 
 **Explication de chaque package (back)** :
 
@@ -100,10 +99,34 @@ Versionning régulier avec GIT.
 - Controller : Définit les adresses RestApi pour le partage des données en JSON entre les Front et le Back.
 - Service : Définit le CRUD (méthodes en lien direct avec le repository).
 - Security : Partie sécurité du projet (Spring Security, jwt security).
+- Exception : Gestion des exceptions.
 
 **Rôles (Authorities)** :
+
 - ROLE_LOGISTIQUE
 - ROLE_COMMERCE
 - ROLE_FINANCE
 - ROLE_DIRECTION
 - ROLE_ADMIN
+
+**Components Angular (front)** :
+
+- LogInComponent
+- HeaderComponent
+- FooterComponent
+- DashboardLogisticComponent
+- DashboardCommerceComponent
+- DashboardFinanceComponent
+- DashboardDirectionComponent
+- LogInService
+- XoService
+- MessagesService
+- ObjectifsService
+- ColisService
+- Message (model)
+- Objectif (model)
+- Colis (model)
+- Collaborateur (model)
+- EcritureComptable (model)
+- CompteTiers (model)
+- Document (model)
