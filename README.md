@@ -121,7 +121,7 @@ Versionning régulier avec GIT.
 - Security : Partie sécurité du projet (Spring Security, jwt security).
 - Exception : Gestion des exceptions.
 
-**Rôles (Authorities)** :
+**Rôles** :
 
 - ROLE_LOGISTIQUE
 - ROLE_COMMERCE
