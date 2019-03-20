@@ -67,6 +67,9 @@ Versionning régulier avec GIT.
 - Diagramme de classes
 - MCD, MLD, MPD
 
+#### Diagramme d'activité
+![Diagramme d'activité](Diagrammes/Activity_Diagram_XO.JPG "Diagramme d'activité")
+
 #### MCD Appli
 ![MCD Appli](Diagrammes/MCD_Appli.JPG "MCD Appli")
 
@@ -79,12 +82,10 @@ Versionning régulier avec GIT.
 #### MLD XO
 ![MLD XO](Diagrammes/MLD_XO.JPG "MLD XO")
 
-**Enchainement des vues-maquettes (cinématique).**
-
-#### Enchainement vues mobiles
+#### Enchainement vues mobiles (cinématique).
 ![Enchainement vues mobiles](Diagrammes/Enchainement_vues_mobiles.jpg "Enchainement vues mobiles")
 
-#### Enchainement vues web
+#### Enchainement vues web (cinématique).
 ![Enchainement vues web](Diagrammes/Enchainement_vues_web.jpg "Enchainement vues web")
 
 **Visuels de l'application.**
