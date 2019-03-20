@@ -62,10 +62,14 @@ Outil utilisé pour l'organisation : site Trello (tableau Kanban).
 Versionning régulier avec GIT.
 
 **Diagrammes** : 
+
+- Diagramme Use Case
 - Diagramme d'activité
-- Uses Cases
 - Diagramme de classes
 - MCD, MLD, MPD
+
+#### Diagramme Use Case
+![Diagramme Use Case](Diagrammes/Use_Case_Diagram.JPG "Diagramme Use Case")
 
 #### Diagramme d'activité
 ![Diagramme d'activité](Diagrammes/Activity_Diagram_XO.JPG "Diagramme d'activité")
