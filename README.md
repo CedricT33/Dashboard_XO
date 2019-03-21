@@ -65,7 +65,7 @@ Versionning régulier avec GIT.
 
 - Diagramme Use Case
 - Diagramme d'activité
-- Diagramme de classes
+- Diagramme de classes (en cours...)
 - MCD, MLD, MPD
 
 #### Diagramme Use Case
@@ -92,13 +92,13 @@ Versionning régulier avec GIT.
 #### Enchainement vues web (cinématique).
 ![Enchainement vues web](Diagrammes/Enchainement_vues_web.jpg "Enchainement vues web")
 
-**Visuels de l'application.**
+**Visuels de l'application.** (en cours...)
 
-**Explications de codes spécifiques avec des exemples : Front et Back.**
+**Explications de codes spécifiques avec des exemples : Front et Back.** (en cours...)
 
-**Quelqes exemples de tests unitaires.**
+**Quelqes exemples de tests unitaires.** (en cours...)
 
-**CUs de chaque fonctionnalités avec diagrammes de séquence et visuels. (Annexes)**
+**CUs de chaque fonctionnalités avec diagrammes de séquence et visuels. (Annexes)** (en cours...)
 
 **Explication de chaque tables des BDD** :
 
