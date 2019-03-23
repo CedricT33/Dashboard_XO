@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,11 +26,11 @@ public class Document {
 	@Column(name="DO_totalht")
 	private Double totalHT;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="CO_No", referencedColumnName = "CO_No")
 	private Collaborateur collaborateur;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="CT_Numpayeur", referencedColumnName = "CT_Numpayeur")
 	private CompteTiers compteT;
 

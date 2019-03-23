@@ -50,6 +50,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		    <version>5.1.47</version>
 		</dependency>
 		
+		<!-- Driver H2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.197</version>
+			<scope>runtime</scope>
+		</dependency>
+		
 		<!-- Hibernate -->
 		<dependency>
 		    <groupId>org.hibernate.javax.persistence</groupId>
