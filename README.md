@@ -170,5 +170,15 @@ Versionning régulier avec GIT.
 - Json Web Token
 - DevTools
 
-
+**Logiciels utilisés** :
+- Balsamiq Mockup 3 : maquettes wireframe.
+- JMerise : MCD, MLD, MPD.
+- StarUML (version 3.0.2) : diagrammes UML.
+- Photoshop : visuels documentation (cinématique des pages..).
+- Google Slides : présentation titre pro.
+- word : documentation CUs.
+- Eclipse Java EE (version 4.9.0) : programmation Back application.
+- Postman (version 7.0.6) : Tests API Back.
+- Visual Studio Code (version 1.32.3) : programmation Front application.
+- CLI : pour MySQL, Angular.
 
