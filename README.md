@@ -103,18 +103,18 @@ Versionning régulier avec GIT.
 **Explication de chaque tables des BDD** :
 
 *En lecture seulement*
-- F_DOCENTETE : Documents (factures, avoirs, bordereaux de livraison...).
-- F_COLLABORATEUR : Employés de XO.
-- F_ECRITUREC: Ecritures comptables (montants, echéances...).
-- F_COMPTET : Comptes Tiers (clients, fournisseurs, etc...).
-- F_COMPTEG : Comptes Généraux (toutes les sortes de comptes: clients, fournisseurs, banques...).
+- F_DOCENTETE : Documents (factures, avoirs, bordereaux de livraison...). (*R*)
+- F_COLLABORATEUR : Employés de XO. (*R*)
+- F_ECRITUREC: Ecritures comptables (montants, echéances...). (*R*)
+- F_COMPTET : Comptes Tiers (clients, fournisseurs, etc...). (*R*)
+- F_COMPTEG : Comptes Généraux (toutes les sortes de comptes: clients, fournisseurs, banques...). (*R*)
 
 *CRUD*
-- MESSAGES : Messages pour un service.
-- OBJECTIFSCOMMERCE : Objectifs commerciaux.
-- COLISEXPEDIES : Colis expédiés.
-- USERS : Mots de passes, identifiants.
-- ROLES : liste des rôles.
+- MESSAGES : Messages pour un service. (*CRUD*)
+- OBJECTIFSCOMMERCE : Objectifs commerciaux. (*CRUD*)
+- COLISEXPEDIES : Colis expédiés. (*CRUD*)
+- USERS : Mots de passes, identifiants. (*CRUD*)
+- ROLES : liste des rôles. (*R*)
 
 **Explication de chaque package (back)** :
 
@@ -157,3 +157,18 @@ Versionning régulier avec GIT.
 - Document (model)
 - User (model)
 - Role (model)
+
+**Dépendances Back** :
+
+- Spring Boot Starter WEB
+- Spring Boot Starter JDBC
+- Spring Boot Starter JPA
+- Spring Boot Starter Security
+- Driver MySQL
+- Driver H2
+- Hibernate
+- Json Web Token
+- DevTools
+
+
+
