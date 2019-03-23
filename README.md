@@ -86,10 +86,10 @@ Versionning régulier avec GIT.
 #### MLD XO
 ![MLD XO](Diagrammes/MLD_XO.JPG "MLD XO")
 
-#### Enchainement vues mobiles (cinématique).
+#### Cinématique vues mobiles.
 ![Enchainement vues mobiles](Diagrammes/Enchainement_vues_mobiles.jpg "Enchainement vues mobiles")
 
-#### Enchainement vues web (cinématique).
+#### Cinématique vues web.
 ![Enchainement vues web](Diagrammes/Enchainement_vues_web.jpg "Enchainement vues web")
 
 **Visuels de l'application.** (en cours...)
@@ -123,6 +123,7 @@ Versionning régulier avec GIT.
 - Controller : Définit les adresses RestApi pour le partage des données en JSON entre les Front et le Back.
 - Service : Définit le CRUD (méthodes en lien direct avec le repository).
 - Security : Partie sécurité du projet (Spring Security, jwt security).
+- Config : Configuration des deux BDD (quel repo pour quel BDD, drivers, url, username, password, dialect..).
 - Exception : Gestion des exceptions.
 
 **Rôles** :
