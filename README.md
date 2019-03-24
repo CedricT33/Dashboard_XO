@@ -104,6 +104,7 @@ Versionning régulier avec GIT.
 
 *En lecture seulement*
 - F_DOCENTETE : Documents (factures, avoirs, bordereaux de livraison...). (*R*)
+- F_DOCLIGNE : Documents deuxieme partie (factures, avoirs, bordereaux de livraison...). (*R*)
 - F_COLLABORATEUR : Employés de XO. (*R*)
 - F_ECRITUREC: Ecritures comptables (montants, echéances...). (*R*)
 - F_COMPTET : Comptes Tiers (clients, fournisseurs, etc...). (*R*)
@@ -155,7 +156,8 @@ Versionning régulier avec GIT.
 - Collaborateur (model)
 - EcritureComptable (model)
 - CompteTiers (model)
-- Document (model)
+- DocEntete (model)
+- DocLigne (model)
 - User (model)
 - Role (model)
 
