@@ -22,6 +22,18 @@ public class CompteTiers implements Serializable {
 	@Column(name="CT_Intitule")
 	private String intitule;
 	
+	@Column(name="CT_Adresse")
+	private String adresse;
+	
+	@Column(name="CT_Codepostal")
+	private String codePostal;
+	
+	@Column(name="CT_Ville")
+	private String ville;
+	
+	@Column(name="CT_Pays")
+	private String pays;
+	
 	@NaturalId
 	@Column(name="CT_Numpayeur")
 	private String numeroPayeur;
@@ -44,5 +56,21 @@ public class CompteTiers implements Serializable {
 
 	public String getNumero() {
 		return numero;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public String getPays() {
+		return pays;
 	}
 }

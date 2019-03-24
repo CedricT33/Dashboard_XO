@@ -10,44 +10,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="f_docentete")
-public class Document {
+@Table(name="f_docligne")
+public class DocLigne {
 	
 	@Id
 	@Column(name="cbmarq")
 	private int id;
 	
-	@Column(name="DO_piece")
-	private String piece;
+	@Column(name="DL_montantht")
+	private Double montantHT;
 	
-	@Column(name="DO_date")
-	private Date date;
+	@Column(name="DL_datebc")
+	private Date dateBC;
 	
-	@Column(name="DO_totalht")
-	private Double totalHT;
+	@Column(name="DL_datebl")
+	private Date dateBL;
 	
 	@ManyToOne
 	@JoinColumn(name="CO_No", referencedColumnName = "CO_No")
 	private Collaborateur collaborateur;
 	
 	@ManyToOne
-	@JoinColumn(name="CT_Numpayeur", referencedColumnName = "CT_Numpayeur")
+	@JoinColumn(name="CT_Num", referencedColumnName = "CT_Num")
 	private CompteTiers compteT;
 
 	public int getId() {
 		return id;
 	}
 
-	public String getPiece() {
-		return piece;
+	public Double getMontantHT() {
+		return montantHT;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateBC() {
+		return dateBC;
 	}
 
-	public Double getTotalHT() {
-		return totalHT;
+	public Date getDateBL() {
+		return dateBL;
 	}
 
 	public Collaborateur getCollaborateur() {
@@ -56,6 +56,5 @@ public class Document {
 
 	public CompteTiers getCompteT() {
 		return compteT;
-	}
-	
+	}	
 }

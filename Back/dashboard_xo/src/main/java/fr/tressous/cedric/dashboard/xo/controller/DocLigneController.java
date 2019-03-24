@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.tressous.cedric.dashboard.xo.model.Document;
+import fr.tressous.cedric.dashboard.xo.model.DocLigne;
 import fr.tressous.cedric.dashboard.xo.service.XoService;
 
 @RestController
-@RequestMapping("/api/document")
-public class DocumentController {
+@RequestMapping("/api/docligne")
+public class DocLigneController {
 	
 	@Autowired
 	private XoService xoService;
@@ -22,8 +22,8 @@ public class DocumentController {
 	 * @return the list of documents.
 	 */
 	@GetMapping
-	public List<Document> getDocuments() {
-		return xoService.getAllDocuments();
+	public List<DocLigne> getDocLignes() {
+		return xoService.getAllDocLignes();
 	}
 
 }

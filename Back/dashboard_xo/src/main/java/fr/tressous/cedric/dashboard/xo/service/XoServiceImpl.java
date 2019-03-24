@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import fr.tressous.cedric.dashboard.xo.model.Collaborateur;
 import fr.tressous.cedric.dashboard.xo.model.CompteGeneral;
 import fr.tressous.cedric.dashboard.xo.model.CompteTiers;
-import fr.tressous.cedric.dashboard.xo.model.Document;
+import fr.tressous.cedric.dashboard.xo.model.DocEntete;
+import fr.tressous.cedric.dashboard.xo.model.DocLigne;
 import fr.tressous.cedric.dashboard.xo.model.EcritureComptable;
 import fr.tressous.cedric.dashboard.xo.repository.CollaborateurRepository;
 import fr.tressous.cedric.dashboard.xo.repository.CompteGeneralRepository;
 import fr.tressous.cedric.dashboard.xo.repository.CompteTiersRepository;
-import fr.tressous.cedric.dashboard.xo.repository.DocumentRepository;
+import fr.tressous.cedric.dashboard.xo.repository.DocEnteteRepository;
+import fr.tressous.cedric.dashboard.xo.repository.DocLigneRepository;
 import fr.tressous.cedric.dashboard.xo.repository.EcritureComptableRepository;
 
 @Service
@@ -26,7 +28,9 @@ public class XoServiceImpl implements XoService {
 	@Autowired
 	private CompteGeneralRepository compteRepo;
 	@Autowired
-	private DocumentRepository documentRepo;
+	private DocEnteteRepository docEnteteRepo;
+	@Autowired
+	private DocLigneRepository docLigneRepo;
 	@Autowired
 	private EcritureComptableRepository ecritureRepo;
 	
@@ -42,8 +46,12 @@ public class XoServiceImpl implements XoService {
 		return compteRepo.findAll();
 	}
 	
-	public List<Document> getAllDocuments() {
-		return documentRepo.findAll();
+	public List<DocEntete> getAllDocEntetes() {
+		return docEnteteRepo.findAll();
+	}
+	
+	public List<DocLigne> getAllDocLignes() {
+		return docLigneRepo.findAll();
 	}
 	
 	public List<EcritureComptable> getAllEcritures() {

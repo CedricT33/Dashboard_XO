@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import fr.tressous.cedric.dashboard.xo.model.Collaborateur;
 import fr.tressous.cedric.dashboard.xo.model.CompteGeneral;
 import fr.tressous.cedric.dashboard.xo.model.CompteTiers;
-import fr.tressous.cedric.dashboard.xo.model.Document;
+import fr.tressous.cedric.dashboard.xo.model.DocEntete;
+import fr.tressous.cedric.dashboard.xo.model.DocLigne;
 import fr.tressous.cedric.dashboard.xo.model.EcritureComptable;
 
 @Service
@@ -35,7 +36,13 @@ public interface XoService {
 	 * Method that return a list of documents in the application.
 	 * @return the list of documents.
 	 */
-	public List<Document> getAllDocuments();
+	public List<DocEntete> getAllDocEntetes();
+	
+	/**
+	 * Method that return a list of documents in the application.
+	 * @return the list of documents.
+	 */
+	public List<DocLigne> getAllDocLignes();
 	
 	/**
 	 * Method that return a list of accounting records in the application.
