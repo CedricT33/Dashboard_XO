@@ -21,8 +21,8 @@ public interface XoService {
 	public List<Collaborateur> getAllCollaborateurs();
 	
 	/**
-	 * Method that return a list of accounting records in the application.
-	 * @return the list of accounting records.
+	 * Method that return a list of third-party accounts in the application.
+	 * @return the list of third-party accounts.
 	 */
 	public List<CompteTiers> getAllComptesT();
 	

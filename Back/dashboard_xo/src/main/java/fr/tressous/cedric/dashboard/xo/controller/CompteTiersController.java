@@ -18,8 +18,8 @@ public class CompteTiersController {
 	private XoService xoService;
 	
 	/**
-	 * Method that send a list of accounting records out of the application.
-	 * @return the list of accounting records.
+	 * Method that send a list of third-party accounts out of the application.
+	 * @return the list of third-party accounts.
 	 */
 	@GetMapping
 	public List<CompteTiers> getComptesT() {

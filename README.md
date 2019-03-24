@@ -1,4 +1,4 @@
-# Projet chef-d'oeuvre
+﻿# Projet chef-d'oeuvre
 
 ### Titre : Dashboard XO
 
@@ -146,7 +146,17 @@ Versionning régulier avec GIT.
 - DashboardDirectionComponent
 - AdminComponent
 - LogInService
-- XoService
+- CollaborateursService
+
+- ComptesTiersService
+
+- ComptesGenerauxService
+
+- DocsEnteteService
+
+- DocsLigneService
+
+- EcrituresComptablesService
 - MessagesService
 - ObjectifsService
 - ColisService
