@@ -185,3 +185,13 @@ Versionning régulier avec GIT.
 - Visual Studio Code (version 1.32.3) : programmation Front application.
 - CLI : pour MySQL, Angular.
 
+**Gestion des versions** :
+**X-Y-Z-SNAPSHOT** (*dans le pom.xml*)
+- X : Numéro de version (0 = version bêta, 1 = déployement, +1 si nombreuses fonctionnalités ajoutées).
+- Y : Numéro de fonctionnalité ( +1 si une fonctionnalité est rajoutée à l'application).
+- Z : Numéro de modification minime (+1 si correction d'un bug, modification d'orthographe ou de design...).
+- SNAPSHOT : En cours de développement (version développeur).
+
+
+
+
