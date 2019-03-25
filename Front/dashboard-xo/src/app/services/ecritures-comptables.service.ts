@@ -29,6 +29,7 @@ export class EcrituresComptableService {
         ecrituresComptable => {
         this.availableEcrituresComptable = ecrituresComptable;
         this.ecrituresComptable$.next(this.availableEcrituresComptable);
+        console.log(this.availableEcrituresComptable);
       }
     );
   }

@@ -29,6 +29,7 @@ export class DocsEnteteService {
         docsEntete => {
         this.availableDocsEntete = docsEntete;
         this.docsEntete$.next(this.availableDocsEntete);
+        console.log(this.availableDocsEntete);
       }
     );
   }

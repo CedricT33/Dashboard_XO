@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import fr.tressous.cedric.dashboard.appli.service.ObjectifCommerceService;
 
 @RestController
 @RequestMapping("/api/objectif")
+@CrossOrigin("*")
 public class ObjectifCommerceController {
 	
 	@Autowired
@@ -52,11 +55,11 @@ public class ObjectifCommerceController {
 	
 	/**
 	 * Method that delete a goal from the database of the application.
-	 * @param objectif the goal to delete.
+	 * @param id the id of the goal to delete.
 	 */
-	@DeleteMapping
-	public ResponseEntity<?> deleteObjectifCommerce(@RequestBody ObjectifCommerce objectif) {
-		objectifService.deleteObjectifCommerce(objectif);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteObjectifCommerce(@PathVariable Long id) {
+		objectifService.deleteObjectifCommerce(id);
 		return ResponseEntity.ok(null);
 	}
 }

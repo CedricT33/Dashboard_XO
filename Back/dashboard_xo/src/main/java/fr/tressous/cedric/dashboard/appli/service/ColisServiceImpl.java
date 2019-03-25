@@ -26,7 +26,7 @@ public class ColisServiceImpl implements ColisService{
 		return colisRepo.saveAndFlush(colis);
 	}
 	
-	public void deleteColis(Colis colis) {
-		colisRepo.delete(colis);
+	public void deleteColis(Long id) {
+		colisRepo.deleteById(id);
 	}
 }

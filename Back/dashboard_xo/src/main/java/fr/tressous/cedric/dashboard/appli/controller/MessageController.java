@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import fr.tressous.cedric.dashboard.appli.service.MessageService;
 
 @RestController
 @RequestMapping("/api/message")
+@CrossOrigin("*")
 public class MessageController {
 	
 	@Autowired
@@ -52,11 +55,11 @@ public class MessageController {
 	
 	/**
 	 * Method that delete a message from the database of the application.
-	 * @param message the message to delete.
+	 * @param id the id of the message to delete.
 	 */
-	@DeleteMapping
-	public ResponseEntity<?> deleteMessage(@RequestBody Message message) {
-		messageService.deleteMessage(message);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteMessage(@PathVariable Long id) {
+		messageService.deleteMessage(id);
 		return ResponseEntity.ok(null);
 	}
 }

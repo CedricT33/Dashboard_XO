@@ -26,7 +26,7 @@ public class ObjectifCommerceServiceImpl implements ObjectifCommerceService{
 		return objectifRepo.saveAndFlush(objectifCommerce);
 	}
 	
-	public void deleteObjectifCommerce(ObjectifCommerce objectif) {
-		objectifRepo.delete(objectif);
+	public void deleteObjectifCommerce(Long id) {
+		objectifRepo.deleteById(id);
 	}
 }

@@ -31,7 +31,7 @@ public interface ObjectifCommerceService {
     
     /**
      * Method that delete a goal.
-     * @param objectif the goal to delete.
+     * @param id the id of the goal to delete.
      */
-    public void deleteObjectifCommerce(ObjectifCommerce objectif);
+    public void deleteObjectifCommerce(Long id);
 }

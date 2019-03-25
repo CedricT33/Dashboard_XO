@@ -29,6 +29,7 @@ export class DocsLigneService {
         docsLigne => {
         this.availableDocsLigne = docsLigne;
         this.docsLigne$.next(this.availableDocsLigne);
+        console.log(this.availableDocsLigne);
       }
     );
   }

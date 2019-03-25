@@ -24,13 +24,13 @@ public interface ColisService {
     
     /**
      * Method that update a packet.
-     * @param packet the packet to update.
+     * @param colis the packet to update.
      */
     public Colis updateColis(Colis colis);
     
     /**
      * Method that delete a packet.
-     * @param packet the packet to delete.
+     * @param id the id of the packet to delete.
      */
-    public void deleteColis(Colis colis);
+    public void deleteColis(Long id);
 }

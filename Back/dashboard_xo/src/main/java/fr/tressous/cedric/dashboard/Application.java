@@ -34,25 +34,25 @@ public class Application implements CommandLineRunner{
 		if (userService.getAllUsers().isEmpty()) {
 			Role roleAdmin = new Role();
 			roleAdmin.setRole("ROLE_ADMIN");
-			roleService.createNewRole(roleAdmin);
+			// roleService.createNewRole(roleAdmin);
 			Role roleLog = new Role();
 			roleLog.setRole("ROLE_LOGISTIQUE");
-			roleService.createNewRole(roleLog);
+			// roleService.createNewRole(roleLog);
 			Role roleCom = new Role();
 			roleCom.setRole("ROLE_COMMERCIAL");
-			roleService.createNewRole(roleCom);
+			// roleService.createNewRole(roleCom);
 			Role roleFin = new Role();
 			roleFin.setRole("ROLE_FINANCE");
-			roleService.createNewRole(roleFin);
+			// roleService.createNewRole(roleFin);
 			Role roleDir = new Role();
 			roleDir.setRole("ROLE_DIRECTION");
-			roleService.createNewRole(roleDir);
+			// roleService.createNewRole(roleDir);
 			
 			User admin = new User();
 			admin.setUsername("admin");
 			admin.setPassword("simplon");
 			admin.setRole(roleAdmin);
-			userService.createNewUser(admin);
+			// userService.createNewUser(admin);
 		}		
 	}
 }

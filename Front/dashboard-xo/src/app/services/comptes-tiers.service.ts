@@ -29,6 +29,7 @@ export class ComptesTiersService {
         comptesTiers => {
         this.availableComptesTiers = comptesTiers;
         this.comptesTiers$.next(this.availableComptesTiers);
+        console.log(this.availableComptesTiers);
       }
     );
   }

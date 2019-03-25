@@ -31,7 +31,7 @@ public interface MessageService {
     
     /**
      * Method that delete a message.
-     * @param user the message to delete.
+     * @param id the id of the message to delete.
      */
-    public void deleteMessage(Message message);
+    public void deleteMessage(Long id);
 }

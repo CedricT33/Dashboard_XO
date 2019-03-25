@@ -29,6 +29,7 @@ export class CollaborateursService {
         collaborateurs => {
         this.availableCollaborateurs = collaborateurs;
         this.collaborateurs$.next(this.availableCollaborateurs);
+        console.log(this.availableCollaborateurs);
       }
     );
   }

@@ -29,6 +29,7 @@ export class ComptesGenerauxService {
         comptesGeneraux => {
         this.availableComptesGeneraux = comptesGeneraux;
         this.comptesGeneraux$.next(this.availableComptesGeneraux);
+        console.log(this.availableComptesGeneraux);
       }
     );
   }

@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import fr.tressous.cedric.dashboard.appli.service.ColisService;
 
 @RestController
 @RequestMapping("/api/colis")
+@CrossOrigin("*")
 public class ColisController {
 	
 	@Autowired
@@ -53,11 +56,11 @@ public class ColisController {
 	
 	/**
 	 * Method that delete a packet from the database of the application.
-	 * @param colis the packet to delete.
+	 * @param id the id of the to delete.
 	 */
-	@DeleteMapping
-	public ResponseEntity<?> deleteColis(@RequestBody Colis colis) {
-		colisService.deleteColis(colis);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteColis(@PathVariable Long id) {
+		colisService.deleteColis(id);
 		return ResponseEntity.ok(null);
 	}
 
