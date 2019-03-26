@@ -31,7 +31,7 @@ public interface UserService {
     
     /**
      * Method that delete a user.
-     * @param user the user to delete.
+     * @param id the id of the user to delete.
      */
-    public void deleteUser(User user);
+    public void deleteUser(Long id);
 }

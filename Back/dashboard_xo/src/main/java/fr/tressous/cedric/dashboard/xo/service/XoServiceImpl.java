@@ -2,7 +2,6 @@ package fr.tressous.cedric.dashboard.xo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.tressous.cedric.dashboard.xo.model.Collaborateur;
@@ -21,19 +20,24 @@ import fr.tressous.cedric.dashboard.xo.repository.EcritureComptableRepository;
 @Service
 public class XoServiceImpl implements XoService {
 	
-	@Autowired
 	private CollaborateurRepository collaborateurRepo;
-	@Autowired
 	private CompteTiersRepository compteTiersRepo;
-	@Autowired
 	private CompteGeneralRepository compteRepo;
-	@Autowired
 	private DocEnteteRepository docEnteteRepo;
-	@Autowired
 	private DocLigneRepository docLigneRepo;
-	@Autowired
 	private EcritureComptableRepository ecritureRepo;
-	
+
+	public XoServiceImpl(CollaborateurRepository collaborateurRepo, CompteTiersRepository compteTiersRepo,
+			CompteGeneralRepository compteRepo, DocEnteteRepository docEnteteRepo, DocLigneRepository docLigneRepo,
+			EcritureComptableRepository ecritureRepo) {
+		this.collaborateurRepo = collaborateurRepo;
+		this.compteTiersRepo = compteTiersRepo;
+		this.compteRepo = compteRepo;
+		this.docEnteteRepo = docEnteteRepo;
+		this.docLigneRepo = docLigneRepo;
+		this.ecritureRepo = ecritureRepo;
+	}
+
 	public List<Collaborateur> getAllCollaborateurs() {
 		return collaborateurRepo.findAll();
 	}

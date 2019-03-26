@@ -2,7 +2,6 @@ package fr.tressous.cedric.dashboard.appli.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.tressous.cedric.dashboard.appli.model.User;
@@ -11,9 +10,12 @@ import fr.tressous.cedric.dashboard.appli.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 	
-	@Autowired
 	private UserRepository userRepo;
 	
+	public UserServiceImpl(UserRepository userRepo) {
+		this.userRepo = userRepo;
+	}
+
 	public List<User> getAllUsers() {
 		return userRepo.findAll();
 	}
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService{
 		return userRepo.saveAndFlush(user);
 	}
 	
-	public void deleteUser(User user) {
-		userRepo.delete(user);
+	public void deleteUser(Long id) {
+		userRepo.deleteById(id);
 	}
 }

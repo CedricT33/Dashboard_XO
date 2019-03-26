@@ -29,6 +29,13 @@ public class ObjectifCommerce {
 	public ObjectifCommerce() {
 	}
 
+	public ObjectifCommerce(String intitule, Date date, int chiffre, User user) {
+		this.intitule = intitule;
+		this.date = date;
+		this.chiffre = chiffre;
+		this.user = user;
+	}
+
 	public Long getIdObjectif() {
 		return idObjectif;
 	}

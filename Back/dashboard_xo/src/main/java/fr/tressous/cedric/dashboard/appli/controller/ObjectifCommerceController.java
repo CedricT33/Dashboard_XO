@@ -30,8 +30,8 @@ public class ObjectifCommerceController {
 	 * @return the list of goals.
 	 */
 	@GetMapping
-	public List<ObjectifCommerce> getObjectifCommerces() {
-		return objectifService.getAllObjectifCommerces();
+	public List<ObjectifCommerce> getObjectifsCommerce() {
+		return objectifService.getAllObjectifsCommerce();
 	}
 	
 	/**

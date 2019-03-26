@@ -13,7 +13,7 @@ public interface ObjectifCommerceService {
 	 * Method that return a list of goals in the application.
 	 * @return the list of goals.
 	 */
-	public List<ObjectifCommerce> getAllObjectifCommerces();
+	public List<ObjectifCommerce> getAllObjectifsCommerce();
 	
 	/**
      * Method that creates a new goal.

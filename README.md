@@ -177,6 +177,7 @@ Versionning régulier avec GIT.
 - Spring Boot Starter JDBC
 - Spring Boot Starter JPA
 - Spring Boot Starter Security
+- Spring Boot Starter Test
 - Driver MySQL
 - Driver H2
 - Hibernate
@@ -201,6 +202,16 @@ Versionning régulier avec GIT.
 - Y : Numéro de fonctionnalité ( +1 si une fonctionnalité est rajoutée à l'application).
 - Z : Numéro de modification minime (+1 si correction d'un bug, modification d'orthographe ou de design...).
 - SNAPSHOT : En cours de développement (version développeur).
+
+**Versions** :
+-[0.0.1-SNAPSHOT] - Initialisation BACK / FRONT. (Architecture).
+-[0.1.0-SNAPSHOT] - BACK Xo (Models, Repos, Services, Controllers).
+-[0.2.0-SNAPSHOT] - BACK Appli (Models, Repos, Services, Controllers) + Gestion 2 BDD (Ajout Dépendance driver H2, ajout du package "config" + 2 fichiers de conf BDD).
+-[0.3.0-SNAPSHOT] - FRONT (Intégration Angular Material, Models).
+-[0.3.1-SNAPSHOT] - FRONT (Ajout model DocLigne, modif DocEntete, modif CompteT) + BACK (Ajout DocLigne (model, repo, service, controller), modif DocEntete, modif CompteT).
+-[0.4.0-SNAPSHOT] - FRONT Xo (Services).
+-[0.5.0-SNAPSHOT] - FRONT Appli (Services) + BACK (Modif méthode Delete dans les services appli, ajout Data.sql (=bouchon données appli).
+-[0.6.0-SNAPSHOT] - BACK Tests Unitaires (Controllers).
 
 
 

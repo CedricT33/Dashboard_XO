@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,11 +54,11 @@ public class UserController {
 	
 	/**
 	 * Method that delete a user from the database of the application.
-	 * @param user the user to delete.
+	 * @param id the id of the user to delete.
 	 */
-	@DeleteMapping
-	public ResponseEntity<?> deleteUser(@RequestBody User user) {
-		userService.deleteUser(user);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+		userService.deleteUser(id);
 		return ResponseEntity.ok(null);
 	}
 

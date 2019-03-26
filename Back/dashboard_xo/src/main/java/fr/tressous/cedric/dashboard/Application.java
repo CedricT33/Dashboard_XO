@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.tressous.cedric.dashboard.appli.model.Role;
 import fr.tressous.cedric.dashboard.appli.model.User;
-import fr.tressous.cedric.dashboard.appli.service.RoleService;
 import fr.tressous.cedric.dashboard.appli.service.UserService;
 
 @SpringBootApplication
@@ -16,8 +15,8 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private RoleService roleService;
+//	@Autowired
+//	private RoleService roleService;
 	
 	public static void main(String[] args)  {
         SpringApplication.run(Application.class, args);

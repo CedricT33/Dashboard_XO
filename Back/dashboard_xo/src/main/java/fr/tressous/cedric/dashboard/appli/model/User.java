@@ -28,6 +28,12 @@ public class User {
 	public User() {
 	}
 
+	public User(String username, String password, Role role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
 	public Long getIdUser() {
 		return idUser;
 	}

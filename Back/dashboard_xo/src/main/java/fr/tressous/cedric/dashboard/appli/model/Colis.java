@@ -29,6 +29,12 @@ public class Colis {
 	public Colis() {
 	}
 
+	public Colis(int nbreColis, Date date, User user) {
+		this.nbreColis = nbreColis;
+		this.date = date;
+		this.user = user;
+	}
+
 	public Long getIdColis() {
 		return idColis;
 	}

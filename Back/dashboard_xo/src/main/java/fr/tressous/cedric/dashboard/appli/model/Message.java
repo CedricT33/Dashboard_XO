@@ -29,6 +29,13 @@ public class Message {
 	public Message() {
 	}
 
+	public Message(String texte, Date date, String destinataire, User user) {
+		this.texte = texte;
+		this.date = date;
+		this.destinataire = destinataire;
+		this.user = user;
+	}
+
 	public Long getIdMessage() {
 		return idMessage;
 	}
