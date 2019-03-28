@@ -1,0 +1,106 @@
+<main>
+  <div class="container_accueil">
+    <div class="row">
+
+      <!-- Premiere card -->
+        <div class="col s12 m6">
+          <a routerLink="/finance">
+            <div class="card">
+              <div class="card-content">
+                <h4 class="center-align">FINANCE</h4>
+                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+              </div>
+            </div>
+          </a>	
+        </div>
+
+        <!-- Deuxieme card -->
+        <div class="col s12 m6">
+          <a routerLink="/commerce">
+            <div class="card">
+              <div class="card-content">
+                <h4 class="center-align">COMMERCE</h4>
+                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+              </div>
+            </div>	
+          </a>
+        </div>
+
+        <!-- Troisieme card -->
+        <div class="col s12 m6">
+          <a routerLink="/direction">
+            <div class="card">
+              <div class="card-content">
+                <h4 class="center-align">DIRECTION</h4>
+                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+              </div>
+            </div>	
+          </a>
+        </div>
+
+        <!-- Quatrieme card -->
+        <div class="col s12 m6">
+          <a routerLink="/logistique">
+            <div class="card">
+              <div class="card-content">
+                <h4 class="center-align">LOGISTIQUE</h4>
+                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+              </div>
+            </div>	
+          </a>
+        </div>
+      </div>
+
+      <!-- Updates -->
+        <div class="col l12">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Derniers messages</span>
+            <ul class="badge-updates">
+              <li *ngFor="let message of messagesList.value | slice:0:3">
+                <span class="new badge orange" data-badge-caption="">{{message.destinataire}}</span>
+                <span class="message">{{message.texte}}</span>
+                <span class="time">{{message.date | date:'dd MMM y'}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Bouton Flottant -->
+  <div class="fixed-action-btn ">
+    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" routerLink=""><i class="material-icons">add</i></a>
+  </div>
+
+  <!-- Modal Structure bouton flottant-->
+  <div id="ajout-donnees" class="modal">
+      <div class="modal-content">
+          <h4>Message</h4>
+
+          <div class="row">
+            <div class="input-field col s12 m6 offset-m3">
+            <select>
+              <option value="" disabled selected>Choisissez :</option>
+              <option value="1">Direction</option>
+              <option value="2">Finance</option>
+              <option value="3">Commerce</option>
+              <option value="4">Logistique</option>
+            </select>
+            <label>Destination du message ?</label>
+        </div>
+
+        <div class="input-field col s12 m6 offset-m3">
+              <i class="material-icons prefix">chat</i>
+              <input id="chiffreAffaire" type="text" class="validate">
+              <label for="chiffreAffaire">Message (100 lettres max)</label>
+            </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Enregistrer</a>
+      </div>
+  </div>
+
+</main>

@@ -170,6 +170,9 @@ Versionning régulier avec GIT.
 - DocLigne (model)
 - User (model)
 - Role (model)
+- DialogObjectifsComponent
+- DialogColisComponent
+- DialogMessagesComponent
 
 **Dépendances Back** :
 
@@ -213,6 +216,7 @@ Versionning régulier avec GIT.
 -[0.5.0-SNAPSHOT] - FRONT Appli (Services) + BACK (Modif méthode Delete dans les services appli, ajout Data.sql (=bouchon données appli).
 -[0.6.0-SNAPSHOT] - BACK Tests Unitaires (Controllers).
 -[0.7.0-SNAPSHOT] - FRONT Header, Footer.
+-[0.8.0-SNAPSHOT] - FRONT Accueil.
 
 
 

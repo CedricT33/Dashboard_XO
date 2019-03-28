@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../models/message.model';
+import { BehaviorSubject } from 'rxjs';
+import { MessagesService } from '../services/messages.service';
 
 @Component({
   selector: 'app-accueil',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  messagesList: BehaviorSubject<Message[]>;
+
+  constructor(private messagesService: MessagesService) {}
 
   ngOnInit() {
+    this.messagesList = this.messagesService.messages$;
   }
 
 }

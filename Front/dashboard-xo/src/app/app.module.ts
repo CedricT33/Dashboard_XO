@@ -10,13 +10,21 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DashboardLogistiqueComponent } from './dashboard-logistique/dashboard-logistique.component';
+import { DashboardDirectionComponent } from './dashboard-direction/dashboard-direction.component';
+import { DashboardCommerceComponent } from './dashboard-commerce/dashboard-commerce.component';
+import { DashboardFinanceComponent } from './dashboard-finance/dashboard-finance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardLogistiqueComponent,
+    DashboardDirectionComponent,
+    DashboardCommerceComponent,
+    DashboardFinanceComponent
   ],
   imports: [
     BrowserModule,
