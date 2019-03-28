@@ -212,6 +212,7 @@ Versionning régulier avec GIT.
 -[0.4.0-SNAPSHOT] - FRONT Xo (Services).
 -[0.5.0-SNAPSHOT] - FRONT Appli (Services) + BACK (Modif méthode Delete dans les services appli, ajout Data.sql (=bouchon données appli).
 -[0.6.0-SNAPSHOT] - BACK Tests Unitaires (Controllers).
+-[0.7.0-SNAPSHOT] - FRONT Header, Footer.
 
 
 
