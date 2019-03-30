@@ -58,3 +58,7 @@ insert into messages (idMessage, texte, date, destinataire, idUser) values (1, "
 org.h2.jdbc.JdbcSQLException: Erreur de syntaxe dans linstruction SQL {0}
 Syntax error in SQL statement {0}; SQL statement:
 insert into messages (idMessage, texte, date, destinataire, idUser) values (1, 'Ce message est à l\'attention du service logistique...', '2019-03-25 00:00:00', 'LOGISTIQUE', 1) [42000-197]
+2019-03-30 09:00:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Erreur de syntaxe dans linstruction SQL {0}
+Syntax error in SQL statement {0}; SQL statement:
+## BOUCHON DE TEST BDD APPLI # insert into roles (idRole, role) values (1, 'ROLE_ADMIN') [42000-197]

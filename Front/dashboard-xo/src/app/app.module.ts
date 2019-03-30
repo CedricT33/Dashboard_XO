@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,14 @@ import { DashboardLogistiqueComponent } from './dashboard-logistique/dashboard-l
 import { DashboardDirectionComponent } from './dashboard-direction/dashboard-direction.component';
 import { DashboardCommerceComponent } from './dashboard-commerce/dashboard-commerce.component';
 import { DashboardFinanceComponent } from './dashboard-finance/dashboard-finance.component';
+import { LoginComponent } from './login/login.component';
+import { JwtInterceptor } from './http-interceptor/jwt.interceptor';
+import { AdminGuard } from './guards/admin.guard';
+import { CommerceGuard } from './guards/commerce.guard';
+import { DirectionGuard } from './guards/direction.guard';
+import { FinanceGuard } from './guards/finance.guard';
+import { LogisticGuard } from './guards/logistic.guard';
+import { ConnectedGuard } from './guards/connected.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +32,8 @@ import { DashboardFinanceComponent } from './dashboard-finance/dashboard-finance
     DashboardLogistiqueComponent,
     DashboardDirectionComponent,
     DashboardCommerceComponent,
-    DashboardFinanceComponent
+    DashboardFinanceComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,13 @@ import { DashboardFinanceComponent } from './dashboard-finance/dashboard-finance
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ConnectedGuard, AdminGuard, CommerceGuard, DirectionGuard, FinanceGuard, LogisticGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

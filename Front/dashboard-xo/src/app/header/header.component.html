@@ -1,13 +1,14 @@
 <header>
   <nav class="black mat-elevation-z6">
     <div class="nav-wrapper">
-      <a routerLink="" class="brand-logo left">
+      <a routerLink="" [ngClass]="{'left brand-logo': isConnected , 'logo-centre': !isConnected}" (click)="changeTitle('')">
         <img src="assets/logo_xo.png"/>
       </a>
-      <div class="titre grey-text hide-on-small-only">{{service}}</div>
+      <div class="titre grey-text hide-on-small-only">{{titreDashboard | uppercase}}</div>
       <ul class="right">
-        <li><a routerLink="accueil"><i class="material-icons">view_module</i></a></li>
-        <li><a class="modal-trigger" routerLink="deconnexion"><i class="material-icons">power_settings_new</i></a></li>
+        <li *ngIf="isAdmin" (click)="changeTitle('')"><a routerLink="/admin"><i class="material-icons">settings</i></a></li>
+        <li *ngIf="titreDashboard" (click)="changeTitle('')"><a routerLink="/accueil"><i class="material-icons">view_module</i></a></li>
+        <li *ngIf="isConnected"><a class="modal-trigger" (click)="signOut()"><i class="material-icons">power_settings_new</i></a></li>
       </ul>
     </div>
   </nav>	

@@ -11,7 +11,7 @@
 *rajouter contact technique
 
 **Technologie** :
-- Front : HTML, CSS (Angular material), Angular.
+- Front : HTML, CSS (Angular material, MaterializeCSS), Angular.
 - Back : Java (SpringBoot, Hibernate) SQL (MySql + H2).
 
 **Fonctionnalités demandées** : 
@@ -170,9 +170,17 @@ Versionning régulier avec GIT.
 - DocLigne (model)
 - User (model)
 - Role (model)
+- Jwt (model)
 - DialogObjectifsComponent
 - DialogColisComponent
 - DialogMessagesComponent
+- JwtInterceptor
+- AdminGuard
+- DirectionGuard
+- FinanceGuard
+- CommerceGuard
+- LogisticGuard
+- ConnectedGuard
 
 **Dépendances Back** :
 
@@ -207,17 +215,17 @@ Versionning régulier avec GIT.
 - SNAPSHOT : En cours de développement (version développeur).
 
 **Versions** :
--[0.0.1-SNAPSHOT] - Initialisation BACK / FRONT. (Architecture).
--[0.1.0-SNAPSHOT] - BACK Xo (Models, Repos, Services, Controllers).
--[0.2.0-SNAPSHOT] - BACK Appli (Models, Repos, Services, Controllers) + Gestion 2 BDD (Ajout Dépendance driver H2, ajout du package "config" + 2 fichiers de conf BDD).
--[0.3.0-SNAPSHOT] - FRONT (Intégration Angular Material, Models).
--[0.3.1-SNAPSHOT] - FRONT (Ajout model DocLigne, modif DocEntete, modif CompteT) + BACK (Ajout DocLigne (model, repo, service, controller), modif DocEntete, modif CompteT).
--[0.4.0-SNAPSHOT] - FRONT Xo (Services).
--[0.5.0-SNAPSHOT] - FRONT Appli (Services) + BACK (Modif méthode Delete dans les services appli, ajout Data.sql (=bouchon données appli).
--[0.6.0-SNAPSHOT] - BACK Tests Unitaires (Controllers).
--[0.7.0-SNAPSHOT] - FRONT Header, Footer.
--[0.8.0-SNAPSHOT] - FRONT Accueil.
-
+- [0.0.1-SNAPSHOT] - Initialisation BACK / FRONT. (Architecture).
+- [0.1.0-SNAPSHOT] - BACK Xo (Models, Repos, Services, Controllers).
+- [0.2.0-SNAPSHOT] - BACK Appli (Models, Repos, Services, Controllers) + Gestion 2 BDD (Ajout Dépendance driver H2, ajout du package "config" + 2 fichiers de conf BDD).
+- [0.3.0-SNAPSHOT] - FRONT (Intégration Angular Material, Models).
+- [0.3.1-SNAPSHOT] - FRONT (Ajout model DocLigne, modif DocEntete, modif CompteT) + BACK (Ajout DocLigne (model, repo, service, controller), modif DocEntete, modif CompteT).
+- [0.4.0-SNAPSHOT] - FRONT Xo (Services).
+- [0.5.0-SNAPSHOT] - FRONT Appli (Services) + BACK (Modif méthode Delete dans les services appli, ajout Data.sql (=bouchon données appli).
+- [0.6.0-SNAPSHOT] - BACK Tests Unitaires (Controllers).
+- [0.7.0-SNAPSHOT] - FRONT Header, Footer.
+- [0.8.0-SNAPSHOT] - FRONT Accueil.
+- [0.9.0-SNAPSHOT] - BACK Jwt-Security + FRONT Authentification (Ajout model jwt, ajout guards, integration MaterializeCSS et jwt-decode).
 
 
 

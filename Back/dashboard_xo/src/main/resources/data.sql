@@ -1,13 +1,15 @@
+/* BOUCHON DE TEST BDD APPLI */
+
 insert into roles (idRole, role) values (1, 'ROLE_ADMIN');
 insert into roles (idRole, role) values (2, 'ROLE_LOGISTIQUE');
 insert into roles (idRole, role) values (3, 'ROLE_COMMERCIAL');
 insert into roles (idRole, role) values (4, 'ROLE_FINANCE');
 insert into roles (idRole, role) values (5, 'ROLE_DIRECTION');
-insert into users (idUser, username, password, idRole) values (1, 'admin', 'simplon', 1);
-insert into users (idUser, username, password, idRole) values (2, 'log', 'simplon', 2);
-insert into users (idUser, username, password, idRole) values (3, 'com', 'simplon', 3);
-insert into users (idUser, username, password, idRole) values (4, 'fin', 'simplon', 4);
-insert into users (idUser, username, password, idRole) values (5, 'dir', 'simplon', 5);
+insert into users (idUser, username, password, idRole) values (1, 'admin', '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 1);
+insert into users (idUser, username, password, idRole) values (2, 'log', '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 2);
+insert into users (idUser, username, password, idRole) values (3, 'com', '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 3);
+insert into users (idUser, username, password, idRole) values (4, 'fin', '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 4);
+insert into users (idUser, username, password, idRole) values (5, 'dir', '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 5);
 insert into messages (idMessage, texte, date, destinataire, idUser) values (1, 'Ce message est pour le service logistique...', '2019-03-25 00:00:00', 'LOGISTIQUE', 1);
 insert into messages (idMessage, texte, date, destinataire, idUser) values (2, 'Ce message est pour le service commercial...', '2019-03-25 00:00:00', 'COMMERCE', 2);
 insert into messages (idMessage, texte, date, destinataire, idUser) values (3, 'Ce message est pour la finance...', '2019-03-25 00:00:00', 'FINANCE', 3);

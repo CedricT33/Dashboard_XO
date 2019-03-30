@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  service: string;
+  titreDashboard: string;
+  isAdmin: boolean;
+  isConnected: boolean;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.userRole.subscribe(userRole => {
+      this.isAdmin = userRole.includes('ROLE_ADMIN');
+      this.isConnected = userRole.length > 0;
+    });
+    this.loginService.titleDashboard.subscribe(title => {
+      this.titreDashboard = title;
+    });
+  }
+
+  changeTitle(title: string) {
+    this.loginService.changeTitleDashboard(title);
+  }
+
+  signOut() {
+    this.loginService.signOut();
   }
 
 }

@@ -10,22 +10,31 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fr.tressous.cedric.dashboard.appli.model.User;
 import fr.tressous.cedric.dashboard.appli.model.Role;
 import fr.tressous.cedric.dashboard.appli.repository.UserRepository;
+import fr.tressous.cedric.dashboard.security.JwtTokenProvider;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTests {
 
 	@Mock
 	UserRepository userRepo;
+	@Mock
+	BCryptPasswordEncoder passwordEncoder;
+	@Mock
+    JwtTokenProvider jwtTokenProvider;
+	@Mock
+    AuthenticationManager authenticationManager;
 	
 	private UserService userService;
 
 	@Before
 	public void setUp() throws Exception {
-		userService = new UserServiceImpl(userRepo);
+		userService = new UserServiceImpl(userRepo, passwordEncoder, jwtTokenProvider, authenticationManager);
 	}
 	
 	@Test
