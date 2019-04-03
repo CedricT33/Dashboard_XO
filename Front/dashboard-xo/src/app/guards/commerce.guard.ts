@@ -12,7 +12,7 @@ export class CommerceGuard implements CanActivate {
     if (!this.loginService.loggedIn) {
       this.router.navigate(['login']);
       return false;
-    } else if (this.loginService.userRole.getValue().includes('ROLE_COMMERCIAL') ||
+    } else if (this.loginService.userRole.getValue().includes('ROLE_COMMERCE') ||
                 this.loginService.userRole.getValue().includes('ROLE_DIRECTION') ||
                 this.loginService.userRole.getValue().includes('ROLE_ADMIN')) {
       return true;

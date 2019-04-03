@@ -104,6 +104,12 @@ main a:hover {
   color: #ffa000;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .card h4 {
   margin: 0;
   font-size: 2.1rem;

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../models/message.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material';
 
@@ -21,6 +22,21 @@ export class MessagesService {
    */
   private getMessages(): Observable<Message[]> {
     return this.httpClient.get<Message[]>(environment.apiUrl + 'message');
+  }
+
+  /**
+   * Function that retrieves all messages of a service from API (back).
+   * @param service the service where we want to show messages.
+   */
+  public getMessagesByService(service: string): Observable<Message[]> {
+    if (service) {
+      if (!this.availableMessages) {
+        return this.getMessages().pipe(map(messages => messages.filter(m => m.destinataire === service)));
+      }
+      return of(this.availableMessages.filter(m => m.destinataire === service));
+    } else {
+      return of([]);
+    }
   }
 
   /**

@@ -54,7 +54,7 @@ export class LoginService {
 
         this.router.navigate(['']);
 
-        this.pushAllDatas();
+        this.publishAllDatas();
       },
       error => console.log('Error while login'));
   }
@@ -87,14 +87,14 @@ export class LoginService {
     }
   }
 
-  private pushAllDatas() {
+  private publishAllDatas() {
+    this.messagesService.publishMessages();
     this.collaborateursService.publishCollaborateurs();
     this.comptesGenerauxService.publishComptesGeneraux();
     this.comptesTiersService.publishComptesTiers();
     this.docsEnteteService.publishDocsEntete();
     this.docsLigneService.publishDocsLigne();
     this.ecrituresComptableService.publishEcrituresComptable();
-    this.messagesService.publishMessages();
     this.colisService.publishColis();
     this.objectifsService.publishObjectifs();
   }

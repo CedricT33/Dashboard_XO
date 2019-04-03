@@ -24,7 +24,7 @@ export class AccueilComponent implements OnInit {
     this.messagesList = this.messagesService.messages$;
     this.loginService.userRole.subscribe(userRole => {
       this.isAdmin = userRole.includes('ROLE_ADMIN');
-      this.isCommerce = userRole.includes('ROLE_COMMERCIAL');
+      this.isCommerce = userRole.includes('ROLE_COMMERCE');
       this.isFinance = userRole.includes('ROLE_FINANCE');
       this.isDirection = userRole.includes('ROLE_DIRECTION');
       this.isLogistic = userRole.includes('ROLE_LOGISTIQUE');

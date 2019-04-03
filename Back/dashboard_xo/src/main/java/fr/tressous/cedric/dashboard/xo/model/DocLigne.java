@@ -1,6 +1,9 @@
 package fr.tressous.cedric.dashboard.xo.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,12 +45,22 @@ public class DocLigne {
 		return montantHT;
 	}
 
-	public Date getDateBC() {
-		return dateBC;
+	public Date getDateBC() throws ParseException {
+		// conversion to UTC
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+	    df.setTimeZone(TimeZone.getTimeZone("UTC"));
+	    String toParse = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateBC);
+	    Date dateToGet = df.parse(toParse);
+		return dateToGet;
 	}
 
-	public Date getDateBL() {
-		return dateBL;
+	public Date getDateBL() throws ParseException {
+		// conversion to UTC
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+	    df.setTimeZone(TimeZone.getTimeZone("UTC"));
+	    String toParse = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateBL);
+	    Date dateToGet = df.parse(toParse);
+		return dateToGet;
 	}
 
 	public Collaborateur getCollaborateur() {

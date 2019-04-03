@@ -160,6 +160,7 @@ Versionning régulier avec GIT.
 - MessagesService
 - ObjectifsService
 - ColisService
+- ChartsService
 - Message (model)
 - Objectif (model)
 - Colis (model)
@@ -174,6 +175,7 @@ Versionning régulier avec GIT.
 - DialogObjectifsComponent
 - DialogColisComponent
 - DialogMessagesComponent
+- DialogDeconnexionComponent
 - JwtInterceptor
 - AdminGuard
 - DirectionGuard
@@ -226,6 +228,7 @@ Versionning régulier avec GIT.
 - [0.7.0-SNAPSHOT] - FRONT Header, Footer.
 - [0.8.0-SNAPSHOT] - FRONT Accueil.
 - [0.9.0-SNAPSHOT] - BACK Jwt-Security + FRONT Authentification (Ajout model jwt, ajout guards, integration MaterializeCSS et jwt-decode).
+- [0.10.0-SNAPSHOT] - FRONT Dashboard Logistique (Ajout ChartsService, integration Chartjs) + BACK Correction problème de dates en UTC.
 
 
 

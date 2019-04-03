@@ -1,3 +1,120 @@
-<p>
-  dashboard-logistique works!
-</p>
+<main>
+  <div class="container">
+    <div class="row">
+
+      <!-- Premiere card -->
+      <div class="col l3 m6 s12">
+        <div class="card" style="height: 280px;">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+                <div class="card-metric-title">Aujourd'hui</div>
+                <div class="card-metric-value">commandes expédiées</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal"><em>{{BLJour}} </em>
+                <i class="large material-icons">content_paste</i>
+              </div>
+        </div>	
+      </div>
+
+      <!-- Deuxieme card -->
+      <div class="col l3 m6 s12">
+        <div class="card" style="height: 280px;">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+                <div class="card-metric-title">Aujourd'hui</div>
+                <div class="card-metric-value">colis expédiés</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal"><em>{{colisJour}} </em>
+            <i class="large material-icons">local_shipping</i>
+          </div>
+        </div>	
+      </div> 
+
+      <!-- Troisieme card -->
+      <div class="col l3 m6 s12">
+        <div class="card" style="height: 280px;">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+                <div class="card-metric-title">Depuis le {{startOfTheYear | date:' dd / MM / y '}}</div>
+                <div class="card-metric-value">commandes expédiées</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal grey-text"><em>{{BLPeriode}} </em>
+            <i class="large material-icons">content_paste</i>
+          </div>
+        </div>	
+      </div>   
+
+      <!-- Quatrieme card -->
+      <div class="col l3 m6 s12">
+        <div class="card" style="height: 280px;">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+                <div class="card-metric-title">Depuis le {{startOfTheYear | date:' dd / MM / y '}}</div>
+                <div class="card-metric-value">colis expédiés</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal grey-text"><em>{{colisPeriode}} </em>
+            <i class="large material-icons">local_shipping</i>
+          </div>
+        </div>	
+      </div>  
+
+      <!-- Cinquieme card -->
+      <div class="col s12">
+            <div class="card">
+              <div class="card-metrics card-metrics-toggle card-metrics-centered">
+                  <div class="card-metric waves-effect active" id="semaine" (click)="onSemaine()">
+                    <div class="card-metric-title">
+                      <i class="small material-icons">content_paste</i>
+                    </div>
+                    <div class="card-metric-value">Semaine</div>
+                  </div>
+                  <div class="card-metric waves-effect" id="mois" (click)="onMois()">
+                    <div class="card-metric-title">
+                      <i class="small material-icons">content_paste</i>
+                    </div>
+                    <div class="card-metric-value">Mois</div>
+                  </div>
+                  <div class="card-metric waves-effect" id="annee" (click)="onAnnee()">
+                    <div class="card-metric-title">
+                      <i class="small material-icons">content_paste</i>
+                    </div>
+                    <div class="card-metric-value">Année</div>
+                  </div>
+              </div>
+              <div class="card-content">
+                <canvas class="card-chart chartjs-render-monitor" id="chartLogisticWeek" height="80" [ngStyle]="{'display':isChartWeek ? 'block' : 'none' }"></canvas>
+                <canvas class="card-chart chartjs-render-monitor" id="chartLogisticMonth" height="80" [ngStyle]="{'display':isChartMonth ? 'block' : 'none' }"></canvas>
+                <canvas class="card-chart chartjs-render-monitor" id="chartLogisticYear" height="80" [ngStyle]="{'display':isChartYear ? 'block' : 'none' }"></canvas>
+              </div>
+            </div>
+        </div>
+
+        <!-- Sixieme card -->
+          <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Derniers messages</span>
+              <ul class="badge-updates">
+                <li *ngFor="let message of messagesLogistic | slice:0:3">
+                  <span class="new badge orange" data-badge-caption="">{{message.user.role.role | slice:5}}</span>
+                  <span class="message">{{message.texte}}</span>
+                  <span class="time">{{message.date | date:'dd MMM y'}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Bouton Flottant -->
+  <div class="fixed-action-btn ">
+    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" routerLink="/logistique"><i class="material-icons">add</i></a>
+  </div>
+
+</main>
+
