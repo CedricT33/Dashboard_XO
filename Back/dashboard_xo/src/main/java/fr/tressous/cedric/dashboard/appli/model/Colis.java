@@ -1,10 +1,6 @@
 package fr.tressous.cedric.dashboard.appli.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,13 +50,8 @@ public class Colis {
 		this.nbreColis = nbreColis;
 	}
 
-	public Date getDate() throws ParseException {
-		// conversion to UTC
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
-	    df.setTimeZone(TimeZone.getTimeZone("UTC"));
-	    String toParse = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
-	    Date dateToGet = df.parse(toParse);
-		return dateToGet;
+	public Date getDate() {
+		return date;
 	}
 
 	public void setDate(Date date) {

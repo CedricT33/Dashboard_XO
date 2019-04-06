@@ -161,6 +161,7 @@ Versionning régulier avec GIT.
 - ObjectifsService
 - ColisService
 - ChartsService
+- DatasService
 - Message (model)
 - Objectif (model)
 - Colis (model)
@@ -172,6 +173,7 @@ Versionning régulier avec GIT.
 - User (model)
 - Role (model)
 - Jwt (model)
+- objectData (model)
 - DialogObjectifsComponent
 - DialogColisComponent
 - DialogMessagesComponent
@@ -183,6 +185,17 @@ Versionning régulier avec GIT.
 - CommerceGuard
 - LogisticGuard
 - ConnectedGuard
+- UntilNow (pipe)
+- ColisSerializer
+- DocsLigneSerializer
+- MessagesSerializer
+- CollaborateursSerializer
+- ComptesGenerauxSerializer
+- ComptesTiersSerializer
+- DocsEnteteSerializer
+- EcrituresComptablesSerializer
+- ObjectifsSerializer
+- Serializer
 
 **Dépendances Back** :
 
@@ -196,6 +209,13 @@ Versionning régulier avec GIT.
 - Hibernate
 - Json Web Token
 - DevTools
+
+**Dépendances FRONT** :
+
+- Angular Material
+- Chart.js
+- jwt-decode
+- materialize-css
 
 **Logiciels utilisés** :
 - Balsamiq Mockup 3 : maquettes wireframe.
@@ -229,6 +249,6 @@ Versionning régulier avec GIT.
 - [0.8.0-SNAPSHOT] - FRONT Accueil.
 - [0.9.0-SNAPSHOT] - BACK Jwt-Security + FRONT Authentification (Ajout model jwt, ajout guards, integration MaterializeCSS et jwt-decode).
 - [0.10.0-SNAPSHOT] - FRONT Dashboard Logistique (Ajout ChartsService, integration Chartjs) + BACK Correction problème de dates en UTC.
-
+- [0.10.1-SNAPSHOT] - FRONT (Ajout DatasService, ObjectDataModel, Serializers, UntilNow.Pipe) + BACK Suppression correction dates en UTC.
 
 

@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="listDocsLigne">
   <div class="container">
     <div class="row">
 
@@ -66,19 +66,19 @@
       <div class="col s12">
             <div class="card">
               <div class="card-metrics card-metrics-toggle card-metrics-centered">
-                  <div class="card-metric waves-effect active" id="semaine" (click)="onSemaine()">
+                  <div class="card-metric waves-effect" id="semaine" (click)="onSemaine()" [ngClass]="{'active':isChartWeek }">
                     <div class="card-metric-title">
                       <i class="small material-icons">content_paste</i>
                     </div>
                     <div class="card-metric-value">Semaine</div>
                   </div>
-                  <div class="card-metric waves-effect" id="mois" (click)="onMois()">
+                  <div class="card-metric waves-effect" id="mois" (click)="onMois()" [ngClass]="{'active':isChartMonth }">
                     <div class="card-metric-title">
                       <i class="small material-icons">content_paste</i>
                     </div>
                     <div class="card-metric-value">Mois</div>
                   </div>
-                  <div class="card-metric waves-effect" id="annee" (click)="onAnnee()">
+                  <div class="card-metric waves-effect" id="annee" (click)="onAnnee()" [ngClass]="{'active':isChartYear }">
                     <div class="card-metric-title">
                       <i class="small material-icons">content_paste</i>
                     </div>
@@ -94,15 +94,15 @@
         </div>
 
         <!-- Sixieme card -->
-          <div class="col s12">
+          <div class="col s12" *ngIf="messagesLogistic">
           <div class="card">
             <div class="card-content">
               <span class="card-title">Derniers messages</span>
               <ul class="badge-updates">
-                <li *ngFor="let message of messagesLogistic | slice:0:3">
+                <li *ngFor="let message of messagesLogistic.reverse() | slice:0:3">
                   <span class="new badge orange" data-badge-caption="">{{message.user.role.role | slice:5}}</span>
                   <span class="message">{{message.texte}}</span>
-                  <span class="time">{{message.date | date:'dd MMM y'}}</span>
+                  <span class="time">{{message.date | untilNow }}</span>
                 </li>
               </ul>
             </div>

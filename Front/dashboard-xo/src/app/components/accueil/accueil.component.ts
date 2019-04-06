@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Message } from '../models/message.model';
-import { BehaviorSubject } from 'rxjs';
-import { MessagesService } from '../services/messages.service';
-import { LoginService } from '../services/login.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Message } from '../../models/message.model';
+import { MessagesService } from '../../services/messages.service';
+import { LoginService } from '../../services/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
-export class AccueilComponent implements OnInit {
+export class AccueilComponent implements OnInit, OnDestroy {
 
-  messagesList: BehaviorSubject<Message[]>;
+  messagesList: Message[];
+  sub: Subscription;
   isAdmin: boolean;
   isCommerce: boolean;
   isFinance: boolean;
@@ -21,7 +22,10 @@ export class AccueilComponent implements OnInit {
   constructor(private messagesService: MessagesService, private loginService: LoginService) {}
 
   ngOnInit() {
-    this.messagesList = this.messagesService.messages$;
+    this.sub = this.messagesService.datas$.subscribe(messages => {
+      this.messagesList = messages;
+      this.getMessages();
+    });
     this.loginService.userRole.subscribe(userRole => {
       this.isAdmin = userRole.includes('ROLE_ADMIN');
       this.isCommerce = userRole.includes('ROLE_COMMERCE');
@@ -31,8 +35,20 @@ export class AccueilComponent implements OnInit {
     });
   }
 
+  getMessages() {
+    if (!this.messagesList) {
+      this.messagesService.publishDatas().subscribe();
+    }
+  }
+
   changeTitle(title: string) {
     this.loginService.changeTitleDashboard(title);
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

@@ -1,4 +1,6 @@
-export class CompteTiers {
+import { ObjectData } from './objectData.model';
+
+export class CompteTiers extends ObjectData {
 
     constructor(public id: number,
                 public intitule: string,
@@ -7,5 +9,7 @@ export class CompteTiers {
                 public adresse: string,
                 public codePostal: string,
                 public ville: string,
-                public pays: string) {}
+                public pays: string) {
+                    super(id);
+                }
 }

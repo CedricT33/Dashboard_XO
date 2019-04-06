@@ -6,15 +6,6 @@ import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { JsonWebToken } from '../models/jwt.model';
 import * as jwt_decode from 'jwt-decode';
-import { CollaborateursService } from './collaborateurs.service';
-import { ComptesGenerauxService } from './comptes-generaux.service';
-import { ComptesTiersService } from './comptes-tiers.service';
-import { DocsEnteteService } from './docs-entete.service';
-import { DocsLigneService } from './docs-ligne.service';
-import { EcrituresComptableService } from './ecritures-comptables.service';
-import { MessagesService } from './messages.service';
-import { ColisService } from './colis.service';
-import { ObjectifsService } from './objectifs.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +15,7 @@ export class LoginService {
   titleDashboard: BehaviorSubject<string> = new BehaviorSubject('');
   userRole: BehaviorSubject<string> = new BehaviorSubject('');
 
-  constructor(private httpClient: HttpClient, private router: Router,
-              private collaborateursService: CollaborateursService,
-              private comptesGenerauxService: ComptesGenerauxService,
-              private comptesTiersService: ComptesTiersService,
-              private docsEnteteService: DocsEnteteService,
-              private docsLigneService: DocsLigneService,
-              private ecrituresComptableService: EcrituresComptableService,
-              private messagesService: MessagesService,
-              private colisService: ColisService,
-              private objectifsService: ObjectifsService) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.getUserRole();
   }
 
@@ -42,19 +24,20 @@ export class LoginService {
   }
 
   public get loggedIn(): boolean {
-    return sessionStorage.getItem(environment.accessToken) !== null;
+    let exp: number;
+    if (sessionStorage.getItem(environment.accessToken)) {
+      const decodedToken = jwt_decode(sessionStorage.getItem(environment.accessToken));
+      exp = decodedToken.exp;
+    }
+    return (sessionStorage.getItem(environment.accessToken) !== null) && (+new Date().getTime().toString().slice(0, 10) < exp);
   }
 
   signIn(user: User) {
     this.httpClient.post<JsonWebToken>(environment.apiUrl + 'user/sign-in', user).subscribe(
       token => {
         sessionStorage.setItem(environment.accessToken, token.token);
-
         this.getUserRole();
-
         this.router.navigate(['']);
-
-        this.publishAllDatas();
       },
       error => console.log('Error while login'));
   }
@@ -63,16 +46,16 @@ export class LoginService {
     this.httpClient.post<JsonWebToken>(environment.apiUrl + 'user/sign-up', user).subscribe(
       token => {
         sessionStorage.setItem(environment.accessToken, token.token);
-
         this.getUserRole();
-
         this.router.navigate(['']);
       },
       error => console.log('Error while login'));
   }
 
   signOut() {
-    sessionStorage.removeItem(environment.accessToken);
+    if (sessionStorage.getItem(environment.accessToken)) {
+      sessionStorage.removeItem(environment.accessToken);
+    }
     this.router.navigate(['/login']);
     this.userRole.next('');
     this.titleDashboard.next('');
@@ -85,17 +68,5 @@ export class LoginService {
       this.userRole.next(authority);
       console.log(decodedToken);
     }
-  }
-
-  private publishAllDatas() {
-    this.messagesService.publishMessages();
-    this.collaborateursService.publishCollaborateurs();
-    this.comptesGenerauxService.publishComptesGeneraux();
-    this.comptesTiersService.publishComptesTiers();
-    this.docsEnteteService.publishDocsEntete();
-    this.docsLigneService.publishDocsLigne();
-    this.ecrituresComptableService.publishEcrituresComptable();
-    this.colisService.publishColis();
-    this.objectifsService.publishObjectifs();
   }
 }

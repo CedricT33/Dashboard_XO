@@ -7,12 +7,12 @@ import { Chart } from 'chart.js';
 export class ChartsService {
 
   // return YYYY-MM-DD
-  convertDateToStringDate(day: Date): string {
+  formatDate(day: Date): string {
     return day.getFullYear() + '-' + ('0' + (day.getMonth() + 1)).slice(-2) + '-' + ('0' + (day.getDate())).slice(-2);
   }
 
   // return YYYY-MM
-  convertDateToStringStartDate(month: number, year: number): string {
+  formatStartDate(month: number, year: number): string {
     if (month < 0) {
       return year + '-' + ('0' + (13 + month)).slice(-2);
     } else {
@@ -27,7 +27,7 @@ export class ChartsService {
   getDaysofTheWeek(day: Date): string {
     switch (day.getDay()) {
       case 0: return 'Dimanche';
-      case 1: return 'Lundi ' + ('0' + (day.getDate() + 1)).slice(-2);
+      case 1: return 'Lundi ' + ('0' + (day.getDate())).slice(-2);
       case 2: return 'Mardi';
       case 3: return 'Mercredi';
       case 4: return 'Jeudi';
@@ -41,7 +41,7 @@ export class ChartsService {
       month = 12 + month;
     }
     switch (month) {
-      case 0: return 'Janvier ';
+      case 0: return 'Janvier';
       case 1: return 'Février';
       case 2: return 'Mars';
       case 3: return 'Avril';

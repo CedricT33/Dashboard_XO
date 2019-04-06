@@ -1,36 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { DocLigne } from '../models/docLigne.model';
-import { environment } from 'src/environments/environment';
+import { DatasService } from './datas.service';
+import { DocsLigneSerializer } from '../serializers/docs-ligne.serializer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DocsLigneService {
+export class DocsLigneService extends DatasService<DocLigne> {
 
-  private availableDocsLigne: DocLigne[];
-  docsLigne$: BehaviorSubject<DocLigne[]> = new BehaviorSubject(this.availableDocsLigne);
-
-  constructor(private httpClient: HttpClient) {}
-
-  /**
-   * Function that retrieves all documents from API (back).
-   */
-  private getDocsLigne(): Observable<DocLigne[]> {
-    return this.httpClient.get<DocLigne[]>(environment.apiUrl + 'docligne');
-  }
-
-  /**
-   * Function that fills the list of documents in the application.
-   */
-  public publishDocsLigne() {
-    this.getDocsLigne().subscribe(
-        docsLigne => {
-        this.availableDocsLigne = docsLigne;
-        this.docsLigne$.next(this.availableDocsLigne);
-        console.log(this.availableDocsLigne);
-      }
-    );
+  constructor( httpClient: HttpClient) {
+    super(httpClient, 'docligne', new DocsLigneSerializer());
   }
 }

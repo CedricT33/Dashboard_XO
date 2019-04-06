@@ -4,7 +4,7 @@
 
       <!-- Premiere card -->
         <div class="col s12 m6">
-          <a routerLink="/finance" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic }" (click)="changeTitle('finance')">
+          <a routerLink="/finance" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic }">
             <div class="card">
               <div class="card-content">
                 <h4 class="center-align">FINANCE</h4>
@@ -16,7 +16,7 @@
 
         <!-- Deuxieme card -->
         <div class="col s12 m6">
-          <a routerLink="/commerce" [ngClass]="{'btn-flat disabled': isFinance || isLogistic }" (click)="changeTitle('commerce')">
+          <a routerLink="/commerce" [ngClass]="{'btn-flat disabled': isFinance || isLogistic }">
             <div class="card">
               <div class="card-content">
                 <h4 class="center-align">COMMERCE</h4>
@@ -28,7 +28,7 @@
 
         <!-- Troisieme card -->
         <div class="col s12 m6">
-          <a routerLink="/direction" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic || isFinance }" (click)="changeTitle('direction')">
+          <a routerLink="/direction" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic || isFinance }">
             <div class="card">
               <div class="card-content">
                 <h4 class="center-align">DIRECTION</h4>
@@ -40,7 +40,7 @@
 
         <!-- Quatrieme card -->
         <div class="col s12 m6">
-          <a routerLink="/logistique" [ngClass]="{'btn-flat disabled': isCommerce || isFinance }" (click)="changeTitle('logistique')">
+          <a routerLink="/logistique" [ngClass]="{'btn-flat disabled': isCommerce || isFinance }">
             <div class="card">
               <div class="card-content">
                 <h4 class="center-align">LOGISTIQUE</h4>
@@ -52,15 +52,15 @@
       </div>
 
       <!-- Updates -->
-        <div class="col l12">
+        <div class="col l12" *ngIf="messagesList">
         <div class="card">
           <div class="card-content">
             <span class="card-title">Derniers messages</span>
             <ul class="badge-updates">
-              <li *ngFor="let message of messagesList.value | slice:0:3">
+              <li *ngFor="let message of messagesList.reverse() | slice:0:3">
                 <span class="new badge orange" data-badge-caption="">{{message.destinataire}}</span>
                 <span class="message">{{message.texte}}</span>
-                <span class="time">{{message.date | date:'dd MMM y'}}</span>
+                <span class="time">{{message.date | untilNow }}</span>
               </li>
             </ul>
           </div>

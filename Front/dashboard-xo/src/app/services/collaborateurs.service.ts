@@ -1,36 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Collaborateur } from '../models/collaborateur.model';
-import { environment } from 'src/environments/environment';
+import { DatasService } from './datas.service';
+import { CollaborateursSerializer } from '../serializers/collaborateurs.serializer';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CollaborateursService {
+export class CollaborateursService extends DatasService<Collaborateur> {
 
-  private availableCollaborateurs: Collaborateur[];
-  collaborateurs$: BehaviorSubject<Collaborateur[]> = new BehaviorSubject(this.availableCollaborateurs);
-
-  constructor(private httpClient: HttpClient) {}
-
-  /**
-   * Function that retrieves all employees from API (back).
-   */
-  private getCollaborateurs(): Observable<Collaborateur[]> {
-    return this.httpClient.get<Collaborateur[]>(environment.apiUrl + 'collaborateur');
-  }
-
-  /**
-   * Function that fills the list of employees in the application.
-   */
-  public publishCollaborateurs() {
-    this.getCollaborateurs().subscribe(
-        collaborateurs => {
-        this.availableCollaborateurs = collaborateurs;
-        this.collaborateurs$.next(this.availableCollaborateurs);
-        console.log(this.availableCollaborateurs);
-      }
-    );
+  constructor(httpClient: HttpClient) {
+    super(httpClient, 'collaborateur', new CollaborateursSerializer());
   }
 }

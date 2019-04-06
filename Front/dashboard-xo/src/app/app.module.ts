@@ -7,14 +7,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './Angular-Material';
 import { AppComponent } from './app.component';
-import { AccueilComponent } from './accueil/accueil.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { DashboardLogistiqueComponent } from './dashboard-logistique/dashboard-logistique.component';
-import { DashboardDirectionComponent } from './dashboard-direction/dashboard-direction.component';
-import { DashboardCommerceComponent } from './dashboard-commerce/dashboard-commerce.component';
-import { DashboardFinanceComponent } from './dashboard-finance/dashboard-finance.component';
-import { LoginComponent } from './login/login.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { DashboardLogistiqueComponent } from './components/dashboard-logistique/dashboard-logistique.component';
+import { DashboardDirectionComponent } from './components/dashboard-direction/dashboard-direction.component';
+import { DashboardCommerceComponent } from './components/dashboard-commerce/dashboard-commerce.component';
+import { DashboardFinanceComponent } from './components/dashboard-finance/dashboard-finance.component';
+import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './http-interceptor/jwt.interceptor';
 import { AdminGuard } from './guards/admin.guard';
 import { CommerceGuard } from './guards/commerce.guard';
@@ -22,6 +22,7 @@ import { DirectionGuard } from './guards/direction.guard';
 import { FinanceGuard } from './guards/finance.guard';
 import { LogisticGuard } from './guards/logistic.guard';
 import { ConnectedGuard } from './guards/connected.guard';
+import { UntilNow } from './pipes/until-now.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConnectedGuard } from './guards/connected.guard';
     DashboardDirectionComponent,
     DashboardCommerceComponent,
     DashboardFinanceComponent,
-    LoginComponent
+    LoginComponent,
+    UntilNow
   ],
   imports: [
     BrowserModule,

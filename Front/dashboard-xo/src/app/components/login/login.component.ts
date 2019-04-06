@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { LoginService } from '../services/login.service';
-import { User } from '../models/user.model';
+import { LoginService } from '../../services/login.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService) {}
 
   ngOnInit() {
+    this.loginService.signOut();
   }
 
   onSubmit() {
