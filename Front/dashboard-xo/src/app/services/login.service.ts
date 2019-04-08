@@ -6,6 +6,7 @@ import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { JsonWebToken } from '../models/jwt.model';
 import * as jwt_decode from 'jwt-decode';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LoginService {
   titleDashboard: BehaviorSubject<string> = new BehaviorSubject('');
   userRole: BehaviorSubject<string> = new BehaviorSubject('');
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private snackBar: MatSnackBar) {
     this.getUserRole();
   }
 
@@ -39,7 +40,12 @@ export class LoginService {
         this.getUserRole();
         this.router.navigate(['']);
       },
-      error => console.log('Error while login'));
+      error => {
+        // pop-up echec
+        this.snackBar.open('Erreur de login', 'Echec', {
+          duration: 2000
+        });
+      });
   }
 
   signUp(user: User) {

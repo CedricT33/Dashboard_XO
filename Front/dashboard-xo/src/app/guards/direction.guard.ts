@@ -17,6 +17,7 @@ export class DirectionGuard implements CanActivate {
       return true;
     }
 
+    this.router.navigate(['']);
     return false;
   }
 }

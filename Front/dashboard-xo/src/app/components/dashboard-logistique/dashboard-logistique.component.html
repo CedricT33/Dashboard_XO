@@ -4,7 +4,7 @@
 
       <!-- Premiere card -->
       <div class="col l3 m6 s12">
-        <div class="card" style="height: 280px;">
+        <div class="card cardheight">
           <div class="card-metrics card-metrics-centered">
             <div class="card-metric">
                 <div class="card-metric-title">Aujourd'hui</div>
@@ -19,7 +19,7 @@
 
       <!-- Deuxieme card -->
       <div class="col l3 m6 s12">
-        <div class="card" style="height: 280px;">
+        <div class="card cardheight">
           <div class="card-metrics card-metrics-centered">
             <div class="card-metric">
                 <div class="card-metric-title">Aujourd'hui</div>
@@ -34,7 +34,7 @@
 
       <!-- Troisieme card -->
       <div class="col l3 m6 s12">
-        <div class="card" style="height: 280px;">
+        <div class="card cardheight">
           <div class="card-metrics card-metrics-centered">
             <div class="card-metric">
                 <div class="card-metric-title">Depuis le {{startOfTheYear | date:' dd / MM / y '}}</div>
@@ -49,7 +49,7 @@
 
       <!-- Quatrieme card -->
       <div class="col l3 m6 s12">
-        <div class="card" style="height: 280px;">
+        <div class="card cardheight">
           <div class="card-metrics card-metrics-centered">
             <div class="card-metric">
                 <div class="card-metric-title">Depuis le {{startOfTheYear | date:' dd / MM / y '}}</div>
@@ -92,23 +92,27 @@
               </div>
             </div>
         </div>
-
-        <!-- Sixieme card -->
-          <div class="col s12" *ngIf="messagesLogistic">
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">Derniers messages</span>
-              <ul class="badge-updates">
-                <li *ngFor="let message of messagesLogistic.reverse() | slice:0:3">
-                  <span class="new badge orange" data-badge-caption="">{{message.user.role.role | slice:5}}</span>
-                  <span class="message">{{message.texte}}</span>
-                  <span class="time">{{message.date | untilNow }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
     </div>
+
+    <div class="row flex">
+
+      <!-- Messages -->
+      <div class="margin10 col s12" *ngIf="messagesLogistic">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Derniers messages</span>
+          <ul class="badge-updates">
+            <li *ngFor="let message of messagesLogistic.reverse() | slice:0:3">
+              <span class="new badge orange" data-badge-caption="">{{message.user.role.role | slice:5}}</span>
+              <span class="message">{{message.texte}}</span>
+              <span class="time">{{message.date | untilNow }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </div>
 
   <!-- Bouton Flottant -->

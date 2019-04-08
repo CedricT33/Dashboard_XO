@@ -18,6 +18,7 @@ export class CommerceGuard implements CanActivate {
       return true;
     }
 
+    this.router.navigate(['']);
     return false;
   }
 }

@@ -3,70 +3,74 @@
     <div class="row">
 
       <!-- Premiere card -->
-        <div class="col s12 m6">
-          <a routerLink="/finance" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic }">
-            <div class="card">
-              <div class="card-content">
-                <h4 class="center-align">FINANCE</h4>
-                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
-              </div>
+      <div class="col s12 m6">
+        <a routerLink="/finance" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic }">
+          <div class="card">
+            <div class="card-content">
+              <h4 class="center-align">FINANCE</h4>
+              <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
             </div>
-          </a>	
-        </div>
-
-        <!-- Deuxieme card -->
-        <div class="col s12 m6">
-          <a routerLink="/commerce" [ngClass]="{'btn-flat disabled': isFinance || isLogistic }">
-            <div class="card">
-              <div class="card-content">
-                <h4 class="center-align">COMMERCE</h4>
-                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
-              </div>
-            </div>	
-          </a>
-        </div>
-
-        <!-- Troisieme card -->
-        <div class="col s12 m6">
-          <a routerLink="/direction" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic || isFinance }">
-            <div class="card">
-              <div class="card-content">
-                <h4 class="center-align">DIRECTION</h4>
-                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
-              </div>
-            </div>	
-          </a>
-        </div>
-
-        <!-- Quatrieme card -->
-        <div class="col s12 m6">
-          <a routerLink="/logistique" [ngClass]="{'btn-flat disabled': isCommerce || isFinance }">
-            <div class="card">
-              <div class="card-content">
-                <h4 class="center-align">LOGISTIQUE</h4>
-                <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
-              </div>
-            </div>	
-          </a>
-        </div>
-      </div>
-
-      <!-- Updates -->
-        <div class="col l12" *ngIf="messagesList">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Derniers messages</span>
-            <ul class="badge-updates">
-              <li *ngFor="let message of messagesList.reverse() | slice:0:3">
-                <span class="new badge orange" data-badge-caption="">{{message.destinataire}}</span>
-                <span class="message">{{message.texte}}</span>
-                <span class="time">{{message.date | untilNow }}</span>
-              </li>
-            </ul>
           </div>
+        </a>	
+      </div>
+
+      <!-- Deuxieme card -->
+      <div class="col s12 m6">
+        <a routerLink="/commerce" [ngClass]="{'btn-flat disabled': isFinance || isLogistic }">
+          <div class="card">
+            <div class="card-content">
+              <h4 class="center-align">COMMERCE</h4>
+              <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+            </div>
+          </div>	
+        </a>
+      </div>
+
+      <!-- Troisieme card -->
+      <div class="col s12 m6">
+        <a routerLink="/direction" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic || isFinance }">
+          <div class="card">
+            <div class="card-content">
+              <h4 class="center-align">DIRECTION</h4>
+              <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+            </div>
+          </div>	
+        </a>
+      </div>
+
+      <!-- Quatrieme card -->
+      <div class="col s12 m6">
+        <a routerLink="/logistique" [ngClass]="{'btn-flat disabled': isCommerce || isFinance }">
+          <div class="card">
+            <div class="card-content">
+              <h4 class="center-align">LOGISTIQUE</h4>
+              <h4 class="center-align"><i class=" large material-icons">dashboard</i></h4>
+            </div>
+          </div>	
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row flex">
+
+    <!-- Messages -->
+    <div class="margin10 col s12 l10" *ngIf="messagesList">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Derniers messages</span>
+          <ul class="badge-updates">
+            <li *ngFor="let message of messagesList.reverse() | slice:0:3">
+              <span class="new badge orange" data-badge-caption="">{{message.destinataire}}</span>
+              <span class="message">{{message.texte}}</span>
+              <span class="time">{{message.date | untilNow }}</span>
+            </li>
+          </ul>
         </div>
       </div>
-  </div>
+    </div>
+</div>
 
   <!-- Bouton Flottant -->
   <div class="fixed-action-btn ">

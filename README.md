@@ -250,5 +250,6 @@ Versionning régulier avec GIT.
 - [0.9.0-SNAPSHOT] - BACK Jwt-Security + FRONT Authentification (Ajout model jwt, ajout guards, integration MaterializeCSS et jwt-decode).
 - [0.10.0-SNAPSHOT] - FRONT Dashboard Logistique (Ajout ChartsService, integration Chartjs) + BACK Correction problème de dates en UTC.
 - [0.10.1-SNAPSHOT] - FRONT (Ajout DatasService, ObjectDataModel, Serializers, UntilNow.Pipe) + BACK Suppression correction dates en UTC.
+- [0.10.2-SNAPSHOT] - FRONT (Ajout theme-charte-graphique.scss, menu login en Angular Material, correction guards). 
 
 

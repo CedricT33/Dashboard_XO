@@ -12,11 +12,13 @@ import { FinanceGuard } from './guards/finance.guard';
 import { CommerceGuard } from './guards/commerce.guard';
 import { LogisticGuard } from './guards/logistic.guard';
 import { ConnectedGuard } from './guards/connected.guard';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent, canActivate: [ConnectedGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'direction', component: DashboardDirectionComponent, canActivate: [DirectionGuard] },
   { path: 'finance', component: DashboardFinanceComponent, canActivate: [FinanceGuard] },
   { path: 'commerce', component: DashboardCommerceComponent, canActivate: [CommerceGuard] },

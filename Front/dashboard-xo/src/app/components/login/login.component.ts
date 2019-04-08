@@ -11,9 +11,11 @@ import { User } from '../../models/user.model';
 export class LoginComponent implements OnInit {
 
   loginForm = this.fb.group({
-    username: [null, Validators.required],
+    username: [null,  Validators.compose([
+      Validators.required, Validators.minLength(0), Validators.maxLength(30)])
+    ],
     password: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(255)])
+      Validators.required, Validators.minLength(5), Validators.maxLength(70)])
     ]
   });
 

@@ -1,4 +1,3 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat:black");
 
 app-root {
@@ -14,6 +13,23 @@ router-outlet {
   display: none;
 }
 
+input {
+  border: 0 !important;
+  box-shadow: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 20px 0px !important;
+}
+
+.mat-form-field {
+  font-family: "Montserrat" !important;
+  font-size: 20px !important;
+}
+
+.mat-form-field-infix {
+  padding: 0 !important;
+}
+
 nav ul a {
   padding: 0 20px !important;
 }
@@ -24,6 +40,15 @@ main {
 
 .black {
   background-color: black;
+}
+
+.margin10 {
+  margin: 10px !important;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
 }
 
 .brand-logo img {
@@ -73,12 +98,12 @@ main .container {
   max-width: 100% !important;
 }
 
-.col {
+/* .col {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
-}
+} */
 
 .container_connexion {
   margin: 20px auto 0 auto;
@@ -110,8 +135,13 @@ main a:hover {
   justify-content: space-between;
 }
 
+.cardheight {
+  height: 280px;
+}
+
 .card h4 {
   margin: 0;
+  margin-bottom: 15px;
   font-size: 2.1rem;
   font-weight: 700;
 }
@@ -147,6 +177,10 @@ h5 span {
   padding: 0 10px !important;
 }
 
+.row {
+  margin-bottom: 25px !important;
+}
+
 .card-metric {
   padding: 20px;
   text-align: center;
@@ -165,7 +199,7 @@ h5 span {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.card .active {
+.card-metric.active {
   border-top: 3px solid #000;
 }
 
@@ -335,6 +369,10 @@ footer {
   .nav-wrapper img {
     height: 56px !important;
   }
+
+  .cardheight {
+    height: 190px;
+  }
 }
 
 .nav-wrapper img {
@@ -342,6 +380,14 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
+  .container_accueil {
+    width: 100% !important;
+  }
+
+  .container_connexion {
+    width: 90% !important;
+  }
+
   nav .brand-logo.left {
     left: 0rem !important;
   }

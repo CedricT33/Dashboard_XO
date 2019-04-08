@@ -20,6 +20,7 @@ export class ConnectedGuard implements CanActivate {
       return true;
     }
 
+    this.router.navigate(['']);
     return false;
   }
 }

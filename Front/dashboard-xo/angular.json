@@ -23,6 +23,9 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "src/theme-charte-graphique.scss"
+              },
               "src/styles.css",
               "./node_modules/materialize-css/dist/css/materialize.min.css"
             ],
