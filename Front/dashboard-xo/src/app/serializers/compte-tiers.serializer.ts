@@ -1,6 +1,6 @@
 import { CompteTiers } from '../models/compteTiers.model';
 
-export class ComptesTiersSerializer {
+export class CompteTiersSerializer {
 
     fromJson(json: any): CompteTiers {
 

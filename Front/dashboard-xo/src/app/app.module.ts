@@ -24,6 +24,7 @@ import { LogisticGuard } from './guards/logistic.guard';
 import { ConnectedGuard } from './guards/connected.guard';
 import { UntilNow } from './pipes/until-now.pipe';
 import { AdminComponent } from './components/admin/admin.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdminComponent } from './components/admin/admin.component';
     DashboardFinanceComponent,
     LoginComponent,
     UntilNow,
-    AdminComponent
+    AdminComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

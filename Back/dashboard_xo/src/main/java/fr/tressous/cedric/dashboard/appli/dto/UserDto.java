@@ -1,7 +1,5 @@
 package fr.tressous.cedric.dashboard.appli.dto;
 
-import javax.validation.constraints.NotNull;
-
 import fr.tressous.cedric.dashboard.appli.model.Role;
 
 /**
@@ -15,7 +13,8 @@ public class UserDto {
 
     private Role role;
 
-    public UserDto(@NotNull String username, Role role) {
+    public UserDto(Long id, String username, Role role) {
+    	this.id = id;
         this.username = username;
         this.role = role;
     }

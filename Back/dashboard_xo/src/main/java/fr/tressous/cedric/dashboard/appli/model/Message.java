@@ -2,6 +2,7 @@ package fr.tressous.cedric.dashboard.appli.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +17,12 @@ public class Message {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idMessage;
+	private Long id;
 	private String texte;
 	private Date date;
 	private String destinataire;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idUser")
 	private User user;
 	
@@ -36,12 +37,12 @@ public class Message {
 		this.user = user;
 	}
 
-	public Long getIdMessage() {
-		return idMessage;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdMessage(Long idMessage) {
-		this.idMessage = idMessage;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTexte() {

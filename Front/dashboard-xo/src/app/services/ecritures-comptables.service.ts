@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EcritureComptable } from '../models/ecritureComptable.model';
 import { DatasService } from './datas.service';
-import { EcrituresComptablesSerializer } from '../serializers/ecritures-comptables.serializer';
+import { EcritureComptableSerializer } from '../serializers/ecriture-comptable.serializer';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,6 @@ import { EcrituresComptablesSerializer } from '../serializers/ecritures-comptabl
 export class EcrituresComptablesService extends DatasService<EcritureComptable> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'ecriture', new EcrituresComptablesSerializer());
+    super(httpClient, 'ecriture', new EcritureComptableSerializer());
   }
 }

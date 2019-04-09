@@ -2,6 +2,7 @@ package fr.tressous.cedric.dashboard.appli.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +17,12 @@ public class ObjectifCommerce {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idObjectif;
+	private Long id;
 	private String intitule;
 	private Date date;
 	private int chiffre;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idUser")
 	private User user;
 	
@@ -36,12 +37,12 @@ public class ObjectifCommerce {
 		this.user = user;
 	}
 
-	public Long getIdObjectif() {
-		return idObjectif;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdObjectif(Long idObjectif) {
-		this.idObjectif = idObjectif;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getIntitule() {

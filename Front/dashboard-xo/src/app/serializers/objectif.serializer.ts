@@ -1,6 +1,6 @@
 import { Objectif } from '../models/objectif.model';
 
-export class ObjectifsSerializer {
+export class ObjectifSerializer {
 
     fromJson(json: any): Objectif {
 

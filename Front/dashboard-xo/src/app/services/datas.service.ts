@@ -44,9 +44,9 @@ export class DatasService<T extends ObjectData> {
   public create(object: T): Observable<any> {
     return this.httpClient.post<T>(environment.apiUrl + this.endPoint, object)
                           .pipe(map((datas: any) => {
-                            datas.map((data: any) => this.serializer.fromJson(data));
                             this.availableDatas.push(datas);
                             this.datas$.next(this.availableDatas);
+                            console.log('POST datas ' + this.endPoint);
                           }));
   }
 
@@ -70,9 +70,9 @@ export class DatasService<T extends ObjectData> {
   public delete(id: number): Observable<any> {
     return this.httpClient.delete<T>(environment.apiUrl + this.endPoint + '/' + id)
                           .pipe(map((datas: any) => {
-                            datas.map((data: any) => this.serializer.fromJson(data));
                             this.availableDatas.splice(this.availableDatas.indexOf(this.availableDatas.find(data => data.id === id)), 1);
                             this.datas$.next(this.availableDatas);
+                            console.log('DELETE datas ' + this.endPoint);
                           }));
   }
 

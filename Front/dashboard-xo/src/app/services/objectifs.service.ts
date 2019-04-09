@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Objectif } from '../models/objectif.model';
 import { HttpClient } from '@angular/common/http';
 import { DatasService } from './datas.service';
-import { ObjectifsSerializer } from '../serializers/objectifs.serializer';
+import { ObjectifSerializer } from '../serializers/objectif.serializer';
 
 
 @Injectable({
@@ -11,6 +11,6 @@ import { ObjectifsSerializer } from '../serializers/objectifs.serializer';
 export class ObjectifsService extends DatasService<Objectif> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'objectif', new ObjectifsSerializer());
+    super(httpClient, 'objectif', new ObjectifSerializer());
   }
 }

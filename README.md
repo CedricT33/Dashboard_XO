@@ -145,6 +145,7 @@ Versionning régulier avec GIT.
 - DashboardFinanceComponent
 - DashboardDirectionComponent
 - AdminComponent
+- UserDetailComponent
 - LogInService
 - CollaborateursService
 
@@ -162,6 +163,8 @@ Versionning régulier avec GIT.
 - ColisService
 - ChartsService
 - DatasService
+- UsersService
+- RolesService
 - Message (model)
 - Objectif (model)
 - Colis (model)
@@ -187,15 +190,17 @@ Versionning régulier avec GIT.
 - ConnectedGuard
 - UntilNow (pipe)
 - ColisSerializer
-- DocsLigneSerializer
-- MessagesSerializer
-- CollaborateursSerializer
-- ComptesGenerauxSerializer
-- ComptesTiersSerializer
-- DocsEnteteSerializer
-- EcrituresComptablesSerializer
-- ObjectifsSerializer
+- DocLigneSerializer
+- MessageSerializer
+- CollaborateurSerializer
+- CompteGeneralSerializer
+- CompteTiersSerializer
+- DocEnteteSerializer
+- EcritureComptableSerializer
+- ObjectifSerializer
+- UserSerializer
 - Serializer
+- RoleSerializer
 
 **Dépendances Back** :
 
@@ -251,5 +256,5 @@ Versionning régulier avec GIT.
 - [0.10.0-SNAPSHOT] - FRONT Dashboard Logistique (Ajout ChartsService, integration Chartjs) + BACK Correction problème de dates en UTC.
 - [0.10.1-SNAPSHOT] - FRONT (Ajout DatasService, ObjectDataModel, Serializers, UntilNow.Pipe) + BACK Suppression correction dates en UTC.
 - [0.10.2-SNAPSHOT] - FRONT (Ajout theme-charte-graphique.scss, menu login en Angular Material, correction guards). 
-
+- [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComposant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
 

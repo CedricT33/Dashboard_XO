@@ -1,6 +1,6 @@
 import { DocEntete } from '../models/docEntete.model';
 
-export class DocsEnteteSerializer {
+export class DocEnteteSerializer {
 
     fromJson(json: any): DocEntete {
 

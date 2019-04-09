@@ -1,6 +1,6 @@
 import { Collaborateur } from '../models/collaborateur.model';
 
-export class CollaborateursSerializer {
+export class CollaborateurSerializer {
 
     fromJson(json: any): Collaborateur {
 

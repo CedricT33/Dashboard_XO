@@ -1,6 +1,6 @@
 import { EcritureComptable } from '../models/ecritureComptable.model';
 
-export class EcrituresComptablesSerializer {
+export class EcritureComptableSerializer {
 
     fromJson(json: any): EcritureComptable {
 

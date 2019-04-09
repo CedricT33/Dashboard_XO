@@ -26,6 +26,14 @@ input {
   font-size: 20px !important;
 }
 
+.mat-select-trigger {
+  margin: 10px 0px;
+}
+
+.mat-select {
+  font-family: "Montserrat" !important;
+}
+
 .mat-form-field-infix {
   padding: 0 !important;
 }
@@ -46,9 +54,52 @@ main {
   margin: 10px !important;
 }
 
+button {
+  margin: 15px !important;
+}
+
+.mat-table, .mat-raised-button {
+  font-family: "Montserrat" !important;
+}
+
+/* --Perso--- */
+
 .flex {
   display: flex;
   justify-content: center;
+}
+
+.center {
+  align-items: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.tableau {
+  width: 60%;
+}
+
+.mat-header-cell {
+  font-size: 15px !important;
+}
+
+button {
+  font-family: "Montserrat" !important;
+}
+
+button:focus {
+  background-color: white !important;
+  color: black !important;
+}
+
+button:focus span {
+  color: black !important;
+}
+
+.mat-raised-button.mat-primary {
+  color: white;
 }
 
 .brand-logo img {
@@ -122,11 +173,11 @@ main .container {
 }
 
 main a {
-  color: #000;
+  color: #000 !important;
 }
 
 main a:hover {
-  color: #ffa000;
+  color: #ffa000 !important;
 }
 
 .card {
@@ -288,6 +339,10 @@ footer {
   .vmap {
     height: 700px;
   }
+
+  .tableau {
+    width: 40%;
+  }
 }
 
 @media only screen and (min-width: 1601px) {
@@ -373,6 +428,10 @@ footer {
   .cardheight {
     height: 190px;
   }
+
+  .tableau {
+    width: 100% !important;
+  }
 }
 
 .nav-wrapper img {
@@ -386,6 +445,10 @@ footer {
 
   .container_connexion {
     width: 90% !important;
+  }
+
+  .tableau {
+    width: 90%;
   }
 
   nav .brand-logo.left {

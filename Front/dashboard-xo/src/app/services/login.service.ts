@@ -42,7 +42,7 @@ export class LoginService {
       },
       error => {
         // pop-up echec
-        this.snackBar.open('Erreur de login', 'Echec', {
+        this.snackBar.open('Erreur de login', 'ECHEC', {
           duration: 2000
         });
       });

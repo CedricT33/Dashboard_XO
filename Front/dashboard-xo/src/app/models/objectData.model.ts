@@ -1,3 +1,3 @@
 export class ObjectData {
-    constructor(public id: number) {}
+    constructor(public id?: number) {}
 }

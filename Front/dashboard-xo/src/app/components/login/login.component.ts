@@ -10,7 +10,7 @@ import { User } from '../../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = this.fb.group({
+  loginForm = this.formBuilder.group({
     username: [null,  Validators.compose([
       Validators.required, Validators.minLength(0), Validators.maxLength(30)])
     ],
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     ]
   });
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {}
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {}
 
   ngOnInit() {
     this.loginService.signOut();

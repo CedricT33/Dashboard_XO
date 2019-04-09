@@ -13,8 +13,8 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idUser;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String username;
 	
@@ -34,12 +34,8 @@ public class User {
 		this.role = role;
 	}
 
-	public Long getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public Long getId() {
+		return id;
 	}
 
 	public String getUsername() {

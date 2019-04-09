@@ -1,6 +1,6 @@
 import { CompteGeneral } from '../models/compteGeneral.model';
 
-export class ComptesGenerauxSerializer {
+export class CompteGeneralSerializer {
 
     fromJson(json: any): CompteGeneral {
 

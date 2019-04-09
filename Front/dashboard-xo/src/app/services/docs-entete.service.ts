@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DocEntete } from '../models/docEntete.model';
 import { DatasService } from './datas.service';
-import { DocsEnteteSerializer } from '../serializers/docs-entete.serializer';
+import { DocEnteteSerializer } from '../serializers/doc-entete.serializer';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,6 @@ import { DocsEnteteSerializer } from '../serializers/docs-entete.serializer';
 export class DocsEnteteService extends DatasService<DocEntete> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'docentete', new DocsEnteteSerializer());
+    super(httpClient, 'docentete', new DocEnteteSerializer());
   }
 }

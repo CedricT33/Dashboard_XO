@@ -1,6 +1,6 @@
 import { DocLigne } from '../models/docLigne.model';
 
-export class DocsLigneSerializer {
+export class DocLigneSerializer {
 
     fromJson(json: any): DocLigne {
 

@@ -13,12 +13,14 @@ import { CommerceGuard } from './guards/commerce.guard';
 import { LogisticGuard } from './guards/logistic.guard';
 import { ConnectedGuard } from './guards/connected.guard';
 import { AdminComponent } from './components/admin/admin.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent, canActivate: [ConnectedGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin/user/new', component: UserDetailComponent, canActivate: [AdminGuard] },
   { path: 'direction', component: DashboardDirectionComponent, canActivate: [DirectionGuard] },
   { path: 'finance', component: DashboardFinanceComponent, canActivate: [FinanceGuard] },
   { path: 'commerce', component: DashboardCommerceComponent, canActivate: [CommerceGuard] },

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CompteTiers } from '../models/compteTiers.model';
 import { DatasService } from './datas.service';
-import { ComptesGenerauxSerializer } from '../serializers/comptes-generaux.serializer';
+import { CompteTiersSerializer } from '../serializers/compte-tiers.serializer';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,6 @@ import { ComptesGenerauxSerializer } from '../serializers/comptes-generaux.seria
 export class ComptesTiersService extends DatasService<CompteTiers> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'comptet', new ComptesGenerauxSerializer());
+    super(httpClient, 'comptet', new CompteTiersSerializer());
   }
 }
