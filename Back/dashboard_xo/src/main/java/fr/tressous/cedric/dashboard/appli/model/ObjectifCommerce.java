@@ -2,7 +2,6 @@ package fr.tressous.cedric.dashboard.appli.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +21,7 @@ public class ObjectifCommerce {
 	private Date date;
 	private int chiffre;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idUser")
 	private User user;
 	

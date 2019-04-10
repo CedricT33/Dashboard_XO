@@ -1,5 +1,5 @@
 <main>
-  <div class="container_connexion">
+  <div class="container_connexion" *ngIf="userForm">
     <div class="row">
 
       <!-- Card Connexion -->
@@ -16,12 +16,24 @@
                       <mat-error *ngIf="userForm.controls['username'].hasError('required')">
                         L'identifiant est <strong>obligatoire</strong>
                       </mat-error>
+                      <mat-error *ngIf="userForm.controls['username'].hasError('username') && userForm.value.username">
+                        {{errors['usernameSame']}}
+                      </mat-error>
+                      <mat-error *ngIf="userForm.controls['username'].hasError('maxlength')">
+                        {{errors['usernameLength']}}
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="col s12">  
                       <input matInput type="password" placeholder="Mot de passe" formControlName="password">
                       <mat-error *ngIf="userForm.controls['password'].hasError('required')">
                         Le mot de passe est <strong>obligatoire</strong>
+                      </mat-error>
+                      <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
+                        {{errors['passwordLength']}}
+                      </mat-error>
+                      <mat-error *ngIf="userForm.controls['password'].hasError('maxlength')">
+                        {{errors['passwordLength']}}
                       </mat-error>
                     </mat-form-field>
 
@@ -34,7 +46,8 @@
                     </mat-form-field>
                   </div>
 
-                  <button class="btn orange waves-effect waves-light" type="submit" name="action">Enregistrer</button>
+                  <button class="btn grey waves-effect waves-light" type="button" (click)="onBack()">Retour</button>
+                  <button class="btn orange waves-effect waves-light" type="submit" name="action" [disabled]="userForm.invalid">Enregistrer</button>
 
                 </form>
             </div>

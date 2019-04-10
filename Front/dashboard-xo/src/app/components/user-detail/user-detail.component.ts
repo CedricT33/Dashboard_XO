@@ -7,6 +7,9 @@ import { User } from 'src/app/models/user.model';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { Location } from '@angular/common';
+import { errorMessages } from 'src/app/validators/errorMessages';
+import { CustomValidators } from 'src/app/validators/custom.validators';
 
 @Component({
   selector: 'app-user-detail',
@@ -18,23 +21,31 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   username: string;
   userForm: FormGroup;
   roles: Role[] = [];
-  sub: Subscription;
+  users: User[];
+  subRole: Subscription;
+  subUser: Subscription;
+  isNotUsername = true;
+  errors = errorMessages;
 
   constructor(private formBuilder: FormBuilder,
               private rolesService: RolesService,
               private usersService: UsersService,
               private router: Router,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private location: Location) {}
 
   ngOnInit() {
-    this.initForm();
     this.getRoles();
+    this.getUsers();
   }
 
   initForm() {
     this.userForm = this.formBuilder.group({
-      username: [null,  Validators.compose([
-        Validators.required, Validators.minLength(0), Validators.maxLength(30)])
+      username: [null, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(30),
+        CustomValidators.usernameValidator(this.users)]
       ],
       password: [null, Validators.compose([
         Validators.required, Validators.minLength(5), Validators.maxLength(70)])
@@ -44,10 +55,21 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   getRoles() {
-    this.sub = this.rolesService.datas$.subscribe(roles => {
+    this.subRole = this.rolesService.datas$.subscribe(roles => {
       this.roles = roles;
       if (!this.roles) {
         this.rolesService.publishDatas().subscribe();
+      }
+    });
+  }
+
+  getUsers() {
+    this.subUser = this.usersService.datas$.subscribe(users => {
+      this.users = users;
+      if (!this.users) {
+        this.usersService.publishDatas().subscribe();
+      } else {
+        this.initForm();
       }
     });
   }
@@ -58,7 +80,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     user.username = this.userForm.value.username;
     user.password = this.userForm.value.password;
     user.role = this.userForm.value.role;
-    console.log(user);
     this.usersService.create(user).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Utilisateur créé', 'SUCCES', {
@@ -68,9 +89,16 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['admin']);
   }
 
+  onBack() {
+    this.location.back();
+  }
+
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.subRole) {
+      this.subRole.unsubscribe();
+    }
+    if (this.subUser) {
+      this.subUser.unsubscribe();
     }
   }
 

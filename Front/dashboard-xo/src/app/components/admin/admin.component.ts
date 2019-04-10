@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UsersService } from 'src/app/services/users.service';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -21,7 +22,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   listUsers: User[];
   subUser: Subscription;
 
-  constructor(private usersService: UsersService, private snackBar: MatSnackBar) {}
+  constructor(private usersService: UsersService,
+              private snackBar: MatSnackBar,
+              private location: Location) {}
 
   ngOnInit() {
     this.subUser = this.usersService.datas$.subscribe(users => {
@@ -51,6 +54,10 @@ export class AdminComponent implements OnInit, OnDestroy {
         });
       });
     }
+  }
+
+  onBack() {
+    this.location.back();
   }
 
   ngOnDestroy() {
