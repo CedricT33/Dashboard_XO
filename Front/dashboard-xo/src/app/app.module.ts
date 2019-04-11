@@ -25,6 +25,8 @@ import { ConnectedGuard } from './guards/connected.guard';
 import { UntilNow } from './pipes/until-now.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { MessagesDialogComponent } from './messages-dialog/messages-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,11 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     LoginComponent,
     UntilNow,
     AdminComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    MessagesDialogComponent
+  ],
+  entryComponents: [
+    MessagesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,9 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ConnectedGuard, AdminGuard, CommerceGuard, DirectionGuard, FinanceGuard, LogisticGuard,
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    ConnectedGuard, AdminGuard, CommerceGuard, DirectionGuard, FinanceGuard, LogisticGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

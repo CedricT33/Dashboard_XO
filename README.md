@@ -260,4 +260,4 @@ Versionning régulier avec GIT.
 - [0.10.2-SNAPSHOT] - FRONT (Ajout theme-charte-graphique.scss, menu login en Angular Material, correction guards). 
 - [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComposant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
 - [0.11.1-SNAPSHOT] - FRONT (Ajout CustomValidators et errorMessages).
-
+- [0.12.0-SNAPSHOT] - FRONT (Ajout DialogMessagesComponent).

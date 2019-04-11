@@ -39,21 +39,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.getUsers();
   }
 
-  initForm() {
-    this.userForm = this.formBuilder.group({
-      username: [null, [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(30),
-        CustomValidators.usernameValidator(this.users)]
-      ],
-      password: [null, Validators.compose([
-        Validators.required, Validators.minLength(5), Validators.maxLength(70)])
-      ],
-      role: [null, Validators.required]
-    });
-  }
-
   getRoles() {
     this.subRole = this.rolesService.datas$.subscribe(roles => {
       this.roles = roles;
@@ -74,15 +59,35 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  initForm() {
+    this.userForm = this.formBuilder.group({
+      username: [null, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(30),
+        CustomValidators.usernameValidator(this.users)]
+      ],
+      password: [null, Validators.compose([
+        Validators.required, Validators.minLength(5), Validators.maxLength(70)])
+      ],
+      role: [null, Validators.required]
+    });
+  }
+
   onSubmit() {
     const user = new User();
-    user.id = 22;
     user.username = this.userForm.value.username;
     user.password = this.userForm.value.password;
     user.role = this.userForm.value.role;
     this.usersService.create(user).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Utilisateur créé', 'SUCCES', {
+        duration: 2000
+      });
+    },
+    error => {
+      // pop-up fail
+      this.snackBar.open('Erreur de suppression', 'ECHEC', {
         duration: 2000
       });
     });

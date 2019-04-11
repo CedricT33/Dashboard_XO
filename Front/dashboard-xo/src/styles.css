@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat:black");
 
+html {
+  font-family: "Montserrat" !important;
+}
+
 app-root {
   display: flex;
   min-height: 100vh;
@@ -11,6 +15,21 @@ app-root {
 
 router-outlet {
   display: none;
+}
+
+.border {
+  border: solid black 1px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.badge-updates li {
+  margin-top: 8px;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 input {

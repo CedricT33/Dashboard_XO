@@ -3,6 +3,8 @@ import { Message } from '../../models/message.model';
 import { MessagesService } from '../../services/messages.service';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { MessagesDialogComponent } from 'src/app/messages-dialog/messages-dialog.component';
 
 @Component({
   selector: 'app-accueil',
@@ -19,7 +21,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
   isDirection: boolean;
   isLogistic: boolean;
 
-  constructor(private messagesService: MessagesService, private loginService: LoginService) {}
+  constructor(private messagesService: MessagesService,
+              private loginService: LoginService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.sub = this.messagesService.datas$.subscribe(messages => {
@@ -43,6 +47,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   changeTitle(title: string) {
     this.loginService.changeTitleDashboard(title);
+  }
+
+  openDialog(): void {
+    this.dialog.open(MessagesDialogComponent, {
+      width: '80vw',
+      data: {}
+    });
   }
 
   ngOnDestroy() {
