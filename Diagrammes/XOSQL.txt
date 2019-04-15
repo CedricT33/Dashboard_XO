@@ -1,0 +1,226 @@
+#------------------------------------------------------------------------------------------------------------------------------------
+# CREATION Database: XO_SECU
+#------------------------------------------------------------------------------------------------------------------------------------
+
+DROP DATABASE IF EXISTS xo_secu;
+
+CREATE DATABASE XO_SECU;
+
+USE xo_secu;
+
+#------------------------------------------------------------
+# Table: F_COLLABORATEUR
+#------------------------------------------------------------
+
+CREATE TABLE F_COLLABORATEUR(
+        cbMarq    Int NOT NULL ,
+        CO_No     Int ,
+        CO_Prenom Varchar (35) ,
+        CO_Nom    Varchar (35)
+	,CONSTRAINT F_COLLABORATEUR_AK UNIQUE (CO_No)
+	,CONSTRAINT F_COLLABORATEUR_PK PRIMARY KEY (cbMarq)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: F_COMPTET
+#------------------------------------------------------------
+
+CREATE TABLE F_COMPTET(
+        cbMarq       Int NOT NULL ,
+        CT_Num       Varchar (17) NOT NULL ,
+        CT_Intitule  Varchar (35) ,
+        CT_Numpayeur Varchar (17) NOT NULL ,
+	CT_Adresse Varchar (35) ,
+	CT_CodePostal Varchar (9) ,
+	CT_Ville Varchar (35) ,
+	CT_Pays Varchar (35)
+	,CONSTRAINT F_COMPTET_AK UNIQUE (CT_Num)
+	,CONSTRAINT F_COMPTET0_AK UNIQUE (CT_Numpayeur)
+	,CONSTRAINT F_COMPTET_PK PRIMARY KEY (cbMarq)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: F_DOCENTETE
+#------------------------------------------------------------
+
+CREATE TABLE F_DOCENTETE(
+        cbMarq                 Int NOT NULL ,
+        DO_Piece               Varchar (13) ,
+        DO_Date                Datetime ,
+        DO_TotalHT             Numeric (24,6) ,
+        CO_No                  Int NOT NULL ,
+        CT_Numpayeur           Varchar (17)
+	,CONSTRAINT F_DOCENTETE_PK PRIMARY KEY (cbMarq)
+	,CONSTRAINT F_DOCENTETE_F_COLLABORATEUR_FK FOREIGN KEY (CO_No) REFERENCES F_COLLABORATEUR(CO_No)
+	,CONSTRAINT F_DOCENTETE_F_COMPTET0_FK FOREIGN KEY (CT_Numpayeur) REFERENCES F_COMPTET(CT_Numpayeur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: F_COMPTEG
+#------------------------------------------------------------
+
+CREATE TABLE F_COMPTEG(
+        cbMarq      Int NOT NULL ,
+        CG_Num      Varchar (13) NOT NULL ,
+        CG_Intitule Varchar (35)
+	,CONSTRAINT F_COMPTEG_AK UNIQUE (CG_Num)
+	,CONSTRAINT F_COMPTEG_PK PRIMARY KEY (cbMarq)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: F_ECRITUREC
+#------------------------------------------------------------
+
+CREATE TABLE F_ECRITUREC(
+        cbMarq           Int NOT NULL ,
+        EC_Echeance      Datetime ,
+        EC_Montant       Numeric (24,6) ,
+        EC_Sens          Smallint ,
+        CT_Num           Varchar (17) ,
+        CG_Num           Varchar (13) NOT NULL
+	,CONSTRAINT F_ECRITUREC_PK PRIMARY KEY (cbMarq)
+	,CONSTRAINT F_ECRITUREC_F_COMPTET_FK FOREIGN KEY (CT_Num) REFERENCES F_COMPTET(CT_Num)
+	,CONSTRAINT F_ECRITUREC_F_COMPTEG0_FK FOREIGN KEY (CG_Num) REFERENCES F_COMPTEG(CG_Num)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: F_DOCLIGNE
+#------------------------------------------------------------
+
+CREATE TABLE F_DOCLIGNE(
+        cbMarq                 Int NOT NULL ,
+        DL_MontantHT           Numeric (24,6) ,
+        DL_DateBC              Datetime ,
+        DL_DateBL              Datetime ,
+        CT_Num                 Varchar (50) NOT NULL ,
+        CO_No                  Int NOT NULL
+	,CONSTRAINT F_DOCLIGNE_PK PRIMARY KEY (cbMarq)
+	,CONSTRAINT F_DOCLIGNE_F_COMPTET_FK FOREIGN KEY (CT_Num) REFERENCES F_COMPTET(CT_Num)
+	,CONSTRAINT F_DOCLIGNE_F_COLLABORATEUR0_FK FOREIGN KEY (CO_No) REFERENCES F_COLLABORATEUR(CO_No)
+)ENGINE=InnoDB;
+
+
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------
+# REMPLISSAGE Database: XO_SECU
+#------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO f_collaborateur (cbMarq, CO_No, CO_Prenom, CO_Nom) VALUES (1, 1, 'Laetitia', 'Minous'),
+								      (2, 2, 'Xavier','Deltil'),
+								      (3, 3, 'Julie', 'Lekesiz'),
+								      (4, 4, 'Sam', 'Mufuta'),
+								      (5, 5, 'Nathalie', 'Bourges'),
+								      (6, 6, 'Pierrick', 'Le Bars'),
+								      (7, 7, 'Constance', 'Dupin'),
+								      (8, 8, 'Soraya', 'Hefaiedh'),
+								      (9, 9, 'Matthiew', 'Chavas'),
+								      (10, 10, 'Cassandra', 'Soler'),
+								      (11, 11, 'Hernandez', 'Cedrick');
+
+INSERT INTO f_comptet (cbMarq, CT_Num, CT_Intitule, CT_Numpayeur, CT_Adresse, CT_CodePostal, CT_Ville, CT_pays) VALUES (1, '868410', 'SARL DECAP CENTER INDUSTRIE', '868410', "ROUTE DE BRUXIERES", '86220', 'DANGE ST ROMAIN', 'FRANCE'),
+									 						(2, '339312', 'METAL FER RECICLAGE', '339312', "10 AVENUE DE LA GRANGE", '33700', 'MERIGNAC', 'FRANCE'),
+									 						(3, 'SJA18200', 'ANTOINE HEUSTE', 'SJA18200', "2 CHEMIN DE LA RIVIERE", '16290', 'SAINT SATURNIN', 'FRANCE'),
+									 						(4, '976002', 'COTE ZINC', '976002', "129 AVENUE THIERES", '33100', 'BORDEAUX', 'FRANCE'),
+									 						(5, '736946', 'ENTREPRISE RENAULT SAS', '736946', "166 ROUTE D'APREMONT", '73490', 'LA RAVOIRE', 'FRANCE'),
+									 						(6, '975868', 'STEELINOX', '975868', "ZA PENSE FOLIE", '45220', 'CHÂTEAU-RENARD', 'FRANCE'),
+									 						(7, '558339', 'SARL PRO BETON', '558339', "91 RUE LECOURBE", '75015', 'PARIS', 'FRANCE'),
+									 						(8, 'FLO18093', 'MICROPLAST', 'FLO18093', "4 PLACE ST MARTIN", '76000', 'ROUEN', 'FRANCE'),
+									 						(9, 'STM18311', 'ELEC OUEST', 'STM18311', "85 BOULEVARD MERLE", '69003', 'LYON', 'FRANCE'),
+									 						(10, '330139', 'VELEC SYSTEM', '330139', "29 CHEMIN DE RICHELIEU", '33270', 'FLOIRAC', 'FRANCE'),
+									 						(11, 'GENER', 'GENERALI', 'GENER', "14 BIS IMPASSE MOUSSET", '75012', 'PARIS', 'FRANCE'),
+														        (12, '258210', 'EIMI ELEC', '258210', "55 RUE DES TONNELIERS", '25460', 'ETUPES', 'FRANCE'),
+									 						(13, '137137', 'ALUMINIUM INDUSTRIE MEOZZI', '137137', "ZA LES PLANTADES", '13113', 'LAMANON', 'FRANCE'),
+									 						(14, '808907', 'PMR BATIMENT', '808907', "86 RUE MOLIERE", '80000', 'AMIENS', 'FRANCE'),
+									 						(15, '628493', 'FRANCE SERVICES INDUSTRIE', '628493', "106 RUE DU FORT", '59273', 'FRETIN', 'FRANCE');
+
+INSERT INTO f_docentete (cbMarq, DO_Piece, DO_Date, DO_TotalHT, CO_No, CT_Numpayeur) VALUES (1, 'BL1900369', '2019-01-25 00:00:00', 430.560000, 1, '330139'),
+									 		    (2, 'BC1900357', '2019-01-01 00:00:00', 230.600000, 5, 'FLO18093'),
+											    (3, 'PL1900309', '2019-02-03 00:00:00', 47.800000, 10, '976002'),
+											    (4, 'FA1900362', '2019-01-12 00:00:00', 272.880000, 9, 'STM18311'),
+											    (5, 'FA1901450', '2019-02-15 00:00:00', 110.500000, 11, '628493'),
+											    (6, 'FA1901444', '2019-02-22 00:00:00', 165.600000, 2, '258210'),
+											    (7, 'FRBL19362', '2019-02-12 00:00:00', 756.000000, 1, 'GENER'),
+											    (8, 'FA1901447', '2019-03-23 00:00:00', 259.10, 9, '628493'),
+											    (9, 'FA1901446', '2019-03-12 00:00:00', 364.000000, 4, '808907'),
+											    (10, 'AV1900579', '2019-04-11 00:00:00', -30.710000, 2, '628493'),
+											    (11, 'FA1901478', '2019-01-11 00:00:00', 120.000000, 1, '137137'),
+											    (12, 'FA1901479', '2019-01-05 00:00:00', 2345.000000, 1, '976002'),
+											    (13, 'PL1901117', '2019-02-02 00:00:00', 110.000000, 11, '736946'),
+											    (14, 'FA1900368', '2019-03-22 00:00:00', 156.000000, 9, '628493'),
+											    (15, 'BC1901217', '2019-03-23 00:00:00', 230.600000, 10, '808907'),
+											    (16, 'DE1900579', '2019-03-25 00:00:00', 104.760000, 2, '330139'),
+											    (17, 'DE1900579', '2019-03-26 00:00:00', 112.550000, 11, '975868');
+
+INSERT INTO f_compteg (cbMarq, CG_Num, CG_Intitule) VALUES (1, '41100000', 'CLIENTS'),
+							   (2, '41300000', 'CLIENTS EFFET'),
+							   (3, '40100000', 'FOURNISSEURS'),
+						           (4, '40400000', 'FOURNISSEURS IMMO'),
+							   (5, '62420000', 'TRANSPORT CLIENTS');
+
+INSERT INTO f_ecriturec (cbMarq, EC_Echeance, EC_Montant, EC_Sens, CT_Num, CG_Num) VALUES (1, '2019-04-05 00:00:00', 68.020000, 0, '258210', '41100000'),
+											  (2, '2019-02-10 00:00:00', 158.800000, 0, '137137', '41100000'),
+										          (3, '2019-03-01 00:00:00', 324.000000, 0, '558339', '41100000'),
+											  (4, '2019-03-20 00:00:00', 25.600000, 1, null, '62420000'),
+											  (5, '2019-03-22 00:00:00', 215.650000, 0, '975868', '41100000'),
+											  (6, '2019-03-22 00:00:00', 321.550000, 0, 'FLO18093', '41100000'),
+											  (7, '2019-03-23 00:00:00', 243.050000, 0, '628493', '41100000'),
+											  (8, '2019-03-23 00:00:00', 23.650000, 0, '628493', '41100000'),
+											  (9, '2019-03-24 00:00:00', 56.880000, 0, '137137', '41100000'),
+											  (10, '2019-03-24 00:00:00', 189.540000, 0, '976002', '41300000');
+
+INSERT INTO f_docligne (cbMarq, DL_MontantHT, DL_DateBC, DL_DateBL, CT_Num, CO_No) VALUES (1, 65.520000, '2019-02-10 00:00:00', '2019-07-26 00:00:00', '868410', 2),
+											  (2, 123.550000, '2019-02-20 00:00:00', '2019-08-27 00:00:00', '628493', 11),
+											  (3, 142.450000, '2019-02-25 00:00:00', '2019-09-25 00:00:00', '258210', 1),
+											  (4, 120.120000, '2019-02-25 00:00:00', '2019-09-28 00:00:00', '258210', 1),
+											  (5, 88.550000, '2019-03-20 00:00:00', '2019-10-29 00:00:00', '137137', 2),
+											  (6, 167.990000, '2019-03-20 00:00:00', '2019-10-29 00:00:00', '558339', 10),
+											  (7, 111.500000, '2019-03-20 00:00:00', '2019-11-02 00:00:00', '558339', 10),
+											  (8, 75.000000, '2019-03-21 00:00:00', '2019-12-03 00:00:00', 'FLO18093', 9),
+											  (9, 56.570000, '2019-03-21 00:00:00', '2018-12-12 00:00:00', '976002', 4),
+											  (10, 112.550000, '2019-03-22 00:00:00', '2019-01-05 00:00:00', '976002', 4),
+											  (11, 123.590000, '2019-03-22 00:00:00', '2019-01-06 00:00:00', '808907', 5),
+											  (12, 88.550000, '2019-03-22 00:00:00', '2019-02-04 00:00:00', '808907', 5),
+											  (13, 123.590000, '2019-03-22 00:00:00', '2019-02-05 00:00:00', '808907', 5),
+											  (14, 120.120000, '2019-03-22 00:00:00', '2019-02-06 00:00:00', '808907', 5),
+											  (15, 167.990000, '2019-03-22 00:00:00', '2019-03-25 00:00:00', '808907', 5),
+											  (16, 123.590000, '2019-03-22 00:00:00', '2019-03-28 00:00:00', '808907', 5),
+											  (17, 113.550000, '2019-03-22 00:00:00', '2019-04-01 00:00:00', '808907', 5),
+											  (18, 123.590000, '2019-03-22 00:00:00', '2019-04-01 00:00:00', '808907', 5),
+											  (19, 18.5500000, '2019-03-22 00:00:00', '2019-04-02 00:00:00', '808907', 5),
+											  (20, 123.590000, '2019-03-22 00:00:00', '2019-04-02 00:00:00', '808907', 5),
+											  (21, 75.000000, '2019-03-22 00:00:00', '2019-04-03 00:00:00', '808907', 5),
+											  (22, 123.590000, '2019-03-22 00:00:00', '2019-04-03 00:00:00', '808907', 5),
+											  (23, 120.590000, '2019-03-22 00:00:00', '2019-04-03 00:00:00', '808907', 5),
+											  (24, 12.500000, '2019-03-22 00:00:00', '2019-04-04 00:00:00', '808907', 5),
+											  (25, 123.590000, '2019-03-22 00:00:00', '2019-04-05 00:00:00', '808907', 5),
+											  (26, 221.590000, '2019-03-22 00:00:00', '2019-04-05 00:00:00', '808907', 5),
+											  (27, 323.590000, '2019-03-22 00:00:00', '2019-04-06 00:00:00', '808907', 5),
+											  (28, 167.990000, '2019-03-22 00:00:00', '2019-04-11 00:00:00', '808907', 5),
+											  (29, 65.520000, '2019-03-22 00:00:00', '2019-04-12 00:00:00', '808907', 5),
+											  (30, 75.000000, '2019-03-22 00:00:00', '2019-04-13 00:00:00', '808907', 5),
+											  (31, 123.590000, '2019-03-22 00:00:00', '2019-04-14 00:00:00', '808907', 5),
+											  (32, 123.590000, '2019-03-22 00:00:00', '2019-04-14 00:00:00', '808907', 5),
+											  (33, 221.590000, '2019-03-22 00:00:00', '2019-04-15 00:00:00', '808907', 5),
+											  (34, 125.590000, '2019-03-22 00:00:00', '2019-04-15 00:00:00', '808907', 5),
+											  (35, 321.500000, '2019-03-23 00:00:00', '2019-04-15 00:00:00', '736946', 1);
+
+
+
+
+
+
+
+
+
+
+
+				       				  
+
+
