@@ -58,8 +58,10 @@ excessives aux BDD, éviter les imports inutils, consommation de ressources...).
 **Mise en oeuvre** :
 
 Méthode pseudo-agile avec des points réguliers de l'avancement de l'application avec le client.
-Outil utilisé pour l'organisation : site Trello (tableau Kanban).
-Versionning régulier avec GIT.
+- Outil utilisé pour l'organisation : site Trello (tableau Kanban).
+- Un Trello pour les taches concernant le projet (doc, communication, differentes etapes de developpement..).
+- Un Trello pour les sous-taches et fonctionnalités de l'application.
+- Versionning régulier avec GIT.
 
 **Diagrammes** : 
 
