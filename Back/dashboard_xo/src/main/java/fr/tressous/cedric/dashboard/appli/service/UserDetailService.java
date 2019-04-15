@@ -17,7 +17,6 @@ public class UserDetailService implements UserDetailsService {
     @Autowired
     private UserRepository userRepo;
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final Optional<fr.tressous.cedric.dashboard.appli.model.User> user = userRepo.findByUsername(username);
 
