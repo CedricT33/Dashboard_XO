@@ -43,19 +43,9 @@ export class LoginService {
       error => {
         // pop-up echec
         this.snackBar.open('Erreur de login', 'ECHEC', {
-          duration: 2000
+          duration: environment.durationSnackBar
         });
       });
-  }
-
-  signUp(user: User) {
-    this.httpClient.post<JsonWebToken>(environment.apiUrl + 'user/sign-up', user).subscribe(
-      token => {
-        sessionStorage.setItem(environment.accessToken, token.token);
-        this.getUserRole();
-        this.router.navigate(['']);
-      },
-      error => console.log('Error while login'));
   }
 
   signOut() {

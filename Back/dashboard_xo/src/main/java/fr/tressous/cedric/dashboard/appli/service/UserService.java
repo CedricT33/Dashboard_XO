@@ -20,14 +20,6 @@ public interface UserService {
      * @throws InvalidCredentialsException
      */
     public String signin(String username, String password) throws InvalidCredentialsException;
-
-    /**
-     * Method that signs up a new user in the application.
-     * @param user the new user to create.
-     * @return the JWT if user username is not already existing.
-     * @throws ExistingUsernameException
-     */
-    public String signup(User user) throws ExistingUsernameException;
 	
 	/**
 	 * Method that return a list of users in the application.
@@ -46,7 +38,7 @@ public interface UserService {
      * @param newUser the new user to create.
      * @return the created user.
      */
-    public User createNewUser(User newUser);
+    public User createNewUser(User newUser) throws ExistingUsernameException;
     
     /**
      * Method that update a user.

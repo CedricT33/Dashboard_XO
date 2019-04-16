@@ -5,6 +5,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { UsersService } from 'src/app/services/users.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin',
@@ -44,13 +45,13 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.usersService.delete(selected[0].id).subscribe(() => {
         // pop-up succes
         this.snackBar.open('Utilisateur supprimé', 'SUCCES', {
-          duration: 2000
+          duration: environment.durationSnackBar
         });
       },
       error => {
         // pop-up echec
         this.snackBar.open('Erreur à la suppression', 'ECHEC', {
-          duration: 2000
+          duration: environment.durationSnackBar
         });
       });
     }

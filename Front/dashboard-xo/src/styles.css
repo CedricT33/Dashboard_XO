@@ -46,10 +46,10 @@ input {
 }
 
 .mat-select-trigger {
-  margin: 10px 0px;
+  margin: 10px 0px !important;
 }
 
-.mat-select {
+.mat-select, .mat-option {
   font-family: "Montserrat" !important;
 }
 
@@ -90,6 +90,14 @@ button {
 
 .center {
   align-items: center;
+}
+
+.right {
+  justify-content: flex-end !important;
+}
+
+.noMarginLeft {
+  margin-left: 0 !important;
 }
 
 .column {

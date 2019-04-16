@@ -46,8 +46,10 @@
                     </mat-form-field>
                   </div>
 
-                  <button class="btn grey waves-effect waves-light" type="button" (click)="onBack()">Retour</button>
-                  <button class="btn orange waves-effect waves-light" type="submit" name="action" [disabled]="userForm.invalid">Enregistrer</button>
+                  <div class="flex right">
+                    <button class="btn grey waves-effect waves-light" type="button" (click)="onBack()">Retour</button>
+                    <button class="btn orange waves-effect waves-light" type="submit" name="action" [disabled]="userForm.invalid">Enregistrer</button>
+                  </div>
 
                 </form>
             </div>

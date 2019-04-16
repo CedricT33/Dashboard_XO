@@ -4,7 +4,7 @@ import { MessagesService } from '../../services/messages.service';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { MessagesDialogComponent } from 'src/app/messages-dialog/messages-dialog.component';
+import { MessagesDialogComponent } from 'src/app/components/messages-dialog/messages-dialog.component';
 
 @Component({
   selector: 'app-accueil',

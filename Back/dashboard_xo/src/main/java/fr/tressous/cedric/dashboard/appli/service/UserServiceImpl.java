@@ -40,16 +40,6 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-    public String signup(User user) throws ExistingUsernameException {
-        if (!userRepo.existsByUsername(user.getUsername())) {
-            User userToSave = new User(user.getUsername(), passwordEncoder.encode(user.getPassword()), user.getRole());
-            userRepo.save(userToSave);
-            return jwtTokenProvider.createToken(user.getUsername(), user.getRole().getRole());
-        } else {
-            throw new ExistingUsernameException();
-        }
-    }
-
 	public List<User> getAllUsers() {
 		return userRepo.findAll();
 	}
@@ -58,8 +48,13 @@ public class UserServiceImpl implements UserService{
         return userRepo.findByUsername(username);
     }
 	
-	public User createNewUser(User newUser) {
-		return userRepo.save(newUser);
+	public User createNewUser(User newUser) throws ExistingUsernameException {
+		if (!userRepo.existsByUsername(newUser.getUsername())) {
+            User userToSave = new User(newUser.getUsername(), passwordEncoder.encode(newUser.getPassword()), newUser.getRole());
+            return userRepo.save(userToSave);
+        } else {
+            throw new ExistingUsernameException();
+        }
 	}
 	
 	public User updateUser(User user) {

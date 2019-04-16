@@ -9,6 +9,8 @@ import { Colis } from '../../models/colis.model';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material';
+import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
 
 @Component({
   selector: 'app-dashboard-logistique',
@@ -50,7 +52,8 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
               private colisService: ColisService,
               private messagesService: MessagesService,
               private chartsService: ChartsService,
-              private loginService: LoginService) {}
+              private loginService: LoginService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('logistique');
@@ -73,7 +76,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
 
   getCommandes() {
     if (this.listDocsLigne) {
-      this.getCommandesExpedies(this.todayString, this.startOfTheYear, this.today);
+      this.getCommandesExpedies(this.todayString, this.startOfTheYear);
     } else {
       this.docsLigneService.publishDatas().subscribe();
     }
@@ -81,7 +84,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
 
   getColis() {
     if (this.listColis) {
-      this.getColisExpedies(this.todayString, this.startOfTheYear, this.today);
+      this.getColisExpedies(this.todayString, this.startOfTheYear);
     } else {
       this.colisService.publishDatas().subscribe();
     }
@@ -95,20 +98,20 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCommandesExpedies(dateJour: string, dateDebutPeriode: Date, dateFinPeriode: Date) {
+  getCommandesExpedies(dateJour: string, dateDebutPeriode: Date) {
     this.BLJour = this.listDocsLigne.filter(d => this.chartsService.formatDate(d.dateBL).includes(dateJour)).length;
-    this.BLPeriode = this.listDocsLigne.filter(d => d.dateBL >= dateDebutPeriode && d.dateBL <= dateFinPeriode).length;
+    this.BLPeriode = this.listDocsLigne.filter(d => d.dateBL >= dateDebutPeriode && d.dateBL <= new Date()).length;
     setTimeout(() => this.initChartWeek(this.listDocsLigne));
     setTimeout(() => this.initChartMonth(this.listDocsLigne));
     setTimeout(() => this.initChartYear(this.listDocsLigne));
   }
 
-  getColisExpedies(dateJour: string, dateDebutPeriode: Date, dateFinPeriode: Date) {
+  getColisExpedies(dateJour: string, dateDebutPeriode: Date) {
     this.colisJour = 0;
     this.colisPeriode = 0;
     this.listColis.filter(c => this.chartsService.formatDate(c.date).toString().includes(dateJour))
                                                                   .forEach(co => this.colisJour += co.nbreColis);
-    this.listColis.filter(c => c.date >= dateDebutPeriode && c.date <= dateFinPeriode)
+    this.listColis.filter(c => c.date >= dateDebutPeriode && c.date <= new Date())
                                                                 .forEach(co => this.colisPeriode += co.nbreColis);
   }
 
@@ -191,6 +194,13 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     this.isChartMonth = false;
     this.isChartYear = true;
     this.initChartYear(this.listDocsLigne);
+  }
+
+  openDialog(): void {
+    this.dialog.open(ColisDialogComponent, {
+      width: '80vw',
+      data: {}
+    });
   }
 
   ngOnDestroy() {

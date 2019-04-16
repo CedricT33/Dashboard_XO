@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MessagesService } from '../services/messages.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MessagesService } from '../../services/messages.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { errorMessages } from '../validators/errorMessages';
+import { errorMessages } from '../../validators/errorMessages';
 import { Message } from 'src/app/models/message.model';
 import { Subscription } from 'rxjs';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
-import { UsersService } from '../services/users.service';
+import { UsersService } from '../../services/users.service';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
 
 @Component({
@@ -15,7 +15,7 @@ import { MatSnackBar, MatDialogRef } from '@angular/material';
   templateUrl: './messages-dialog.component.html',
   styleUrls: ['./messages-dialog.component.css']
 })
-export class MessagesDialogComponent implements OnInit {
+export class MessagesDialogComponent implements OnInit, OnDestroy {
 
   messageForm: FormGroup;
   errors = errorMessages;
@@ -81,35 +81,33 @@ export class MessagesDialogComponent implements OnInit {
   }
 
   createMessage(message: Message) {
-    console.log(message);
     this.messagesService.create(message).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Message créé', 'SUCCES', {
-        duration: 2000
+        duration: environment.durationSnackBar
       });
       this.dialogRef.close();
     },
     error => {
       // pop-up fail
-      this.snackBar.open('Erreur de création', 'ECHEC', {
-        duration: 2000
+      this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
+        duration: environment.durationSnackBar
       });
     });
   }
 
   updateMessage(message: Message) {
-    console.log(message);
     this.messagesService.update(message).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Message modifié', 'SUCCES', {
-        duration: 2000
+        duration: environment.durationSnackBar
       });
       this.dialogRef.close();
     },
     error => {
       // pop-up fail
       this.snackBar.open('Erreur de modification', 'ECHEC', {
-        duration: 2000
+        duration: environment.durationSnackBar
       });
     });
   }
@@ -142,15 +140,21 @@ export class MessagesDialogComponent implements OnInit {
       this.messagesService.delete(idMessage).subscribe(() => {
         // pop-up succes
         this.snackBar.open('Message supprimé', 'SUCCES', {
-          duration: 2000
+          duration: environment.durationSnackBar
         });
       },
       error => {
         // pop-up fail
         this.snackBar.open('Erreur de suppression', 'ECHEC', {
-          duration: 2000
+          duration: environment.durationSnackBar
         });
       });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subUser) {
+      this.subUser.unsubscribe();
     }
   }
 

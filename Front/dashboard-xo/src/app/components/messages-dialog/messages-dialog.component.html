@@ -1,14 +1,17 @@
 <form [formGroup]="messageForm" novalidate (ngSubmit)="onSubmit()">
-  <h4>Nouveau message</h4>
+  <h4>Messages</h4>
 
   <div class="row">
 
-    <mat-form-field class="col s12">   
-      <textarea rows="1" matInput placeholder="Message" formControlName="text"></textarea>
-      <mat-error *ngIf="messageForm.controls['text'].hasError('maxlength')">
-        {{errors['messageLength']}}
-      </mat-error>
-    </mat-form-field>
+    <div class="flex center">
+      <i class="material-icons prefix margin10">chat</i>  
+      <mat-form-field class="col s12">
+        <input matInput placeholder="Message" formControlName="text">
+        <mat-error *ngIf="messageForm.controls['text'].hasError('maxlength')">
+          {{errors['messageLength']}}
+        </mat-error>
+      </mat-form-field>
+    </div>
 
     <mat-form-field class="col s12">
         <mat-select placeholder="Destinataire" formControlName="destinataire">

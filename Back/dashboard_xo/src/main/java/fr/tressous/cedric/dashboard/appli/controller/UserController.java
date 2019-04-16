@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,20 +28,6 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
-	/**
-     * Method to register a new user in database.
-     * @param user the new user to create.
-     * @return a JWT if sign up is OK, a bad response code otherwise.
-     */
-    @PostMapping("/sign-up")
-    public ResponseEntity<JsonWebToken> signUp(@RequestBody User user) {
-        try {
-            return ResponseEntity.ok(new JsonWebToken(userService.signup(user)));
-        } catch (ExistingUsernameException ex) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
     /**
      * Method to sign in a user (already existing).
@@ -74,13 +59,11 @@ public class UserController {
 	 * This method is restricted to Admin users.
 	 * @param newUser the user to add.
 	 * @return the user.
+	 * @throws ExistingUsernameException 
 	 */
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<User> createUser(@RequestBody User newUser) {
-		// cryptage mot de passe avant sauvegarde dans BDD
-		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-		newUser.setPassword(bcrypt.encode(newUser.getPassword()));
+	public ResponseEntity<User> createUser(@RequestBody User newUser) throws ExistingUsernameException {
 		return ResponseEntity.ok(userService.createNewUser(newUser));
 	}
 	

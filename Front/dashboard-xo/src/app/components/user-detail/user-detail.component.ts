@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
 import { Location } from '@angular/common';
 import { errorMessages } from 'src/app/validators/errorMessages';
 import { CustomValidators } from 'src/app/validators/custom.validators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-detail',
@@ -82,13 +83,13 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.usersService.create(user).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Utilisateur créé', 'SUCCES', {
-        duration: 2000
+        duration: environment.durationSnackBar
       });
     },
     error => {
       // pop-up fail
-      this.snackBar.open('Erreur de suppression', 'ECHEC', {
-        duration: 2000
+      this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
+        duration: environment.durationSnackBar
       });
     });
     this.router.navigate(['admin']);

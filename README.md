@@ -150,15 +150,10 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - UserDetailComponent
 - LogInService
 - CollaborateursService
-
 - ComptesTiersService
-
 - ComptesGenerauxService
-
 - DocsEnteteService
-
 - DocsLigneService
-
 - EcrituresComptablesService
 - MessagesService
 - ObjectifsService
@@ -263,3 +258,4 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComposant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
 - [0.11.1-SNAPSHOT] - FRONT (Ajout CustomValidators et errorMessages).
 - [0.12.0-SNAPSHOT] - FRONT (Ajout DialogMessagesComponent).
+- [0.13.0-SNAPSHOT] - FRONT (Ajout DialogColisComponent) + BACK (Suppression Sign-up).

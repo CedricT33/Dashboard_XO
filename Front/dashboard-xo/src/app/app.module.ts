@@ -25,8 +25,9 @@ import { ConnectedGuard } from './guards/connected.guard';
 import { UntilNow } from './pipes/until-now.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
-import { MessagesDialogComponent } from './messages-dialog/messages-dialog.component';
+import { MessagesDialogComponent } from './components/messages-dialog/messages-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { ColisDialogComponent } from './components/colis-dialog/colis-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +43,12 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
     UntilNow,
     AdminComponent,
     UserDetailComponent,
-    MessagesDialogComponent
+    MessagesDialogComponent,
+    ColisDialogComponent
   ],
   entryComponents: [
-    MessagesDialogComponent
+    MessagesDialogComponent,
+    ColisDialogComponent
   ],
   imports: [
     BrowserModule,

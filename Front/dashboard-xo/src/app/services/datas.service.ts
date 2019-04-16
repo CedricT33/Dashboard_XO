@@ -44,7 +44,7 @@ export class DatasService<T extends ObjectData> {
   public create(object: T): Observable<any> {
     return this.httpClient.post<T>(environment.apiUrl + this.endPoint, object)
                           .pipe(map((datas: any) => {
-                            this.availableDatas.push(datas);
+                            this.availableDatas.push(object);
                             this.datas$.next(this.availableDatas);
                             console.log('POST datas ' + this.endPoint);
                           }));
