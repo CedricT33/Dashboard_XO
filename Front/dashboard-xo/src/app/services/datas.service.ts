@@ -44,7 +44,8 @@ export class DatasService<T extends ObjectData> {
   public create(object: T): Observable<any> {
     return this.httpClient.post<T>(environment.apiUrl + this.endPoint, object)
                           .pipe(map((datas: any) => {
-                            this.availableDatas.push(object);
+                            const dataObject = this.serializer.fromJson(datas);
+                            this.availableDatas.push(dataObject);
                             this.datas$.next(this.availableDatas);
                             console.log('POST datas ' + this.endPoint);
                           }));
@@ -57,7 +58,8 @@ export class DatasService<T extends ObjectData> {
   public update(object: T): Observable<any> {
     return this.httpClient.put<T>(environment.apiUrl + this.endPoint, object)
                           .pipe(map((datas: any) => {
-                            this.availableDatas.splice(this.availableDatas.indexOf(object), 1, object);
+                            const dataObject = this.serializer.fromJson(datas);
+                            this.availableDatas.splice(this.availableDatas.indexOf(object), 1, dataObject);
                             this.datas$.next(this.availableDatas);
                             console.log('PUT datas ' + this.endPoint);
                           }));

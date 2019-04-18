@@ -259,3 +259,4 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.11.1-SNAPSHOT] - FRONT (Ajout CustomValidators et errorMessages).
 - [0.12.0-SNAPSHOT] - FRONT (Ajout DialogMessagesComponent).
 - [0.13.0-SNAPSHOT] - FRONT (Ajout DialogColisComponent) + BACK (Suppression Sign-up).
+- [0.13.1-SNAPSHOT] - FRONT (Modification de DatasService : serializer.fromJSON dans méthodes create et update).

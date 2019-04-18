@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import fr.tressous.cedric.dashboard.appli.model.User;
 import fr.tressous.cedric.dashboard.appli.model.Role;
 import fr.tressous.cedric.dashboard.appli.repository.UserRepository;
+import fr.tressous.cedric.dashboard.exception.ExistingUsernameException;
 import fr.tressous.cedric.dashboard.security.JwtTokenProvider;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -56,7 +57,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
-	public void createNewUser() {
+	public void createNewUser() throws ExistingUsernameException {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
 		given(userRepo.save(user)).willReturn(user);
 
@@ -67,7 +68,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
-	public void createNewUserFailed() {
+	public void createNewUserFailed() throws ExistingUsernameException {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
 		given(userRepo.save(user)).willReturn(null);
 
