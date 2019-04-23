@@ -16,7 +16,5 @@ insert into messages (id, texte, date, destinataire, idUser) values (2, 'Ce mess
 insert into messages (id, texte, date, destinataire, idUser) values (3, 'Ce message est pour la finance...', '2019-03-25 00:00:00', 'FINANCE', 3);
 insert into messages (id, texte, date, destinataire, idUser) values (4, 'Ce message est pour la direction...', '2019-04-04 19:00:00', 'DIRECTION', 4);
 insert into messages (id, texte, date, destinataire, idUser) values (5, 'Ce message est aussi pour le service logistique...', '2019-04-08 09:47:00', 'LOGISTIQUE', 4);
-insert into colisExpedies (id, nbreColis, date, idUser) values (1, 5, '2019-04-05 00:00:00', 2);
-insert into colisExpedies (id, nbreColis, date, idUser) values (2, 1, '2019-04-06 00:00:00', 2);
-insert into colisExpedies (id, nbreColis, date, idUser) values (3, 2, '2019-04-06 00:00:00', 2);
+insert into colisExpedies (id, nbreColis, date, idUser) values (1, 5, '2019-04-19 00:00:00', 2);
 insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (3, 'CA du mois', '2019-03-26 00:00:00', 12000, 5);

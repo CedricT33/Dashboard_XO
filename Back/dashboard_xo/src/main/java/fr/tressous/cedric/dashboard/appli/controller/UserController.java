@@ -49,7 +49,6 @@ public class UserController {
 	 * @return the list of all users registered in the database without password.
 	 */
 	@GetMapping
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public List<UserDto> getUsers() {
 		return userService.getAllUsers().stream().map(user -> new UserDto(user.getId(), user.getUsername(), user.getRole())).collect(Collectors.toList());
 	}

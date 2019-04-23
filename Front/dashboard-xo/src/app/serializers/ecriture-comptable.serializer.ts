@@ -13,7 +13,7 @@ export class EcritureComptableSerializer {
 
         return new EcritureComptable(
             json[id],
-            json[echeance],
+            new Date(json[echeance]),
             json[montant],
             json[sens],
             json[compteTiers],

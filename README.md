@@ -159,6 +159,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - ObjectifsService
 - ColisService
 - ChartsService
+- DatesService
 - DatasService
 - UsersService
 - RolesService
@@ -173,7 +174,8 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - User (model)
 - Role (model)
 - Jwt (model)
-- objectData (model)
+- ObjectData (model)
+- Encours (model)
 - DialogObjectifsComponent
 - DialogColisComponent
 - DialogMessagesComponent
@@ -260,3 +262,4 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.12.0-SNAPSHOT] - FRONT (Ajout DialogMessagesComponent).
 - [0.13.0-SNAPSHOT] - FRONT (Ajout DialogColisComponent) + BACK (Suppression Sign-up).
 - [0.13.1-SNAPSHOT] - FRONT (Modification de DatasService : serializer.fromJSON dans méthodes create et update).
+- [0.14.0-SNAPSHOT] - FRONT Dashboard Finance (Ajout EncoursModel, DatesService) + ajout loader aux dashboards.

@@ -85,7 +85,7 @@ button {
 
 .flex {
   display: flex;
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .center {
@@ -140,6 +140,11 @@ button:focus span {
   width: 140px;
 }
 
+#chartEncoursClients, #chartEncoursFournisseurs {
+  width: auto !important;
+  height: auto !important;
+}
+
 .btn-flat i {
   line-height: 1 !important;
 }
@@ -163,6 +168,12 @@ button:focus span {
   transform: translate(-50%, -50%);
   font-size: 3rem;
   font-weight: 900;
+}
+
+.chiffres {
+  position: absolute;
+  top: 56%;
+  transform: translate(0%, -50%);
 }
 
 .sous-titre {
@@ -207,6 +218,10 @@ main a:hover {
   color: #ffa000 !important;
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -247,7 +262,7 @@ h5 span {
   color: #ffa000;
 }
 
-.page-footer {
+.page-footer, .pad-top {
   padding-top: 10px !important;
 }
 

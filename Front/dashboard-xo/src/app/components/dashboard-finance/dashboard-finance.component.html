@@ -1,3 +1,126 @@
-<p>
-  dashboard-finance works!
-</p>
+<!-- Loader -->
+<div *ngIf="!listEcrituresC" class="flex">
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
+
+<main *ngIf="listEcrituresC">
+  <div class="container">
+    <div class="row">
+      <!-- Premiere card -->
+      <div class="col l3 m6 s12">
+        <div class="card cardheight">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+              <div class="card-metric-title">Total</div>
+              <div class="card-metric-value">Encours clients</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal">
+            <h3><strong>{{ encoursTotalClients.toFixed(0) }} €</strong></h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deuxieme card -->
+      <div class="col l3 m6 s12">
+        <div class="card cardheight center">
+          <div class="card-metric-title pad-top">Encours clients échus</div>
+          <div class="chiffres">
+            <h3 class="no-margin"><strong>{{ encoursEchusClients.toFixed(0) }} €</strong></h3>
+            <div class="card-metric-title">{{ encoursEchusClientsPourcent.toFixed(0) }} %</div>
+          </div>
+          <div class="card-metric centre-horizontal grey-text flex">
+            <canvas class="card-chart chartjs-render-monitor" id="chartEncoursClients"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Troisieme card -->
+      <div class="col l3 m6 s12">
+        <div class="card cardheight">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+              <div class="card-metric-title">Total</div>
+              <div class="card-metric-value">Encours fournisseurs</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal">
+            <h3><strong>{{ encoursTotalFournisseurs.toFixed(0) }} €</strong></h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quatrieme card -->
+      <div class="col l3 m6 s12">
+          <div class="card cardheight center">
+            <div class="card-metric-title pad-top">Encours fournisseurs échus</div>
+            <div class="chiffres">
+              <h3 class="no-margin"><strong>{{ encoursEchusFournisseurs.toFixed(0) }} €</strong></h3>
+              <div class="card-metric-title">{{ encoursEchusFournisseursPourcent.toFixed(0) }} %</div>
+            </div>
+            <div class="card-metric centre-horizontal grey-text flex">
+              <canvas class="card-chart chartjs-render-monitor" id="chartEncoursFournisseurs"></canvas>
+            </div>
+          </div>
+        </div>
+
+      <!-- Cinquieme card -->
+      <div class="col l6 m12 s12">
+        <div class="card">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric" id="facture">
+              <div class="card-metric-value">Encours Clients Echus</div>
+              <div class="card-metric-change">détail (15 premiers)</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <ul class="badge-updates">
+              <li *ngFor="let encours of (listeEncoursClientsEchus | slice: 0:15)">
+                <span class="message">{{ encours.id }}</span>
+                <span class="time">{{ encours.somme.toFixed(0) }} €</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sixieme card -->
+      <div class="col l6 m12 s12">
+        <div class="card">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric" id="facture">
+              <div class="card-metric-value">Encours Fournisseurs</div>
+              <div class="card-metric-change">détail (15 premiers)</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <ul class="badge-updates">
+              <li *ngFor="let encours of (listeEncoursFournisseursEchus | slice: 0:15)">
+                <span class="message">{{ encours.id }}</span>
+                <span class="time">{{ encours.somme.toFixed(0) }} €</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="row flex">
+      <div class="col s12" *ngIf="messagesFinance">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Derniers messages</span>
+            <ul class="badge-updates">
+              <li *ngFor="let message of (messagesFinance.reverse() | slice: 0:3)">
+                <span class="new badge orange" data-badge-caption="">{{ message.user.role.role | slice: 5 }}</span>
+                <span class="message">{{ message.texte }}</span>
+                <span class="time">{{ message.date | untilNow }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

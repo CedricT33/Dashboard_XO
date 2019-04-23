@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
+import { DatesService } from 'src/app/services/dates.service';
 
 @Component({
   selector: 'app-dashboard-logistique',
@@ -25,7 +26,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   colisPeriode = 0;
   messagesLogistic: Message[];
   today: Date = new Date();
-  todayString: string = this.chartsService.formatDate(this.today); // YYYY-MM-DD
+  todayString: string = this.datesService.formatDate(this.today); // YYYY-MM-DD
   startOfTheYear: Date = new Date(this.today.getFullYear() + '-01-01'); // YYYY-01-01
 
   chartLogisticWeek = [];
@@ -44,6 +45,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   listDocsLigne: DocLigne[];
   listColis: Colis[];
   listMessages: Message[];
+
   subDocs: Subscription;
   subColis: Subscription;
   subMessages: Subscription;
@@ -52,6 +54,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
               private colisService: ColisService,
               private messagesService: MessagesService,
               private chartsService: ChartsService,
+              private datesService: DatesService,
               private loginService: LoginService,
               private dialog: MatDialog) {}
 
@@ -99,7 +102,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   }
 
   getCommandesExpedies(dateJour: string, dateDebutPeriode: Date) {
-    this.BLJour = this.listDocsLigne.filter(d => this.chartsService.formatDate(d.dateBL).includes(dateJour)).length;
+    this.BLJour = this.listDocsLigne.filter(d => this.datesService.formatDate(d.dateBL).includes(dateJour)).length;
     this.BLPeriode = this.listDocsLigne.filter(d => d.dateBL >= dateDebutPeriode && d.dateBL <= new Date()).length;
     setTimeout(() => this.initChartWeek(this.listDocsLigne));
     setTimeout(() => this.initChartMonth(this.listDocsLigne));
@@ -109,7 +112,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   getColisExpedies(dateJour: string, dateDebutPeriode: Date) {
     this.colisJour = 0;
     this.colisPeriode = 0;
-    this.listColis.filter(c => this.chartsService.formatDate(c.date).toString().includes(dateJour))
+    this.listColis.filter(c => this.datesService.formatDate(c.date).toString().includes(dateJour))
                                                                   .forEach(co => this.colisJour += co.nbreColis);
     this.listColis.filter(c => c.date >= dateDebutPeriode && c.date <= new Date())
                                                                 .forEach(co => this.colisPeriode += co.nbreColis);
@@ -120,7 +123,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     labels = [];
     chart = [];
     for (let i = 0; i < days; i++ ) {
-      labels.push(this.chartsService.getDaysofTheWeek(this.chartsService.getDateWithDays(this.today, i)));
+      labels.push(this.datesService.getDaysofTheWeek(this.datesService.getDateWithDays(this.today, i)));
       datas.push(this.getCommandesByDay(docs, this.today, i));
     }
     chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
@@ -133,7 +136,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     const labels = this.chartLogisticDataLabelsYear;
     const datas = this.chartLogisticDatasYear;
     for (let i = 0; i < 12; i++ ) {
-      labels.push(this.chartsService.getMonthofTheYear(this.today.getMonth() - i));
+      labels.push(this.datesService.getMonthofTheYear(this.today.getMonth() - i));
       datas.push(this.getCommandesByMonth(docs, this.today, i));
     }
     this.chartLogisticYear.push(this.chartsService.initLineChart('chartLogisticYear', labels, datas));
@@ -158,9 +161,9 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   }
 
   getCommandesByDay(docs: DocLigne[], today: Date, daysBefore: number): number {
-    const date = this.chartsService.getDateWithDays(today, daysBefore);
-    return docs.filter(d => this.chartsService.formatDate(d.dateBL).toString()
-                        .includes(this.chartsService.formatDate(date))).length;
+    const date = this.datesService.getDateWithDays(today, daysBefore);
+    return docs.filter(d => this.datesService.formatDate(d.dateBL).toString()
+                        .includes(this.datesService.formatDate(date))).length;
   }
 
   getCommandesByMonth(docs: DocLigne[], today: Date, monthsBefore: number): number {
@@ -171,8 +174,8 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     } else {
       year = today.getFullYear();
     }
-    return docs.filter(d => this.chartsService.formatDate(d.dateBL).toString()
-            .includes(this.chartsService.formatStartDate(month, year))).length;
+    return docs.filter(d => this.datesService.formatDate(d.dateBL).toString()
+            .includes(this.datesService.formatStartDate(month, year))).length;
   }
 
   onSemaine() {

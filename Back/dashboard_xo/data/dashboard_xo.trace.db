@@ -642,3 +642,7 @@ insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (3, '
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2019-04-19 20:22:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "HIBERNATE_SEQUENCE" non trouvée
+Table "HIBERNATE_SEQUENCE" not found; SQL statement:
+select * from HIBERNATE_SEQUENCE [42102-197]
