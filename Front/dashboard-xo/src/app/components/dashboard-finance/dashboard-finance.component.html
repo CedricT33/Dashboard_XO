@@ -23,14 +23,14 @@
 
       <!-- Deuxieme card -->
       <div class="col l3 m6 s12">
-        <div class="card cardheight center">
+        <div class="card cardheight center flex">
           <div class="card-metric-title pad-top">Encours clients échus</div>
           <div class="chiffres">
             <h3 class="no-margin"><strong>{{ encoursEchusClients.toFixed(0) }} €</strong></h3>
             <div class="card-metric-title">{{ encoursEchusClientsPourcent.toFixed(0) }} %</div>
           </div>
-          <div class="card-metric centre-horizontal grey-text flex">
-            <canvas class="card-chart chartjs-render-monitor" id="chartEncoursClients"></canvas>
+          <div class="card-metric centre-horizontal grey-text flex" #parentChart1>
+            <canvas id="chartEncoursClients"></canvas>
           </div>
         </div>
       </div>
@@ -52,14 +52,14 @@
 
       <!-- Quatrieme card -->
       <div class="col l3 m6 s12">
-          <div class="card cardheight center">
+          <div class="card cardheight center flex">
             <div class="card-metric-title pad-top">Encours fournisseurs échus</div>
             <div class="chiffres">
               <h3 class="no-margin"><strong>{{ encoursEchusFournisseurs.toFixed(0) }} €</strong></h3>
               <div class="card-metric-title">{{ encoursEchusFournisseursPourcent.toFixed(0) }} %</div>
             </div>
-            <div class="card-metric centre-horizontal grey-text flex">
-              <canvas class="card-chart chartjs-render-monitor" id="chartEncoursFournisseurs"></canvas>
+            <div class="card-metric centre-horizontal grey-text flex" #parentChart2>
+              <canvas id="chartEncoursFournisseurs"></canvas>
             </div>
           </div>
         </div>

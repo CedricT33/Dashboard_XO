@@ -81,7 +81,6 @@ export class ChartsService {
       },
       options: {
         responsive: false,
-        maintainAspectRatio: false,
         cutoutPercentage: 80,
         title: {
           display: false,

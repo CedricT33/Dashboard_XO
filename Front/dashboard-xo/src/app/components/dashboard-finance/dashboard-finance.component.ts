@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Message } from '../../models/message.model';
 import { MessagesService } from 'src/app/services/messages.service';
@@ -8,6 +8,7 @@ import { EcrituresComptablesService } from 'src/app/services/ecritures-comptable
 import { EcritureComptable } from 'src/app/models/ecritureComptable.model';
 import { Encours } from 'src/app/models/encours.model';
 import { ChartsService } from 'src/app/services/charts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-finance',
@@ -15,6 +16,9 @@ import { ChartsService } from 'src/app/services/charts.service';
   styleUrls: ['./dashboard-finance.component.css']
 })
 export class DashboardFinanceComponent implements OnInit, OnDestroy {
+
+  @ViewChild('parentChart1') parentChart1: ElementRef;
+  @ViewChild('parentChart2') parentChart2: ElementRef;
 
   encoursTotalClients = 0;
   encoursEchusClients = 0;
@@ -38,7 +42,8 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
   constructor(private loginService: LoginService,
               private messagesService: MessagesService,
               private ecrituresComptablesService: EcrituresComptablesService,
-              private chartsService: ChartsService) { }
+              private chartsService: ChartsService,
+              private router: Router) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('finance');
@@ -50,8 +55,8 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
       this.listMessages = messages;
       this.getMessages();
     });
-    // this.ecrituresComptablesService.reloadDatas(environment.interval);
-    this.messagesService.reloadDatas(environment.interval);
+    this.ecrituresComptablesService.reloadDatas(environment.interval, this.router);
+    this.messagesService.reloadDatas(environment.interval, this.router);
   }
 
   getEcritures() {
@@ -148,13 +153,15 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
   }
 
   initChartEncoursClient() {
+    this.createCanvas(this.parentChart1, 'chartEncoursClients');
     this.initChart(this.chartEncoursClients, 'chartEncoursClients', this.labelsChart,
                                                                     +this.encoursEchusClientsPourcent.toFixed(0));
   }
 
   initChartEncoursFournisseur() {
-      this.initChart(this.chartEncoursFournisseurs, 'chartEncoursFournisseurs', this.labelsChart,
-                                                                            +this.encoursEchusFournisseursPourcent.toFixed(0));
+    this.createCanvas(this.parentChart2, 'chartEncoursFournisseurs');
+    this.initChart(this.chartEncoursFournisseurs, 'chartEncoursFournisseurs', this.labelsChart,
+                                                                          +this.encoursEchusFournisseursPourcent.toFixed(0));
   }
 
   initChart(chart: any, idCanvas: string, labels: string[], data: number) {
@@ -162,6 +169,17 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       chart.push(this.chartsService.initDonutPercentChart(idCanvas, labels, data));
     });
+  }
+
+  createCanvas(parentChart: ElementRef, idCanvas: string) {
+    if (parentChart) {
+      setTimeout(() => {
+        parentChart.nativeElement.firstChild.remove();
+        const newCanvas = document.createElement('canvas');
+        newCanvas.id = idCanvas;
+        parentChart.nativeElement.append(newCanvas);
+      });
+    }
   }
 
   getMessages() {

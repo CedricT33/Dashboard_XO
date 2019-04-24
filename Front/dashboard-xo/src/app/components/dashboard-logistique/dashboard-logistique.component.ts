@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
 import { DatesService } from 'src/app/services/dates.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-logistique',
@@ -56,7 +57,8 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
               private chartsService: ChartsService,
               private datesService: DatesService,
               private loginService: LoginService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private router: Router) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('logistique');
@@ -72,9 +74,9 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
       this.listMessages = messages;
       this.getMessages();
     });
-    this.docsLigneService.reloadDatas(environment.interval);
-    this.colisService.reloadDatas(environment.interval);
-    this.messagesService.reloadDatas(environment.interval);
+    this.docsLigneService.reloadDatas(environment.interval, this.router);
+    this.colisService.reloadDatas(environment.interval, this.router);
+    this.messagesService.reloadDatas(environment.interval, this.router);
   }
 
   getCommandes() {

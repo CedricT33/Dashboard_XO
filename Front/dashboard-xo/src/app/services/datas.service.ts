@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Serializer } from '../serializers/serializer';
 import { ObjectData } from '../models/objectData.model';
+import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,9 @@ export class DatasService<T extends ObjectData> {
   datas$: BehaviorSubject<T[]> = new BehaviorSubject(this.availableDatas);
   timer: any;
 
-  constructor(private httpClient: HttpClient, private endPoint: string, private serializer: Serializer) {}
+  constructor(private httpClient: HttpClient,
+              private endPoint: string,
+              private serializer: Serializer) {}
 
   /**
    * Function that retrieves all datas from API (back).
@@ -82,13 +86,29 @@ export class DatasService<T extends ObjectData> {
    * Function to reload datas from the API (back).
    * @param interval interbal in milliseconds.
    */
-  public reloadDatas(interval: number) {
+  public reloadDatas(interval: number, router: Router) {
     this.timer = setInterval(() => {
-                      this.getAllDatas().subscribe(datas => {
-                        this.availableDatas = datas;
-                        this.datas$.next(this.availableDatas);
-                      });
-                    }, interval);
+      if (this.isLoggedIn()) {
+        this.getAllDatas().subscribe(datas => {
+          this.availableDatas = datas;
+          this.datas$.next(this.availableDatas);
+        });
+      } else {
+        router.navigate(['login']);
+      }
+    }, interval);
+  }
+
+  /**
+   * Function to check if the user is connected.
+   */
+  private isLoggedIn(): boolean {
+    let exp: number;
+    if (sessionStorage.getItem(environment.accessToken)) {
+      const decodedToken = jwt_decode(sessionStorage.getItem(environment.accessToken));
+      exp = decodedToken.exp;
+    }
+    return (sessionStorage.getItem(environment.accessToken) !== null) && (+new Date().getTime().toString().slice(0, 10) < exp);
   }
 
   /**
