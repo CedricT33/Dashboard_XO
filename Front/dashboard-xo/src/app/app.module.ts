@@ -29,6 +29,7 @@ import { MessagesDialogComponent } from './components/messages-dialog/messages-d
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { ColisDialogComponent } from './components/colis-dialog/colis-dialog.component';
 import { ObjectifsDialogComponent } from './components/objectifs-dialog/objectifs-dialog.component';
+import { DeconnexionDialogComponent } from './components/deconnexion-dialog/deconnexion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +47,14 @@ import { ObjectifsDialogComponent } from './components/objectifs-dialog/objectif
     UserDetailComponent,
     MessagesDialogComponent,
     ColisDialogComponent,
-    ObjectifsDialogComponent
+    ObjectifsDialogComponent,
+    DeconnexionDialogComponent
   ],
   entryComponents: [
     MessagesDialogComponent,
     ColisDialogComponent,
-    ObjectifsDialogComponent
+    ObjectifsDialogComponent,
+    DeconnexionDialogComponent
   ],
   imports: [
     BrowserModule,

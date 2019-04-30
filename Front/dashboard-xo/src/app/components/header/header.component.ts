@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { DeconnexionDialogComponent } from '../deconnexion-dialog/deconnexion-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,8 @@ export class HeaderComponent implements OnInit {
   isAdmin: boolean;
   isConnected: boolean;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loginService.userRole.subscribe(userRole => {
@@ -28,8 +31,11 @@ export class HeaderComponent implements OnInit {
     this.loginService.changeTitleDashboard(title);
   }
 
-  signOut() {
-    this.loginService.signOut();
+  openDialog(): void {
+    this.dialog.open(DeconnexionDialogComponent, {
+      width: '50vw',
+      data: {}
+    });
   }
 
 }

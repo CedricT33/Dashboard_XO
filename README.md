@@ -266,5 +266,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.14.1-SNAPSHOT] - FRONT (Gestion déconnexion temporelle dans DatasService, Re-création canvas aux reloads dans DashboardFinance, Imports polices).
 - [0.15.0-SNAPSHOT] - FRONT Dashboard Commerce + Quelques modifs CSS + Modifs MCD et MLD XO + Modif model CompteT.
 - [0.16.0-SNAPSHOT] - FRONT Ajout Pop-in ObjectifsDialogComponent.
+- [0.17.0-SNAPSHOT] - FRONT Ajout Pop-in DeconnexionDialogComponent.
 
 
