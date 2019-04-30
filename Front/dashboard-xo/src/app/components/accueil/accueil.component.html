@@ -1,4 +1,9 @@
-<main>
+<!-- Loader -->
+<div *ngIf="!messagesList" class="flex">
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
+
+<main *ngIf="messagesList">
   <div class="container_accueil">
     <div class="row">
 

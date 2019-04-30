@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
@@ -41,6 +44,10 @@ public class CompteTiers implements Serializable {
 	@NaturalId
 	@Column(name="CT_Num")
 	private String numero;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="CG_NumPrinc", referencedColumnName = "CG_Num")
+	private CompteGeneral compteG;
 
 	public int getId() {
 		return id;
@@ -72,5 +79,9 @@ public class CompteTiers implements Serializable {
 
 	public String getPays() {
 		return pays;
+	}
+
+	public CompteGeneral getCompteG() {
+		return compteG;
 	}
 }

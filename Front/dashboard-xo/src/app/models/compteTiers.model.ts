@@ -1,4 +1,5 @@
 import { ObjectData } from './objectData.model';
+import { CompteGeneral } from './compteGeneral.model';
 
 export class CompteTiers extends ObjectData {
 
@@ -9,7 +10,8 @@ export class CompteTiers extends ObjectData {
                 public adresse: string,
                 public codePostal: string,
                 public ville: string,
-                public pays: string) {
+                public pays: string,
+                public compteG: CompteGeneral) {
                     super(id);
                 }
 }

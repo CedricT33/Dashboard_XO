@@ -1,19 +1,20 @@
 /* FONTS */
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat:black"); */
 
 @font-face {
   font-family: 'MontserratBlack';
-  src: url('/src/assets/fonts/montserrat-black/montserrat-black.woff2') format('woff2'),
-       url('/src/assets/fonts/montserrat-black/montserrat-black.woff') format('woff'),
-       url('/src/assets/fonts/montserrat-black/montserrat-black.otf') format('opentype'),
-       url('/src/assets/fonts/montserrat-black/montserrat-black.ttf') format('truetype');
+  src: url('/assets/fonts/montserrat-black/montserrat-black.woff2') format('woff2'),
+       url('/assets/fonts/montserrat-black/montserrat-black.woff') format('woff'),
+       url('/assets/fonts/montserrat-black/montserrat-black.otf') format('opentype'),
+       url('/assets/fonts/montserrat-black/montserrat-black.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/montserrat-black/montserrat-regular.woff2') format('woff2'),
-       url('/src/assets/fonts/montserrat-black/montserrat-regular.woff') format('woff'),
-       url('/src/assets/fonts/montserrat-black/montserrat-regular.otf') format('opentype'),
-       url('/src/assets/fonts/montserrat-black/montserrat-regular.ttf') format('truetype');
+  src: url('/assets/fonts/montserrat-regular/montserrat-regular.woff2') format('woff2'),
+       url('/assets/fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
+       url('/assets/fonts/montserrat-regular/montserrat-regular.otf') format('opentype'),
+       url('/assets/fonts/montserrat-regular/montserrat-regular.ttf') format('truetype');
 }
 
 html {
@@ -97,6 +98,10 @@ button {
   font-family: "Montserrat" !important;
 }
 
+.waves-effect {
+  transition: 0s !important;
+}
+
 /* --Perso--- */
 
 .flex {
@@ -158,7 +163,7 @@ button:focus span {
 
 #chartEncoursClients, #chartEncoursFournisseurs {
   width: auto !important;
-  height: auto !important;
+  height: 17vw !important;
 }
 
 .btn-flat i {
@@ -182,6 +187,7 @@ button:focus span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: "MontserratBlack" !important;
   font-size: 3rem;
   font-weight: 900;
 }
@@ -248,9 +254,18 @@ main a:hover {
   height: 280px;
 }
 
+.cardheight-graph {
+  height: 350px;
+}
+
+canvas {
+  height: 25vw !important;
+}
+
 .card h4 {
   margin: 0;
   margin-bottom: 25px;
+  font-family: "MontserratBlack" !important;
   font-size: 2.1rem;
   font-weight: 700;
 }
@@ -323,6 +338,7 @@ h5 span {
 }
 
 em {
+  font-family: "MontserratBlack" !important;
   font-style: normal !important;
   font-size: 100px;
   font-weight: 900;
@@ -478,22 +494,46 @@ footer {
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .nav-wrapper img {
-    height: 56px !important;
+@media only screen and (min-width: 1200px) {
+  i.large {
+    font-size: 5rem !important;
   }
 
-  .cardheight {
-    height: 190px;
+  #chartEncoursClients, #chartEncoursFournisseurs {
+    height: 15vw !important;
   }
 
-  .tableau {
-    width: 100% !important;
+  em {
+    font-size: 75px !important;
   }
 }
 
-.nav-wrapper img {
-  height: 64px;
+@media only screen and (min-width: 1601px) {
+  i.large {
+    font-size: 5rem !important;
+  }
+
+  #chartEncoursClients, #chartEncoursFournisseurs {
+    height: 10vw !important;
+  }
+
+  em {
+    font-size: 75px !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 12px !important;
+  }
+
+  i.large {
+    font-size: 4rem !important;
+  }
+
+  em {
+    font-size: 60px !important;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -505,6 +545,10 @@ footer {
     width: 90% !important;
   }
 
+  #chartEncoursClients, #chartEncoursFournisseurs {
+    height: 25vw !important;
+  }
+
   .tableau {
     width: 90%;
   }
@@ -512,30 +556,38 @@ footer {
   nav .brand-logo.left {
     left: 0rem !important;
   }
-}
 
-@media only screen and (max-width: 1200px) {
-  html {
-    font-size: 12px !important;
+  canvas {
+    height: 40vw !important;
   }
 }
 
-@media only screen and (min-width: 1200px) {
-  i.large {
-    font-size: 5rem !important;
+@media only screen and (max-width: 600px) {
+  .nav-wrapper img {
+    height: 56px !important;
   }
 
-  em {
-    font-size: 75px !important;
+  .cardheight {
+    height: 190px;
+  }
+
+  .cardheight-graph {
+    height: auto !important;
+  }
+
+  #chartEncoursClients, #chartEncoursFournisseurs {
+    height: 28vw !important;
+  }
+
+  canvas {
+    height: 50vw !important;
+  }
+
+  .tableau {
+    width: 100% !important;
   }
 }
 
-@media only screen and (max-width: 1200px) {
-  i.large {
-    font-size: 4rem !important;
-  }
-
-  em {
-    font-size: 60px !important;
-  }
+.nav-wrapper img {
+  height: 64px;
 }

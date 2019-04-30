@@ -1,3 +1,169 @@
-<p>
-  dashboard-commerce works!
-</p>
+<!-- Loader -->
+<div *ngIf="!listMessages" class="flex">
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
+
+<main *ngIf="listMessages">
+  <div class="container">
+    <div class="row">
+      <!-- Premiere card -->
+      <div class="col s12">
+        <div class="card">
+          <div class="card-metrics card-metrics-toggle card-metrics-centered">
+            <div class="card-metric waves-effect" id="mois" (click)="onMois()" [ngClass]="{ active: isChartMonth }">
+              <div class="card-metric-value">Mois</div>
+              <div class="card-metric-change">CA facturé</div>
+            </div>
+            <div class="card-metric waves-effect" id="annee" (click)="onAnnee()" [ngClass]="{ active: isChartYear }">
+              <div class="card-metric-value">Année</div>
+              <div class="card-metric-change">CA facturé</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <canvas
+              class="card-chart chartjs-render-monitor"
+              id="chartCommerceMonth"
+              [ngStyle]="{ display: isChartMonth ? 'block' : 'none' }">
+            </canvas>
+            <canvas
+              class="card-chart chartjs-render-monitor"
+              id="chartCommerceYear"
+              [ngStyle]="{ display: isChartYear ? 'block' : 'none' }">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deuxieme card -->
+      <div class="col m4 s12" *ngIf="objectif">
+        <div class="card cardheight">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+              <div class="card-metric-title sous-titre">
+                <i class="small material-icons">star</i>
+                <strong> OBJECTIF </strong>
+                <i class="small material-icons">star</i>
+              </div>
+              <div class="card-metric-change">{{ objectif.intitule }}</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal ">
+            <h4>{{ objectif.chiffre.toLocaleString()}} €</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Troisieme card -->
+      <div class="col m4 s12">
+        <div class="card cardheight">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+              <div class="card-metric-title">
+                <i class="small material-icons">monetization_on</i>
+              </div>
+              <div class="card-metric-title">CA signé</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal">
+            <h4>{{ CASigneAnnee.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</h4>
+            <div class="card-metric-change">cette année</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quatrieme card -->
+      <div class="col m4 s12">
+        <div class="card cardheight">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric">
+              <div class="card-metric-title">
+                <i class="small material-icons">monetization_on</i>
+              </div>
+              <div class="card-metric-title">CA facturé</div>
+            </div>
+          </div>
+          <div class="card-metric centre-horizontal">
+            <h4>{{ CAFactureAnnee.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</h4>
+            <div class="card-metric-change">cette année</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cinquieme card -->
+      <div class="col m6 s12">
+        <div class="card cardheight-graph">
+          <div class="card-metrics card-metrics-centered">
+            <div class="card-metric" id="facture">
+              <div class="card-metric-value">Fournisseurs</div>
+              <div class="card-metric-change">commandes reçues</div>
+            </div>
+          </div>
+          <div class="card-content" *ngIf="fournisseurs.length > 0">
+            <ul class="badge-updates">
+              <li *ngFor="let fournisseur of (fournisseurs | slice: 0:10)">
+                <span class="message">{{ fournisseur.compteTiers.intitule }}</span>
+                <span class="time">{{ fournisseur.date | untilNow }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-content center" *ngIf="fournisseurs.length === 0">
+            Aucune commande reçue
+          </div>
+        </div>
+      </div>
+
+      <!-- Sixieme card -->
+      <div class="col m6 s12">
+        <div class="card">
+          <div class="card-metrics card-metrics-toggle card-metrics-centered">
+            <div class="card-metric waves-effect" id="facture" (click)="onFacture()" [ngClass]="{ active: isChartBarFacture }">
+              <div class="card-metric-value">Facturé</div>
+              <div class="card-metric-change">ce mois</div>
+            </div>
+            <div class="card-metric waves-effect" id="signe" (click)="onSigne()" [ngClass]="{ active: isChartBarSigne }">
+              <div class="card-metric-value">Signé</div>
+              <div class="card-metric-change">ce mois</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <canvas
+              class="card-chart chartjs-render-monitor"
+              id="chartBarFacture"
+              [ngStyle]="{ display: isChartBarFacture ? 'block' : 'none' }">
+            </canvas>
+            <canvas
+              class="card-chart chartjs-render-monitor"
+              id="chartBarSigne"
+              [ngStyle]="{ display: isChartBarSigne ? 'block' : 'none' }">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="row flex">
+      <div class="col s12" *ngIf="messagesCommerce">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Derniers messages</span>
+            <ul class="badge-updates">
+              <li *ngFor="let message of (messagesCommerce.reverse() | slice: 0:3)">
+                <span class="new badge orange" data-badge-caption="">{{ message.user.role.role | slice: 5 }}</span>
+                <span class="message">{{ message.texte }}</span>
+                <span class="time">{{ message.date | untilNow }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton Flottant -->
+  <div class="fixed-action-btn ">
+    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+</main>

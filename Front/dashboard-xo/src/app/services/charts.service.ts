@@ -6,6 +6,91 @@ import { Chart } from 'chart.js';
 })
 export class ChartsService {
 
+// Plugin qui ajoute la legende sur chaque point ou barre
+plugin = { afterDatasetsDraw: (chart: any) => {
+  const ctx = chart.ctx;
+  chart.data.datasets.forEach((dataset, i) => {
+    const meta = chart.getDatasetMeta(i);
+    if (!meta.hidden) {
+      meta.data.forEach((element, index) => {
+        ctx.fillStyle = 'rgba(178, 104, 0, 1)';
+        const fontSize = 20;
+        const fontStyle = 'normal';
+        const fontFamily = 'Montserrat';
+        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+        const dataString = dataset.data[index].toString();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        const padding = -15;
+        const position = element.tooltipPosition();
+        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+        });
+      }
+    });
+  }
+};
+
+  initBarChart(idCanvas: string, theLabels: string[], theDatas: number[]): Chart {
+    return new Chart(idCanvas, {
+      plugins: this.plugin,
+      type: 'bar',
+      data: {
+        labels: theLabels.reverse(),
+        datasets: [{
+          label: '',
+          fill: true,
+          backgroundColor: 'rgba(255, 140, 0, 0.3)',
+          borderColor: 'rgb(0, 0, 0)',
+          borderWidth: 1,
+          data: theDatas.reverse()
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: false,
+          text: ''
+        },
+        legend: {
+          display: false,
+          text: ''
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        scales: {
+          xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: false,
+              }
+          }],
+          yAxes: [{
+              display: true,
+              scaleLabel: {
+                display: false,
+              },
+              ticks: {
+                beginAtZero: true,
+                // to have decimal axis
+                userCallback: (label) => {
+                    if (Math.floor(label) === label) {
+                        return label;
+                    }
+                },
+            }
+          }]
+        }
+      }
+    });
+  }
+
   initLineChart(idCanvas: string, theLabels: string[], theDatas: number[]): Chart {
     return new Chart(idCanvas, {
       type: 'line',
@@ -24,6 +109,7 @@ export class ChartsService {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         title: {
           display: false,
           text: ''
@@ -115,4 +201,6 @@ export class ChartsService {
       }
     });
   }
+
+
 }

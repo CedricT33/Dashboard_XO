@@ -77,7 +77,7 @@
             <ul class="badge-updates">
               <li *ngFor="let encours of (listeEncoursClientsEchus | slice: 0:15)">
                 <span class="message">{{ encours.id }}</span>
-                <span class="time">{{ encours.somme.toFixed(0) }} €</span>
+                <span class="time">{{ (+encours.somme.toFixed(0)).toLocaleString() }} €</span>
               </li>
             </ul>
           </div>
@@ -97,7 +97,7 @@
             <ul class="badge-updates">
               <li *ngFor="let encours of (listeEncoursFournisseursEchus | slice: 0:15)">
                 <span class="message">{{ encours.id }}</span>
-                <span class="time">{{ encours.somme.toFixed(0) }} €</span>
+                <span class="time">{{ (+encours.somme.toFixed(0)).toLocaleString() }} €</span>
               </li>
             </ul>
           </div>

@@ -34,11 +34,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   chartLogisticDatasWeek: number[] = [];
   chartLogisticDataLabelsWeek: string[] = [];
   chartLogisticMonth = [];
-  chartLogisticDatasMonth: number[] = [];
-  chartLogisticDataLabelsMonth: string[] = [];
   chartLogisticYear = [];
-  chartLogisticDatasYear: number[] = [];
-  chartLogisticDataLabelsYear: string[] = [];
   isChartWeek = true;
   isChartMonth = false;
   isChartYear = false;
@@ -120,64 +116,62 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
                                                                 .forEach(co => this.colisPeriode += co.nbreColis);
   }
 
-  initChart(chart: any, idCanvas: string, labels: string[], datas: number[], days: number, docs: DocLigne[]) {
-    datas = [];
-    labels = [];
-    chart = [];
-    for (let i = 0; i < days; i++ ) {
-      labels.push(this.datesService.getDaysofTheWeek(this.datesService.getDateWithDays(this.today, i)));
-      datas.push(this.getCommandesByDay(docs, this.today, i));
-    }
-    chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
-  }
-
-  initChartYear(docs: DocLigne[]) {
-    this.chartLogisticDatasYear = [];
-    this.chartLogisticDataLabelsYear = [];
-    this.chartLogisticYear = [];
-    const labels = this.chartLogisticDataLabelsYear;
-    const datas = this.chartLogisticDatasYear;
-    for (let i = 0; i < 12; i++ ) {
-      labels.push(this.datesService.getMonthofTheYear(this.today.getMonth() - i));
-      datas.push(this.getCommandesByMonth(docs, this.today, i));
-    }
-    this.chartLogisticYear.push(this.chartsService.initLineChart('chartLogisticYear', labels, datas));
-  }
-
   initChartWeek(docs: DocLigne[]) {
-    this.initChart(this.chartLogisticWeek,
+    this.initChartByDays(this.chartLogisticWeek,
       'chartLogisticWeek',
-      this.chartLogisticDataLabelsWeek,
-      this.chartLogisticDatasWeek,
       5,
       docs);
   }
 
   initChartMonth(docs: DocLigne[]) {
-    this.initChart(this.chartLogisticMonth,
+    this.initChartByDays(this.chartLogisticMonth,
       'chartLogisticMonth',
-      this.chartLogisticDataLabelsMonth,
-      this.chartLogisticDatasMonth,
       30,
       docs);
   }
 
-  getCommandesByDay(docs: DocLigne[], today: Date, daysBefore: number): number {
-    const date = this.datesService.getDateWithDays(today, daysBefore);
-    return docs.filter(d => this.datesService.formatDate(d.dateBL).toString()
-                        .includes(this.datesService.formatDate(date))).length;
+  initChartYear(docs: DocLigne[]) {
+    this.initChartByYear(this.chartLogisticYear,
+      'chartLogisticYear',
+      docs);
   }
 
-  getCommandesByMonth(docs: DocLigne[], today: Date, monthsBefore: number): number {
-    const month = today.getMonth() - monthsBefore;
-    let year;
-    if (today.getMonth() - monthsBefore < 0) {
-      year = today.getFullYear() - 1;
-    } else {
-      year = today.getFullYear();
+  initChartByDays(chart: any, idCanvas: string, days: number, docs: DocLigne[]) {
+    const datas: number[] = [];
+    const labels: string[] = [];
+    chart = [];
+    for (let i = 0; i < days; i++ ) {
+      labels.push(this.datesService.getDaysofTheWeek(this.datesService.getDateWithDays(this.today, i)));
+      datas.push(this.getCommandesByDay(docs, i));
     }
-    return docs.filter(d => this.datesService.formatDate(d.dateBL).toString()
-            .includes(this.datesService.formatStartDate(month, year))).length;
+    chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
+  }
+
+  initChartByYear(chart: any, idCanvas: string, docs: DocLigne[]) {
+    const datas: number[] = [];
+    const labels: string[] = [];
+    chart = [];
+    for (let i = 0; i < 12; i++ ) {
+      labels.push(this.datesService.getMonthofTheYear(this.today.getMonth() - i));
+      datas.push(this.getCommandesByMonth(docs, i));
+    }
+    chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
+  }
+
+  getCommandesByDay(docs: DocLigne[], daysBefore: number): number {
+    const date = this.datesService.getDateWithDays(this.today, daysBefore);
+    return docs.filter(d => this.datesService.formatDate(d.dateBL).includes(this.datesService.formatDate(date))).length;
+  }
+
+  getCommandesByMonth(docs: DocLigne[], monthsBefore: number): number {
+    const month = this.today.getMonth() - monthsBefore;
+    let year;
+    if (this.today.getMonth() - monthsBefore < 0) {
+      year = this.today.getFullYear() - 1;
+    } else {
+      year = this.today.getFullYear();
+    }
+    return docs.filter(d => this.datesService.formatDate(d.dateBL).includes(this.datesService.formatStartDate(month, year))).length;
   }
 
   onSemaine() {

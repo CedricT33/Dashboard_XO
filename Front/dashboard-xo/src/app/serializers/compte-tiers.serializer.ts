@@ -12,6 +12,7 @@ export class CompteTiersSerializer {
         const codePostal = 'codePostal';
         const ville = 'ville';
         const pays = 'pays';
+        const compteG = 'compteG';
 
         return new CompteTiers(
             json[id],
@@ -21,7 +22,8 @@ export class CompteTiersSerializer {
             json[adresse],
             json[codePostal],
             json[ville],
-            json[pays]
+            json[pays],
+            json[compteG]
         );
     }
 }
