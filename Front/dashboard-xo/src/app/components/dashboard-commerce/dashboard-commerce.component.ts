@@ -13,6 +13,8 @@ import { DatesService } from 'src/app/services/dates.service';
 import { ChartsService } from 'src/app/services/charts.service';
 import { DocLigne } from 'src/app/models/docLigne.model';
 import { DocsLigneService } from 'src/app/services/docs-ligne.service';
+import { ObjectifsDialogComponent } from '../objectifs-dialog/objectifs-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-dashboard-commerce',
@@ -56,7 +58,8 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
               private docsLigneService: DocsLigneService,
               private datesService: DatesService,
               private chartsService: ChartsService,
-              private router: Router) { }
+              private dialog: MatDialog,
+              private router: Router) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('commerce');
@@ -288,6 +291,10 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
+    this.dialog.open(ObjectifsDialogComponent, {
+      width: '80vw',
+      data: {}
+    });
   }
 
   ngOnDestroy() {

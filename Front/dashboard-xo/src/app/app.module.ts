@@ -28,6 +28,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { MessagesDialogComponent } from './components/messages-dialog/messages-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { ColisDialogComponent } from './components/colis-dialog/colis-dialog.component';
+import { ObjectifsDialogComponent } from './components/objectifs-dialog/objectifs-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,13 @@ import { ColisDialogComponent } from './components/colis-dialog/colis-dialog.com
     AdminComponent,
     UserDetailComponent,
     MessagesDialogComponent,
-    ColisDialogComponent
+    ColisDialogComponent,
+    ObjectifsDialogComponent
   ],
   entryComponents: [
     MessagesDialogComponent,
-    ColisDialogComponent
+    ColisDialogComponent,
+    ObjectifsDialogComponent
   ],
   imports: [
     BrowserModule,

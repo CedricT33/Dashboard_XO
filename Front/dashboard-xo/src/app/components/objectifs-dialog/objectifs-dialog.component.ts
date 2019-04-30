@@ -1,30 +1,30 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ColisService } from 'src/app/services/colis.service';
-import { Colis } from 'src/app/models/colis.model';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { User } from 'src/app/models/user.model';
+import { errorMessages } from 'src/app/validators/errorMessages';
 import { Subscription } from 'rxjs';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { ObjectifsService } from 'src/app/services/objectifs.service';
 import { UsersService } from 'src/app/services/users.service';
 import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
-import { errorMessages } from 'src/app/validators/errorMessages';
+import { Objectif } from 'src/app/models/objectif.model';
 
 @Component({
-  selector: 'app-colis-dialog',
-  templateUrl: './colis-dialog.component.html',
-  styleUrls: ['./colis-dialog.component.css']
+  selector: 'app-objectifs-dialog',
+  templateUrl: './objectifs-dialog.component.html',
+  styleUrls: ['./objectifs-dialog.component.css']
 })
-export class ColisDialogComponent implements OnInit, OnDestroy {
+export class ObjectifsDialogComponent implements OnInit, OnDestroy {
 
-  colisForm: FormGroup;
+  objectifForm: FormGroup;
   user = new User();
   errors = errorMessages;
   subUser: Subscription;
 
-  constructor(private dialogRef: MatDialogRef<ColisDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<ObjectifsDialogComponent>,
               private formBuilder: FormBuilder,
-              private colisService: ColisService,
+              private objectifsService: ObjectifsService,
               private usersService: UsersService,
               private snackBar: MatSnackBar) { }
 
@@ -53,15 +53,16 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
-    this.colisForm = this.formBuilder.group({
-      colis: [null, [Validators.required, Validators.max(100), Validators.min(-100)]]
+    this.objectifForm = this.formBuilder.group({
+      intitule: [null, [Validators.required, Validators.maxLength(50)]],
+      objectif: [null, [Validators.required, Validators.max(2000000000), Validators.min(0)]]
     });
   }
 
-  createColis(colis: Colis) {
-    this.colisService.create(colis).subscribe(() => {
+  createObjectif(objectif: Objectif) {
+    this.objectifsService.create(objectif).subscribe(() => {
       // pop-up succes
-      this.snackBar.open('Colis ajoutés', 'SUCCES', {
+      this.snackBar.open('Objectif ajouté', 'SUCCES', {
         duration: environment.durationSnackBar
       });
       this.dialogRef.close();
@@ -75,8 +76,8 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-      const colis = new Colis(null, +this.colisForm.value.colis, new Date(), this.user);
-      this.createColis(colis);
+      const objectif = new Objectif(null, this.objectifForm.value.intitule, new Date(), +this.objectifForm.value.objectif, this.user);
+      this.createObjectif(objectif);
   }
 
   ngOnDestroy() {

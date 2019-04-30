@@ -259,11 +259,12 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.10.2-SNAPSHOT] - FRONT (Ajout theme-charte-graphique.scss, menu login en Angular Material, correction guards). 
 - [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComposant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
 - [0.11.1-SNAPSHOT] - FRONT (Ajout CustomValidators et errorMessages).
-- [0.12.0-SNAPSHOT] - FRONT (Ajout DialogMessagesComponent).
-- [0.13.0-SNAPSHOT] - FRONT (Ajout DialogColisComponent) + BACK (Suppression Sign-up).
+- [0.12.0-SNAPSHOT] - FRONT (Ajout MessagesDialogComponent).
+- [0.13.0-SNAPSHOT] - FRONT (Ajout ColisDialogComponent) + BACK (Suppression Sign-up).
 - [0.13.1-SNAPSHOT] - FRONT (Modification de DatasService : serializer.fromJSON dans méthodes create et update).
 - [0.14.0-SNAPSHOT] - FRONT Dashboard Finance (Ajout EncoursModel, DatesService) + ajout loader aux dashboards.
 - [0.14.1-SNAPSHOT] - FRONT (Gestion déconnexion temporelle dans DatasService, Re-création canvas aux reloads dans DashboardFinance, Imports polices).
 - [0.15.0-SNAPSHOT] - FRONT Dashboard Commerce + Quelques modifs CSS + Modifs MCD et MLD XO + Modif model CompteT.
+- [0.16.0-SNAPSHOT] - FRONT Ajout Pop-in ObjectifsDialogComponent.
 
 

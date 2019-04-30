@@ -101,6 +101,7 @@ plugin = { afterDatasetsDraw: (chart: any) => {
           fill: true,
           backgroundColor: 'rgba(255, 140, 0, 0.3)',
           borderColor: 'rgb(0, 0, 0)',
+          borderWidth: document.getElementById(idCanvas).clientWidth >= 992 ? 2 : 1,
           lineTension: 0.1,
           pointRadius: 4,
           pointBackgroundColor: 'rgb(255, 159, 64)',
