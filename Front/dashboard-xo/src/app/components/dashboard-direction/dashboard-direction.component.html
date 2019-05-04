@@ -1,3 +1,39 @@
-<p>
-  dashboard-direction works!
-</p>
+<main>
+  <div class="container">
+    <div class="row flex">
+
+      <!-- Premiere card -->
+      <div class="col l6 m12 s12 no-margin">
+        <div class="card">
+          <div class="card-metrics card-metrics-centered">
+              <div class="card-metric">
+                <div class="card-metric-title"></div>
+                <div class="card-metric-value">Clients XO</div>
+                <div class="card-metric-change">France</div>
+              </div>
+          </div>
+          <div class="card-metric vmap" id="vmap" #vmap></div>
+        </div>
+      </div>	
+    </div>
+
+    <!-- Messages -->
+    <div class="row flex">
+      <div class="col s12" *ngIf="messagesDirection">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Derniers messages</span>
+            <ul class="badge-updates">
+              <li *ngFor="let message of (messagesDirection.reverse() | slice: 0:3)">
+                <span class="new badge orange" data-badge-caption="">{{ message.user.role.role | slice: 5 }}</span>
+                <span class="message">{{ message.texte }}</span>
+                <span class="time">{{ message.date | untilNow }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

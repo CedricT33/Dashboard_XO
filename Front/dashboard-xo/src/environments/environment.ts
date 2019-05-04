@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080/api/',
   accessToken: 'access_token',
-  interval: 10000,
+  interval: 10000, // durée de rafraichissement des données.
   durationSnackBar: 3000
 };
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './Angular-Material';
@@ -26,7 +27,6 @@ import { UntilNow } from './pipes/until-now.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { MessagesDialogComponent } from './components/messages-dialog/messages-dialog.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { ColisDialogComponent } from './components/colis-dialog/colis-dialog.component';
 import { ObjectifsDialogComponent } from './components/objectifs-dialog/objectifs-dialog.component';
 import { DeconnexionDialogComponent } from './components/deconnexion-dialog/deconnexion-dialog.component';

@@ -58,24 +58,32 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('logistique');
+    // abonnement au behavior subject "datas$" du docsLigneService.
     this.subDocs = this.docsLigneService.datas$.subscribe(docs => {
       this.listDocsLigne = docs;
       this.getCommandes();
     });
+    // abonnement au behavior subject "datas$" du colisService.
     this.subColis =  this.colisService.datas$.subscribe(colis => {
       this.listColis = colis;
       this.getColis();
     });
+    // abonnement au behavior subject "datas$" du messagesService.
     this.subMessages =  this.messagesService.datas$.subscribe(messages => {
       this.listMessages = messages;
       this.getMessages();
     });
+    // boucles de rechargement des données à intervalle régulier.
     this.docsLigneService.reloadDatas(environment.interval, this.router);
     this.colisService.reloadDatas(environment.interval, this.router);
     this.messagesService.reloadDatas(environment.interval, this.router);
   }
 
-  getCommandes() {
+  /**
+   * Récupère les données DocsLigne du back si la liste de docsLigne du component est vide.
+   * Et si la liste est pleine on poursuit sans rappeller les données du back.
+   */
+  getCommandes(): void {
     if (this.listDocsLigne) {
       this.getCommandesExpedies(this.todayString, this.startOfTheYear);
     } else {
@@ -83,7 +91,11 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     }
   }
 
-  getColis() {
+  /**
+   * Récupère les données Colis du back si la liste de colis du component est vide.
+   * Et si la liste est pleine on poursuit sans rappeller les données du back.
+   */
+  getColis(): void {
     if (this.listColis) {
       this.getColisExpedies(this.todayString, this.startOfTheYear);
     } else {
@@ -91,7 +103,11 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     }
   }
 
-  getMessages() {
+  /**
+   * Récupère les données Messages du back si la liste de messages du component est vide.
+   * Et si la liste est pleine on poursuit sans rappeller les données du back.
+   */
+  getMessages(): void {
     if (this.listMessages) {
       this.messagesLogistic = this.listMessages.filter(m => m.destinataire === 'LOGISTIQUE');
     } else {
@@ -99,7 +115,11 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCommandesExpedies(dateJour: string, dateDebutPeriode: Date) {
+  /**
+   * Récupère les commandes expédiées du jour et depuis une date.
+   * Lance l'initialisation des graphiques.
+   */
+  getCommandesExpedies(dateJour: string, dateDebutPeriode: Date): void {
     this.BLJour = this.listDocsLigne.filter(d => this.datesService.formatDate(d.dateBL).includes(dateJour)).length;
     this.BLPeriode = this.listDocsLigne.filter(d => d.dateBL >= dateDebutPeriode && d.dateBL <= new Date()).length;
     setTimeout(() => this.initChartWeek(this.listDocsLigne));
@@ -107,7 +127,10 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     setTimeout(() => this.initChartYear(this.listDocsLigne));
   }
 
-  getColisExpedies(dateJour: string, dateDebutPeriode: Date) {
+  /**
+   * Récupère les colis expédiés du jour et depuis une date.
+   */
+  getColisExpedies(dateJour: string, dateDebutPeriode: Date): void {
     this.colisJour = 0;
     this.colisPeriode = 0;
     this.listColis.filter(c => this.datesService.formatDate(c.date).toString().includes(dateJour))
@@ -116,27 +139,43 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
                                                                 .forEach(co => this.colisPeriode += co.nbreColis);
   }
 
-  initChartWeek(docs: DocLigne[]) {
+  /**
+   * Initialise le graphique de la semaine.
+   */
+  initChartWeek(docs: DocLigne[]): void {
     this.initChartByDays(this.chartLogisticWeek,
       'chartLogisticWeek',
       5,
       docs);
   }
 
-  initChartMonth(docs: DocLigne[]) {
+  /**
+   * Initialise le graphique du mois.
+   */
+  initChartMonth(docs: DocLigne[]): void {
     this.initChartByDays(this.chartLogisticMonth,
       'chartLogisticMonth',
       30,
       docs);
   }
 
-  initChartYear(docs: DocLigne[]) {
-    this.initChartByYear(this.chartLogisticYear,
+  /**
+   * Initialise le graphique de l'année.
+   */
+  initChartYear(docs: DocLigne[]): void {
+    this.initChartByMonth(this.chartLogisticYear,
       'chartLogisticYear',
       docs);
   }
 
-  initChartByDays(chart: any, idCanvas: string, days: number, docs: DocLigne[]) {
+  /**
+   * Appel du graphique depuis chartsService en fonction des jours.
+   * @param chart le tableau dans lequel sera mis le graphique.
+   * @param idCanvas l'identifiant du conteneur du graphique.
+   * @param days le nombre de jours à afficher dans le graphique.
+   * @param docs les documents à filtrer pour la recherche.
+   */
+  initChartByDays(chart: any, idCanvas: string, days: number, docs: DocLigne[]): void {
     const datas: number[] = [];
     const labels: string[] = [];
     chart = [];
@@ -147,7 +186,13 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
   }
 
-  initChartByYear(chart: any, idCanvas: string, docs: DocLigne[]) {
+  /**
+   * Appel du graphique depuis chartsService sur 12 mois.
+   * @param chart le tableau dans lequel sera mis le graphique.
+   * @param idCanvas l'identifiant du conteneur du graphique.
+   * @param docs les documents à filtrer pour la recherche.
+   */
+  initChartByMonth(chart: any, idCanvas: string, docs: DocLigne[]): void {
     const datas: number[] = [];
     const labels: string[] = [];
     chart = [];
@@ -158,11 +203,21 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     chart.push(this.chartsService.initLineChart(idCanvas, labels, datas));
   }
 
+  /**
+   * Retourne le nombre de commandes par jour.
+   * @param docs les documents à filtrer pour la recherche de commandes.
+   * @param daysBefore le nombre de jour avant aujourd'hui.
+   */
   getCommandesByDay(docs: DocLigne[], daysBefore: number): number {
     const date = this.datesService.getDateWithDays(this.today, daysBefore);
     return docs.filter(d => this.datesService.formatDate(d.dateBL).includes(this.datesService.formatDate(date))).length;
   }
 
+  /**
+   * Retourne le nombre de commandes par mois.
+   * @param docs les documents à filtrer pour la recherche de commandes.
+   * @param daysBefore le nombre de mois avant le mois en cours.
+   */
   getCommandesByMonth(docs: DocLigne[], monthsBefore: number): number {
     const month = this.today.getMonth() - monthsBefore;
     let year;

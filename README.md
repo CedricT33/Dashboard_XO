@@ -222,6 +222,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - Chart.js
 - jwt-decode
 - materialize-css
+- jvectormap-next
 
 **Logiciels utilisés** :
 - Balsamiq Mockup 3 : maquettes wireframe.
@@ -234,6 +235,12 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - Postman (version 7.0.6) : Tests API Back.
 - Visual Studio Code (version 1.32.3) : programmation Front application.
 - CLI : pour MySQL, Angular.
+
+**Problème rencontré** :
+- intégration plug-in jqvmap en jQuery dans angular. 
+- SOLUTION : ajouter "declare var $: any;" juste après les imports du component et remplacer jQuery par $ dans le script.
+- Question posée dans google: " How to integrate jqvmap in angular?"
+- réponse trouvée dans stackoverflow : https://stackoverflow.com/questions/42093742/how-to-use-use-jqvmap-with-angular-cli
 
 **Gestion des versions** :
 **X-Y-Z-SNAPSHOT** (*dans le pom.xml*)
@@ -267,5 +274,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.15.0-SNAPSHOT] - FRONT Dashboard Commerce + Quelques modifs CSS + Modifs MCD et MLD XO + Modif model CompteT.
 - [0.16.0-SNAPSHOT] - FRONT Ajout Pop-in ObjectifsDialogComponent.
 - [0.17.0-SNAPSHOT] - FRONT Ajout Pop-in DeconnexionDialogComponent.
+- [0.18.0-SNAPSHOT] - FRONT Ajout DirectionComponent, intégration jvectormap-next, factorisation code, documentation code.
 
 
