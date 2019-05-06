@@ -11,7 +11,8 @@ export class JwtInterceptor implements HttpInterceptor {
     // add authorization header with jwt token if available
     const accessToken = sessionStorage.getItem(environment.accessToken);
 
-    if (accessToken) {
+    // on n'intercepte pas la requete visant l'api adresse.data.gouv (il ne faut pas de clef dans le header)
+    if (accessToken && !request.url.includes('api-adresse.data.gouv.fr')) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${accessToken}`

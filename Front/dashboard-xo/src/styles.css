@@ -231,6 +231,10 @@ main a:hover {
   margin: 0 !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .margin-top {
   margin-top: 30px !important;
 }

@@ -1,7 +1,7 @@
 <nav class="black mat-elevation-z6">
   <div class="nav-wrapper">
     <a routerLink="" [ngClass]="{'left brand-logo': isConnected , 'logo-centre': !isConnected}" (click)="changeTitle('')">
-      <img src="assets/logo_xo.png"/>
+      <img src="assets/logo_xo.png" alt="Logo XO"/>
     </a>
     <div class="titre grey-text hide-on-small-only">{{titreDashboard | uppercase}}</div>
     <ul class="right">

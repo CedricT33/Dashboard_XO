@@ -1,4 +1,9 @@
-<main>
+<!-- Loader -->
+<div *ngIf="!listCompteT" class="flex">
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
+
+<main *ngIf="listCompteT">
   <div class="container">
     <div class="row flex">
 
@@ -12,7 +17,9 @@
                 <div class="card-metric-change">France</div>
               </div>
           </div>
-          <div class="card-metric vmap" id="vmap" #vmap></div>
+          <div #parentMap>
+            <div class="card-metric vmap" id="vmap"></div>
+          </div>
         </div>
       </div>	
     </div>

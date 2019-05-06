@@ -275,5 +275,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.16.0-SNAPSHOT] - FRONT Ajout Pop-in ObjectifsDialogComponent.
 - [0.17.0-SNAPSHOT] - FRONT Ajout Pop-in DeconnexionDialogComponent.
 - [0.18.0-SNAPSHOT] - FRONT Ajout DirectionComponent, intégration jvectormap-next, factorisation code, documentation code.
+- [0.18.1-SNAPSHOT] - FRONT Ajout CoordinatesService + modification jwtInterceptor.
 
 

@@ -1,6 +1,7 @@
 import { Injectable, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 declare var $: any;
+declare var jvm: any;
 
 @Injectable({
   providedIn: 'root'
@@ -216,19 +217,12 @@ export class ChartsService {
   /**
    * Configuration of the French map.
    * @param id the id of the container of the map in the DOM (div).
+   * @param pins the list of coordinates of clients.
    */
-  initMapFrance(id: string) {
+  initMapFrance(id: string, pins: any[]): any {
 
-    // à mettre dans les attributs de la méthode
-    const pins = [
-      {latLng: [44.837789, -0.57918], name: 'Bordeaux'},
-      {latLng: [48.856614, 2.3522219000000177], name: 'Paris'},
-      {latLng: [44.715275, -0.541993], name: '14 rte de massiot 33650 Martillac'},
-      {latLng: [46.58022400000001, 0.34037499999999454], name: 'Poitiers'},
-      {latLng: [44.203142, 0.6163629999999785], name: 'Agen'}
-    ];
-
-    $(id).vectorMap({
+     return new jvm.Map({
+      container: $('#' + id),
       map: 'fr_merc',
       regionsSelectable: false,
       markersSelectable: true,
