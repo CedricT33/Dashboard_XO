@@ -5,4 +5,6 @@ package fr.tressous.cedric.dashboard.exception;
  */
 public class InvalidCredentialsException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
 }

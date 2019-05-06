@@ -16,7 +16,7 @@
             </div>
           </div>
           <div class="card-metric centre-horizontal">
-            <h3><strong>{{ encoursTotalClients.toFixed(0) }} €</strong></h3>
+            <h3><strong>{{ encoursTotalClients.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</strong></h3>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
         <div class="card cardheight center flex">
           <div class="card-metric-title pad-top">Encours clients échus</div>
           <div class="chiffres">
-            <h3 class="no-margin"><strong>{{ encoursEchusClients.toFixed(0) }} €</strong></h3>
+            <h3 class="no-margin"><strong>{{ encoursEchusClients.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</strong></h3>
             <div class="card-metric-title">{{ encoursEchusClientsPourcent.toFixed(0) }} %</div>
           </div>
           <div class="card-metric centre-horizontal grey-text flex" #parentChart1>
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="card-metric centre-horizontal">
-            <h3><strong>{{ encoursTotalFournisseurs.toFixed(0) }} €</strong></h3>
+            <h3><strong>{{ encoursTotalFournisseurs.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</strong></h3>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
           <div class="card cardheight center flex">
             <div class="card-metric-title pad-top">Encours fournisseurs échus</div>
             <div class="chiffres">
-              <h3 class="no-margin"><strong>{{ encoursEchusFournisseurs.toFixed(0) }} €</strong></h3>
+              <h3 class="no-margin"><strong>{{ encoursEchusFournisseurs.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</strong></h3>
               <div class="card-metric-title">{{ encoursEchusFournisseursPourcent.toFixed(0) }} %</div>
             </div>
             <div class="card-metric centre-horizontal grey-text flex" #parentChart2>

@@ -97,6 +97,13 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 **Visuels de l'application.** (en cours...)
 
 **Explications de codes spécifiques avec des exemples : Front et Back.** (en cours...)
+- pipe
+- validator
+- trigger
+
+**Explications Sécurity, authentification, tokens, failles xss et autres...** (en cours...)
+
+**Accessibilité avec exemple de code** (en cours...)
 
 **Quelqes exemples de tests unitaires.** (en cours...)
 
@@ -110,7 +117,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - F_COLLABORATEUR : Employés de XO. (*R*)
 - F_ECRITUREC: Ecritures comptables (montants, echéances...). (*R*)
 - F_COMPTET : Comptes Tiers (clients, fournisseurs, etc...). (*R*)
-- F_COMPTEG : Comptes Généraux (toutes les sortes de comptes: clients, fournisseurs, banques...). (*R*)
+- F_COMPTEG : Comptes Généraux (types de comptes: clients, fournisseurs, banques...). (*R*)
 
 *CRUD*
 - MESSAGES : Messages pour un service. (*CRUD*)
@@ -276,5 +283,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.17.0-SNAPSHOT] - FRONT Ajout Pop-in DeconnexionDialogComponent.
 - [0.18.0-SNAPSHOT] - FRONT Ajout DirectionComponent, intégration jvectormap-next, factorisation code, documentation code.
 - [0.18.1-SNAPSHOT] - FRONT Ajout CoordinatesService + modification jwtInterceptor.
+- [0.18.2-SNAPSHOT] - FRONT Mise à jour accéssibilité.
 
 

@@ -12,8 +12,8 @@
         <a routerLink="/finance" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic }">
           <div class="card">
             <div class="card-content">
-              <h4 class="center-align">FINANCE</h4>
-              <h4 class="center-align"><i class="large material-icons">dashboard</i></h4>
+              <h2 class="center-align">FINANCE</h2>
+              <h2 class="center-align" aria-hidden="true"><i class="large material-icons">dashboard</i></h2>
             </div>
           </div>
         </a>	
@@ -24,8 +24,8 @@
         <a routerLink="/commerce" [ngClass]="{'btn-flat disabled': isFinance || isLogistic }">
           <div class="card">
             <div class="card-content">
-              <h4 class="center-align">COMMERCE</h4>
-              <h4 class="center-align"><i class="large material-icons">dashboard</i></h4>
+              <h2 class="center-align">COMMERCE</h2>
+              <h2 class="center-align" aria-hidden="true"><i class="large material-icons">dashboard</i></h2>
             </div>
           </div>	
         </a>
@@ -36,8 +36,8 @@
         <a routerLink="/direction" [ngClass]="{'btn-flat disabled': isCommerce || isLogistic || isFinance }">
           <div class="card">
             <div class="card-content">
-              <h4 class="center-align">DIRECTION</h4>
-              <h4 class="center-align"><i class="large material-icons">dashboard</i></h4>
+              <h2 class="center-align">DIRECTION</h2>
+              <h2 class="center-align" aria-hidden="true"><i class="large material-icons">dashboard</i></h2>
             </div>
           </div>	
         </a>
@@ -48,8 +48,8 @@
         <a routerLink="/logistique" [ngClass]="{'btn-flat disabled': isCommerce || isFinance }">
           <div class="card">
             <div class="card-content">
-              <h4 class="center-align">LOGISTIQUE</h4>
-              <h4 class="center-align"><i class="large material-icons">dashboard</i></h4>
+              <h2 class="center-align">LOGISTIQUE</h2>
+              <h2 class="center-align" aria-hidden="true"><i class="large material-icons">dashboard</i></h2>
             </div>
           </div>	
         </a>
@@ -79,7 +79,7 @@
 
   <!-- Bouton Flottant -->
   <div class="fixed-action-btn ">
-    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()" routerLink="" aria-label="Ajouter un message"><i class="material-icons">add</i></a>
   </div>
 
 </main>

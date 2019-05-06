@@ -1,13 +1,13 @@
 <nav class="black mat-elevation-z6">
   <div class="nav-wrapper">
-    <a routerLink="" [ngClass]="{'left brand-logo': isConnected , 'logo-centre': !isConnected}" (click)="changeTitle('')">
+    <a routerLink="" [ngClass]="{'left brand-logo': isConnected , 'logo-centre': !isConnected}" (click)="changeTitle('')" aria-label="Logo XO">
       <img src="assets/logo_xo.png" alt="Logo XO"/>
     </a>
-    <div class="titre grey-text hide-on-small-only">{{titreDashboard | uppercase}}</div>
+    <h1 class="titre grey-text hide-on-small-only">{{titreDashboard | uppercase}}</h1>
     <ul class="right">
-      <li *ngIf="isAdmin" (click)="changeTitle('')"><a routerLink="/admin"><i class="material-icons">settings</i></a></li>
-      <li *ngIf="titreDashboard" (click)="changeTitle('')"><a routerLink="/accueil"><i class="material-icons">view_module</i></a></li>
-      <li *ngIf="isConnected"><a class="modal-trigger" (click)="openDialog()"><i class="material-icons">power_settings_new</i></a></li>
+      <li *ngIf="isAdmin" (click)="changeTitle('')"><a routerLink="/admin" aria-label="Gestion des utilisateurs"><i class="material-icons">settings</i></a></li>
+      <li *ngIf="titreDashboard" (click)="changeTitle('')"><a routerLink="/accueil" aria-label="Accueil"><i class="material-icons">view_module</i></a></li>
+      <li *ngIf="isConnected"><a class="modal-trigger" routerLink="" aria-label="Déconnexion" (click)="openDialog()"><i class="material-icons">power_settings_new</i></a></li>
     </ul>
   </div>
 </nav>	
