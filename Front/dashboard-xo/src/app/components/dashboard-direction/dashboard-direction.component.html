@@ -17,9 +17,11 @@
                 <div class="card-metric-change">France</div>
               </div>
           </div>
-          <div #parentMap>
-            <div class="card-metric vmap" id="vmap"></div>
+          <!-- Loader de la carte -->
+          <div *ngIf="!pins" class="flex">
+            <img src="assets/loader.svg" alt="chargement" />
           </div>
+          <div *ngIf="pins" class="card-metric vmap" id="vmap"></div>
         </div>
       </div>	
     </div>

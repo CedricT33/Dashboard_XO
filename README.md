@@ -170,6 +170,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - DatasService
 - UsersService
 - RolesService
+- CoordinatesService
 - Message (model)
 - Objectif (model)
 - Colis (model)
@@ -284,5 +285,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.18.0-SNAPSHOT] - FRONT Ajout DirectionComponent, intégration jvectormap-next, factorisation code, documentation code.
 - [0.18.1-SNAPSHOT] - FRONT Ajout CoordinatesService + modification jwtInterceptor.
 - [0.18.2-SNAPSHOT] - FRONT Mise à jour accéssibilité.
+- [0.18.3-SNAPSHOT] - FRONT Amélioration DirectionComponent + CoordinatesService.
 
 

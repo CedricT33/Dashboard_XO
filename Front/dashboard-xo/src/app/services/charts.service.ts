@@ -1,5 +1,6 @@
-import { Injectable, ElementRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
+
 declare var $: any;
 declare var jvm: any;
 

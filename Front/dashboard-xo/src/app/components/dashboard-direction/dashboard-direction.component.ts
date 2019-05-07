@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Message } from '../../models/message.model';
 import { Subscription } from 'rxjs';
@@ -17,16 +17,16 @@ import { CompteTiers } from 'src/app/models/compteTiers.model';
 })
 export class DashboardDirectionComponent implements OnInit, OnDestroy {
 
-  @ViewChild('parentMap') parentMap: ElementRef;
-
   messagesDirection: Message[];
-  pins = [];
+  pins: any[];
+  mapFrance: any;
 
   listMessages: Message[];
   listCompteT: CompteTiers[];
 
   subMessages: Subscription;
   subCompteT: Subscription;
+  subCoord: Subscription;
 
   constructor(private loginService: LoginService,
               private messagesService: MessagesService,
@@ -46,6 +46,11 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     this.subMessages =  this.messagesService.datas$.subscribe(messages => {
       this.listMessages = messages;
       this.getMessages();
+    });
+    // abonnement au behavior subject "pins$" du coordinatesService.
+    this.subCoord =  this.coordinatesService.pins$.subscribe(pins => {
+      this.pins = pins;
+      this.createMapFrance('vmap', this.pins);
     });
     // boucles de rechargement des données à intervalle régulier.
     this.messagesService.reloadDatas(environment.interval, this.router);
@@ -76,35 +81,26 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Récupères uniquement les clients et va chercher via coordinatesService les coordonnées GPS pour chacun.
-   * Ré-affiche la carte à chaque nouvelle coordonnée reçue.
+   * Récupères uniquement les clients et va chercher les coordonnées GPS de chaque client via coordinatesService.
+   * Met à jour le behavior subject pins$ dans coordinatesService.
    */
   initMapFrance(): void {
     const clients: CompteTiers[] = this.listCompteT.filter(comptes => comptes.compteG.intitule === 'CLIENTS');
-    this.pins = [];
-    clients.forEach(client => this.coordinatesService.getCoordinates(client).subscribe(coord => {
-      if (coord) {
-        this.pins.push({latLng: coord.features[0].geometry.coordinates.reverse(), name: client.intitule });
-      }
-      this.createMapFrance(this.parentMap, 'vmap', this.pins);
-    }));
+    this.coordinatesService.getAllCoordinates(clients);
   }
 
   /**
-   * Re-créé le conteneur de la carte dans le template.
-   * Et affiche la carte de la France avec les marqueurs clients.
-   * @param parentMap l'élément du DOM qui contient la div qui contient la carte.
+   * Détruit la carte de la France (si elle existe).
+   * Et la re-créé avec les marqueurs clients.
    * @param idMap l'identifiant du conteneur de la carte.
    */
-  createMapFrance(parentMap: ElementRef, idMap: string, markers: any[]): void {
-    if (parentMap) {
+  createMapFrance(idMap: string, markers: any[]): void {
+    if (markers) {
       setTimeout(() => {
-        parentMap.nativeElement.firstChild.remove();
-        const newDiv = document.createElement('div');
-        newDiv.id = idMap;
-        newDiv.className = 'card-metric vmap';
-        parentMap.nativeElement.append(newDiv);
-        this.chartsService.initMapFrance(idMap, markers);
+        if (this.mapFrance) {
+          this.mapFrance.remove();
+        }
+        this.mapFrance = this.chartsService.initMapFrance(idMap, markers);
       });
     }
   }
@@ -116,7 +112,15 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     if (this.subCompteT) {
       this.subCompteT.unsubscribe();
     }
+    if (this.subCoord) {
+      this.subCoord.unsubscribe();
+    }
     this.messagesService.stopReload();
+
+    // Détruit la carte de la France (si elle existe).
+    if (this.mapFrance) {
+      this.mapFrance.remove();
+    }
   }
 
 }

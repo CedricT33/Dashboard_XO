@@ -153,7 +153,8 @@ INSERT INTO f_comptet (cbMarq, CT_Num, CT_Intitule, CT_Numpayeur, CT_Adresse, CT
 									 							(19, 'SYSTR', 'SYSTEM ROC', 'SYSTR', "100 RUE DU FORT", '59273', 'FRETIN', 'FRANCE', 40100000),
 									 							(20, '111199', 'FACEBOOK', '111199', "112 RUE DU FORT", '59273', 'FRETIN', 'FRANCE', 40100000),
 																(21, '556789', 'SOCIETE SASS', '556789', "15 RUE DU STYLE", '33300', 'BORDEAUX', 'FRANCE', 40100000),
-																(22, '628493', 'FRANCE SERVICES INDUSTRIE', '628493', "106 RUE DU FORT", '33300', 'BORDEAUX', 'FRANCE', 41100000);
+																(22, '628493', 'FRANCE SERVICES INDUSTRIE', '628493', "106 RUE DU FORT", '33300', 'BORDEAUX', 'FRANCE', 41100000),
+																(23, '628494', 'TEST', '628494', "3", '', '', '', 41100000);
 
 INSERT INTO f_docentete (cbMarq, DO_Piece, DO_Date, DO_TotalHT, CO_No, CT_Numpayeur) VALUES (1, 'BL1900369', '2019-01-25 00:00:00', 430.560000, 1, '330139'),
 									 		    (2, 'BC1900357', '2019-01-01 00:00:00', 230.600000, 5, 'FLO18093'),
