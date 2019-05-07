@@ -272,7 +272,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.10.0-SNAPSHOT] - FRONT Dashboard Logistique (Ajout ChartsService, integration Chartjs) + BACK Correction problème de dates en UTC.
 - [0.10.1-SNAPSHOT] - FRONT (Ajout DatasService, ObjectDataModel, Serializers, UntilNow.Pipe) + BACK Suppression correction dates en UTC.
 - [0.10.2-SNAPSHOT] - FRONT (Ajout theme-charte-graphique.scss, menu login en Angular Material, correction guards). 
-- [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComposant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
+- [0.11.0-SNAPSHOT] - FRONT (Ajout AdminComponant, UserDetailComponant) + BACK (Ajout Bcrypt password user).
 - [0.11.1-SNAPSHOT] - FRONT (Ajout CustomValidators et errorMessages).
 - [0.12.0-SNAPSHOT] - FRONT (Ajout MessagesDialogComponent).
 - [0.13.0-SNAPSHOT] - FRONT (Ajout ColisDialogComponent) + BACK (Suppression Sign-up).
@@ -286,5 +286,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.18.1-SNAPSHOT] - FRONT Ajout CoordinatesService + modification jwtInterceptor.
 - [0.18.2-SNAPSHOT] - FRONT Mise à jour accéssibilité.
 - [0.18.3-SNAPSHOT] - FRONT Amélioration DirectionComponent + CoordinatesService.
+- [0.18.4-SNAPSHOT] - FRONT Ajout avertissement dans AdminComponent + BACK Ajout cascades dans model User.
 
 

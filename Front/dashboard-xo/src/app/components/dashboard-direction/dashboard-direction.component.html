@@ -32,6 +32,9 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">Derniers messages</span>
+            <div *ngIf="messagesDirection.length === 0" class="flex">
+              Pas de messages...
+            </div>
             <ul class="badge-updates">
               <li *ngFor="let message of (messagesDirection.reverse() | slice: 0:3)">
                 <span class="new badge orange" data-badge-caption="">{{ message.user.role.role | slice: 5 }}</span>

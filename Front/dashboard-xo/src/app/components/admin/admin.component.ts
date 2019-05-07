@@ -6,6 +6,8 @@ import { UsersService } from 'src/app/services/users.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { Message } from 'src/app/models/message.model';
+import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'app-admin',
@@ -21,9 +23,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   selection = new SelectionModel<User>(false, []);
 
   listUsers: User[];
+
   subUser: Subscription;
 
   constructor(private usersService: UsersService,
+              private messagesService: MessagesService,
               private snackBar: MatSnackBar,
               private location: Location) {}
 
