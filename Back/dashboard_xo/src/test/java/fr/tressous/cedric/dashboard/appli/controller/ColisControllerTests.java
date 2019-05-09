@@ -1,6 +1,7 @@
 package fr.tressous.cedric.dashboard.appli.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -15,9 +16,11 @@ import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,32 +28,20 @@ import fr.tressous.cedric.dashboard.appli.model.Colis;
 import fr.tressous.cedric.dashboard.appli.model.Role;
 import fr.tressous.cedric.dashboard.appli.model.User;
 import fr.tressous.cedric.dashboard.appli.service.ColisService;
-import fr.tressous.cedric.dashboard.appli.service.MessageService;
-import fr.tressous.cedric.dashboard.appli.service.ObjectifCommerceService;
-import fr.tressous.cedric.dashboard.appli.service.RoleService;
-import fr.tressous.cedric.dashboard.appli.service.UserService;
-import fr.tressous.cedric.dashboard.xo.service.XoService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ColisControllerTests {
 
 	@Autowired
 	MockMvc mockMvc;
+	
 	@MockBean
 	ColisService colisService;
-	@MockBean
-	UserService userService;
-	@MockBean
-	MessageService messageService;
-	@MockBean
-	ObjectifCommerceService objectifService;
-	@MockBean
-	RoleService roleService;
-	@MockBean
-	XoService xoService;
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void getColis() throws Exception {
 		when(this.colisService.getAllColis()).thenReturn(new ArrayList<Colis>());
 
@@ -58,6 +49,7 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void getColisNotFound() throws Exception {
 		when(this.colisService.getAllColis()).thenReturn(null);
 
@@ -65,6 +57,7 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void createColis() throws Exception {
 		when(this.colisService.createNewColis((Colis) any())).thenReturn(new Colis(7, new Date(), new User("test", "password", new Role("ROLE_TEST"))));
 
@@ -77,6 +70,7 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void createColisFail() throws Exception {
 		when(this.colisService.createNewColis((Colis) any())).thenReturn(null);
 
@@ -86,6 +80,7 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void updateColis() throws Exception {
 		when(this.colisService.updateColis((Colis) any())).thenReturn(new Colis(7, new Date(), new User("test", "password", new Role("ROLE_TEST"))));
 
@@ -98,6 +93,7 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void updateColisFail() throws Exception {
 		when(this.colisService.updateColis((Colis) any())).thenReturn(null);
 
@@ -107,13 +103,17 @@ public class ColisControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void deleteColis() throws Exception {
+		
+		doNothing().when(this.colisService).deleteColis(3L);;
 
 		this.mockMvc.perform(delete("/api/colis/3"))
 				.andExpect(status().isOk());
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void deleteColisNotFound() throws Exception {
 
 		this.mockMvc.perform(delete("/api/coli/2"))

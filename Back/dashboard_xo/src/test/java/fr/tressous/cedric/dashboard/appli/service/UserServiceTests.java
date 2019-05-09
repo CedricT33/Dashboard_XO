@@ -1,6 +1,7 @@
 package fr.tressous.cedric.dashboard.appli.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import fr.tressous.cedric.dashboard.appli.model.User;
 import fr.tressous.cedric.dashboard.appli.model.Role;
 import fr.tressous.cedric.dashboard.appli.repository.UserRepository;
@@ -59,7 +59,7 @@ public class UserServiceTests {
 	@Test
 	public void createNewUser() throws ExistingUsernameException {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
-		given(userRepo.save(user)).willReturn(user);
+		given(userRepo.save(any())).willReturn(user);
 
 		User savedUser = userService.createNewUser(user);
 
@@ -70,7 +70,7 @@ public class UserServiceTests {
 	@Test
 	public void createNewUserFailed() throws ExistingUsernameException {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
-		given(userRepo.save(user)).willReturn(null);
+		given(userRepo.save(any())).willReturn(null);
 
 		User savedUser = userService.createNewUser(user);
 
@@ -80,7 +80,7 @@ public class UserServiceTests {
 	@Test
 	public void updateUser() {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
-		given(userRepo.saveAndFlush(user)).willReturn(user);
+		given(userRepo.saveAndFlush(any())).willReturn(user);
 
 		User savedUser = userService.updateUser(user);
 
@@ -91,7 +91,7 @@ public class UserServiceTests {
 	@Test
 	public void updateUserFail() {
 		User user = new User("test", "password", new Role("ROLE_TEST"));
-		given(userRepo.saveAndFlush(user)).willReturn(null);
+		given(userRepo.saveAndFlush(any())).willReturn(null);
 
 		User savedUser = userService.updateUser(user);
 

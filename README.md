@@ -223,6 +223,7 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - Hibernate
 - Json Web Token
 - DevTools
+- Spring Security Test
 
 **Dépendances FRONT** :
 
@@ -288,5 +289,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.18.3-SNAPSHOT] - FRONT Amélioration DirectionComponent + CoordinatesService.
 - [0.18.4-SNAPSHOT] - FRONT Ajout avertissement dans AdminComponent + BACK Ajout cascades dans model User.
 - [0.19.0-SNAPSHOT] - FRONT Ajout infos-bulles pour boutons +.
+- [0.19.1-SNAPSHOT] - FRONT Correction tests JUnit + ajout dépendance Spring Security Test.
 
 

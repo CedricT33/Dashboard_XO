@@ -1,6 +1,7 @@
 package fr.tressous.cedric.dashboard.appli.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,41 +14,32 @@ import java.util.ArrayList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import fr.tressous.cedric.dashboard.appli.model.User;
 import fr.tressous.cedric.dashboard.appli.model.Role;
-import fr.tressous.cedric.dashboard.appli.service.ColisService;
-import fr.tressous.cedric.dashboard.appli.service.MessageService;
 import fr.tressous.cedric.dashboard.appli.service.UserService;
-import fr.tressous.cedric.dashboard.appli.service.ObjectifCommerceService;
-import fr.tressous.cedric.dashboard.appli.service.RoleService;
-import fr.tressous.cedric.dashboard.xo.service.XoService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@SpringBootTest
+@AutoConfigureMockMvc
 public class UserControllerTests {
 
 	@Autowired
 	MockMvc mockMvc;
-	@MockBean
-	ColisService colisService;
-	@MockBean
-	MessageService messageService;
+
 	@MockBean
 	UserService userService;
-	@MockBean
-	ObjectifCommerceService objectifService;
-	@MockBean
-	RoleService roleService;
-	@MockBean
-	XoService xoService;
+
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void getUsers() throws Exception {
 		when(this.userService.getAllUsers()).thenReturn(new ArrayList<User>());
 
@@ -55,6 +47,7 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void getUsersNotFound() throws Exception {
 		when(this.userService.getAllUsers()).thenReturn(null);
 
@@ -62,6 +55,7 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void createUser() throws Exception {
 		when(this.userService.createNewUser((User) any())).thenReturn(new User("test", "password", new Role("ROLE_TEST")));
 
@@ -73,6 +67,7 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void createUserFail() throws Exception {
 		when(this.userService.createNewUser((User) any())).thenReturn(null);
 
@@ -82,6 +77,7 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void updateUser() throws Exception {
 		when(this.userService.updateUser((User) any())).thenReturn(new User("test", "password", new Role("ROLE_TEST")));
 
@@ -93,6 +89,7 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void updateUserFail() throws Exception {
 		when(this.userService.updateUser((User) any())).thenReturn(null);
 
@@ -102,13 +99,17 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void deleteUser() throws Exception {
+		
+		doNothing().when(this.userService).deleteUser(3L);
 
 		this.mockMvc.perform(delete("/api/user/3"))
 				.andExpect(status().isOk());
 	}
 	
 	@Test
+	@WithMockUser(roles={"ADMIN"})
 	public void deleteUserNotFound() throws Exception {
 
 		this.mockMvc.perform(delete("/api/use/2"))
