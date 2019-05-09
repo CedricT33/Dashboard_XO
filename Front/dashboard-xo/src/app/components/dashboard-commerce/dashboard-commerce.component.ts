@@ -15,6 +15,7 @@ import { DocLigne } from 'src/app/models/docLigne.model';
 import { DocsLigneService } from 'src/app/services/docs-ligne.service';
 import { ObjectifsDialogComponent } from '../objectifs-dialog/objectifs-dialog.component';
 import { MatDialog } from '@angular/material';
+declare var M: any;
 
 @Component({
   selector: 'app-dashboard-commerce',
@@ -29,6 +30,8 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
   CAFactureAnnee = 0;
   CASigneAnnee = 0;
   today: Date = new Date();
+  bubble: any;
+
   todayString: string = this.datesService.formatDate(this.today); // YYYY-MM-DD
   startOfTheYear: string = this.today.getFullYear() + '-01-01'; // YYYY-01-01
   // Mois et année actuels.
@@ -101,6 +104,7 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
   getObjectifs(): void {
     if (this.listObjectifs) {
       this.getLastObjectif();
+      this.openBubble();
     } else {
       this.objectifsService.publishDatas().subscribe();
     }
@@ -342,6 +346,19 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
     }
     const date = this.datesService.formatStartDate(month, year);
     return this.getCAFacture(date, date);
+  }
+
+  /**
+   * Si il n'y a pas d'objectif l'info-bulle s'affiche.
+   */
+  openBubble(): void {
+    if (this.listObjectifs.length === 0 && !this.bubble) {
+      setTimeout(() => {
+      const elem = document.querySelector('.tap-target');
+      this.bubble = M.TapTarget.init(elem);
+      this.bubble.open();
+    }, 1000);
+    }
   }
 
   onMois(): void {

@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material';
 import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
 import { DatesService } from 'src/app/services/dates.service';
 import { Router } from '@angular/router';
+declare var M: any;
 
 @Component({
   selector: 'app-dashboard-logistique',
@@ -26,6 +27,8 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   BLPeriode: number;
   colisPeriode = 0;
   messagesLogistic: Message[];
+  bubble: any;
+
   today: Date = new Date();
   todayString: string = this.datesService.formatDate(this.today); // YYYY-MM-DD
   startOfTheYear: Date = new Date(this.today.getFullYear() + '-01-01'); // YYYY-01-01
@@ -98,6 +101,7 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   getColis(): void {
     if (this.listColis) {
       this.getColisExpedies(this.todayString, this.startOfTheYear);
+      this.openBubble();
     } else {
       this.colisService.publishDatas().subscribe();
     }
@@ -227,6 +231,19 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
       year = this.today.getFullYear();
     }
     return docs.filter(d => this.datesService.formatDate(d.dateBL).includes(this.datesService.formatStartDate(month, year))).length;
+  }
+
+  /**
+   * Si il n'y a pas de colis l'info-bulle s'affiche.
+   */
+  openBubble(): void {
+    if (this.colisJour === 0 && !this.bubble) {
+      setTimeout(() => {
+      const elem = document.querySelector('.tap-target');
+      this.bubble = M.TapTarget.init(elem);
+      this.bubble.open();
+    }, 1000);
+    }
   }
 
   onSemaine() {

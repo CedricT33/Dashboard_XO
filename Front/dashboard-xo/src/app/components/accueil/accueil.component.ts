@@ -5,6 +5,8 @@ import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { MessagesDialogComponent } from 'src/app/components/messages-dialog/messages-dialog.component';
+declare var M: any;
+
 
 @Component({
   selector: 'app-accueil',
@@ -13,13 +15,16 @@ import { MessagesDialogComponent } from 'src/app/components/messages-dialog/mess
 })
 export class AccueilComponent implements OnInit, OnDestroy {
 
-  messagesList: Message[];
-  sub: Subscription;
   isAdmin: boolean;
   isCommerce: boolean;
   isFinance: boolean;
   isDirection: boolean;
   isLogistic: boolean;
+  bubble: any;
+
+  messagesList: Message[];
+
+  sub: Subscription;
 
   constructor(private messagesService: MessagesService,
               private loginService: LoginService,
@@ -39,9 +44,24 @@ export class AccueilComponent implements OnInit, OnDestroy {
     });
   }
 
-  getMessages() {
-    if (!this.messagesList) {
+  getMessages(): void {
+    if (this.messagesList) {
+      this.openBubble();
+    } else {
       this.messagesService.publishDatas().subscribe();
+    }
+  }
+
+  /**
+   * Si il n'y a pas de message l'info-bulle s'affiche.
+   */
+  openBubble(): void {
+    if (this.messagesList.length === 0) {
+      setTimeout(() => {
+      const elem = document.querySelector('.tap-target');
+      this.bubble = M.TapTarget.init(elem);
+      this.bubble.open();
+    }, 1000);
     }
   }
 

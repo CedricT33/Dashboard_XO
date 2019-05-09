@@ -1,9 +1,9 @@
 <main>
-  <div class="container_connexion" *ngIf="userForm">
-    <div class="row">
+  <div class="container" *ngIf="userForm">
+    <div class="row flex">
 
       <!-- Card Connexion -->
-        <div class="col s12">
+        <div class="col s12 m10 l8 no-margin">
           <div class="card">
             <div class="card-content">
                 <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">

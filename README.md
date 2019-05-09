@@ -287,5 +287,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.18.2-SNAPSHOT] - FRONT Mise à jour accéssibilité.
 - [0.18.3-SNAPSHOT] - FRONT Amélioration DirectionComponent + CoordinatesService.
 - [0.18.4-SNAPSHOT] - FRONT Ajout avertissement dans AdminComponent + BACK Ajout cascades dans model User.
+- [0.19.0-SNAPSHOT] - FRONT Ajout infos-bulles pour boutons +.
 
 

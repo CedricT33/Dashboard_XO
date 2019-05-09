@@ -145,8 +145,17 @@
 
   <!-- Bouton Flottant -->
   <div class="fixed-action-btn ">
-    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()">
+    <button id="add" class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()" aria-label="Ajouter un colis">
       <i class="material-icons">add</i>
-    </a>
+    </button>
   </div>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-target="add">
+    <div class="tap-target-content">
+      <h4>Colis</h4>
+      <p>Pour ajouter des colis expédiés cliquez sur le bouton <strong>+</strong></p>
+    </div>
+  </div>
+
 </main>

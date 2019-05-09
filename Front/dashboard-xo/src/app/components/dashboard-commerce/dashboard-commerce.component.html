@@ -35,7 +35,7 @@
       </div>
 
       <!-- Deuxieme card -->
-      <div class="col m4 s12" *ngIf="objectif">
+      <div class="col m4 s12">
         <div class="card cardheight">
           <div class="card-metrics card-metrics-centered">
             <div class="card-metric">
@@ -44,10 +44,11 @@
                 <strong> OBJECTIF </strong>
                 <i class="small material-icons">star</i>
               </div>
-              <div class="card-metric-change">{{ objectif.intitule }}</div>
+              <div *ngIf="objectif" class="card-metric-change">{{ objectif.intitule }}</div>
+              <div *ngIf="!objectif" class="card-metric-change">Pas d'objectif !</div>
             </div>
           </div>
-          <div class="card-metric centre-horizontal ">
+          <div *ngIf="objectif" class="card-metric centre-horizontal ">
             <h4>{{ objectif.chiffre.toLocaleString()}} €</h4>
           </div>
         </div>
@@ -165,8 +166,17 @@
 
   <!-- Bouton Flottant -->
   <div class="fixed-action-btn ">
-    <a class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()">
+    <button id="add" class="btn-floating btn-large waves-effect waves-light orange z-depth-3 modal-trigger" (click)="openDialog()" aria-label="Ajouter un objectif">
       <i class="material-icons">add</i>
-    </a>
+    </button>
   </div>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-target="add">
+    <div class="tap-target-content">
+      <h4>Objectifs</h4>
+      <p>Pour écrire un objectif commercial cliquez sur le bouton <strong>+</strong></p>
+    </div>
+  </div>
+
 </main>
