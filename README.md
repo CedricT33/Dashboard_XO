@@ -94,6 +94,12 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 #### Cinématique vues web.
 ![Enchainement vues web](Diagrammes/Enchainement_vues_web.jpg "Enchainement vues web")
 
+#### Cinématique vues mobiles ADMIN.
+![Enchainement vues mobiles](Diagrammes/Enchainement_vues_mobiles_admin.jpg "Enchainement vues mobiles")
+
+#### Cinématique vues web ADMIN.
+![Enchainement vues web](Diagrammes/Enchainement_vues_web_admin.jpg "Enchainement vues web")
+
 **Visuels de l'application.** (en cours...)
 
 **Explications de codes spécifiques avec des exemples : Front et Back.** (en cours...)
