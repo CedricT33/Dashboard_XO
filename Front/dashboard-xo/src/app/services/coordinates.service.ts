@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { CompteTiers } from '../models/compteTiers.model';
+import { MatSnackBar } from '@angular/material';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +11,10 @@ import { CompteTiers } from '../models/compteTiers.model';
 export class CoordinatesService {
 
   private pins: any[];
+  errors: any[];
   pins$: BehaviorSubject<any[]> = new BehaviorSubject(this.pins);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   /**
    * Function that get a JSON with coordinates from an adress.
@@ -26,16 +29,28 @@ export class CoordinatesService {
    * Function that call the method getCoordinates for each client every 20ms.
    * @param clients List of clients
    */
-  public getAllCoordinates(clients: CompteTiers[]) {
+  public getAllCoordinates(clients: CompteTiers[]): void {
     this.pins = [];
-    clients.forEach(client => setTimeout(() => {
+    this.errors = [];
+    clients.forEach((client, index) => {
+      setTimeout(() => {
         this.getCoordinates(client).subscribe(coord => {
           if (coord.features.length > 0) {
             this.pins.push({latLng: coord.features[0].geometry.coordinates.reverse(), name: client.intitule });
             this.pins$.next(this.pins);
           }
+        },
+        error => {
+          console.log(error);
+          if (error.status === 0 && this.errors.length === 0) {
+            // pop-up echec de connexion
+            this.snackBar.open('Erreur de connexion', 'ECHEC', {
+              duration: environment.durationSnackBar
+            });
+            this.errors.push(error.status);
+          }
         });
-      }, 20) // (Max API : 50 requests / s).
-    );
+      }, 20 * ( index + 1) ); // API max 50 requêtes/s
+    });
   }
 }

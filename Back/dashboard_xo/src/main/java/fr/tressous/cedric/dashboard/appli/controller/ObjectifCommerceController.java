@@ -59,7 +59,11 @@ public class ObjectifCommerceController {
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteObjectifCommerce(@PathVariable Long id) {
-		objectifService.deleteObjectifCommerce(id);
-		return ResponseEntity.ok(null);
+		try {
+			objectifService.deleteObjectifCommerce(id);
+			return ResponseEntity.ok(null);
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

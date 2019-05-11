@@ -9,6 +9,8 @@ import { ChartsService } from 'src/app/services/charts.service';
 import { CoordinatesService } from 'src/app/services/coordinates.service';
 import { ComptesTiersService } from 'src/app/services/comptes-tiers.service';
 import { CompteTiers } from 'src/app/models/compteTiers.model';
+import { DocEntete } from 'src/app/models/docEntete.model';
+import { DocsEnteteService } from 'src/app/services/docs-entete.service';
 
 @Component({
   selector: 'app-dashboard-direction',
@@ -20,18 +22,22 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
   messagesDirection: Message[];
   pins: any[];
   mapFrance: any;
+  meilleursClients: DocEntete[] = [];
 
   listMessages: Message[];
   listCompteT: CompteTiers[];
+  listDocsEntete: DocEntete[];
 
   subMessages: Subscription;
   subCompteT: Subscription;
   subCoord: Subscription;
+  subDocsEntete: Subscription;
 
   constructor(private loginService: LoginService,
               private messagesService: MessagesService,
               private router: Router,
               private chartsService: ChartsService,
+              private docsEnteteService: DocsEnteteService,
               private coordinatesService: CoordinatesService,
               private compteTiersService: ComptesTiersService) {}
 
@@ -47,6 +53,11 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
       this.listMessages = messages;
       this.getMessages();
     });
+    // abonnement au behavior subject "datas$" du docsEnteteService.
+    this.subDocsEntete =  this.docsEnteteService.datas$.subscribe(docs => {
+      this.listDocsEntete = docs;
+      this.getDocsEntete();
+    });
     // abonnement au behavior subject "pins$" du coordinatesService.
     this.subCoord =  this.coordinatesService.pins$.subscribe(pins => {
       this.pins = pins;
@@ -54,6 +65,7 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     });
     // boucles de rechargement des données à intervalle régulier.
     this.messagesService.reloadDatas(environment.interval, this.router);
+    this.docsEnteteService.reloadDatas(environment.interval, this.router);
   }
 
   /**
@@ -78,6 +90,36 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     } else {
       this.compteTiersService.publishDatas().subscribe();
     }
+  }
+
+  /**
+   * Récupère les données DocsEntete du back si la liste de docsEntete du component est vide.
+   * Et si la liste est pleine on poursuit sans rappeller les données du back.
+   */
+  getDocsEntete(): void {
+    if (this.listDocsEntete) {
+      this.meilleursClients = this.getBestClients();
+    } else {
+      this.docsEnteteService.publishDatas().subscribe();
+    }
+  }
+
+  /**
+   * Retourne les meilleurs clients. (par somme des factures)
+   */
+  getBestClients(): DocEntete[] {
+    const listeClients: DocEntete[] = [];
+    this.listDocsEntete.filter(docs => docs.compteTiers.compteG.intitule === 'CLIENTS')
+                        .filter(d => d.piece.startsWith('FA'))
+                        .forEach(doc => {
+                          const listeClientsId = listeClients.find(client => client.compteTiers.id === doc.compteTiers.id);
+                          if (!listeClientsId) {
+                            listeClients.push(doc);
+                          } else {
+                            listeClientsId.totalHT += doc.totalHT;
+                          }
+                        });
+    return listeClients.sort((a, b) => (a.totalHT > b.totalHT) ? -1 : 1);
   }
 
   /**
@@ -115,7 +157,12 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     if (this.subCoord) {
       this.subCoord.unsubscribe();
     }
+    if (this.subDocsEntete) {
+      this.subDocsEntete.unsubscribe();
+    }
+
     this.messagesService.stopReload();
+    this.docsEnteteService.stopReload();
 
     // Détruit la carte de la France (si elle existe).
     if (this.mapFrance) {

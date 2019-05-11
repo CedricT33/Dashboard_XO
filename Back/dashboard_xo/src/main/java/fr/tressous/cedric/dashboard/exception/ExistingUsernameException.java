@@ -1,7 +1,7 @@
 package fr.tressous.cedric.dashboard.exception;
 
 /**
- * Specific exception that should be thrown we a user already exists in databse.
+ * Specific exception that should be thrown if a user already exists in database.
  */
 public class ExistingUsernameException extends Exception {
 

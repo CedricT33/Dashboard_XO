@@ -5,25 +5,44 @@
 
 <main *ngIf="listCompteT">
   <div class="container">
-    <div class="row flex">
+    <div class="row">
 
       <!-- Premiere card -->
-      <div class="col l6 m12 s12 no-margin">
-        <div class="card">
+      <div class="col s12 m12 l6 xl6">
+        <div class="card cardheight-map">
           <div class="card-metrics card-metrics-centered">
               <div class="card-metric">
-                <div class="card-metric-title"></div>
                 <div class="card-metric-value">Clients XO</div>
                 <div class="card-metric-change">France</div>
               </div>
           </div>
           <!-- Loader de la carte -->
-          <div *ngIf="!pins" class="flex">
+          <div *ngIf="!pins" class="flex height-cent">
             <img src="assets/loader.svg" alt="chargement" />
           </div>
           <div *ngIf="pins" class="card-metric vmap" id="vmap"></div>
         </div>
-      </div>	
+      </div>
+
+      <!-- Deuxieme card -->
+      <div class="col s12 m12 l6 xl6">
+        <div class="card cardheight-map">
+          <div class="card-metrics card-metrics-centered">
+              <div class="card-metric">
+                <div class="card-metric-value">Top 10</div>
+                <div class="card-metric-change">Clients</div>
+              </div>
+          </div>
+          <div class="card-content height-cent">
+            <ul class="badge-updates">
+              <li *ngFor="let client of (meilleursClients | slice: 0:10)">
+                <span class="message">{{ client.compteTiers.intitule }}</span>
+                <span class="time">{{ client.totalHT.toLocaleString(undefined, {maximumFractionDigits: 0}) }} €</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Messages -->

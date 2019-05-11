@@ -1,5 +1,4 @@
 /* FONTS */
-/* @import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat:black"); */
 
 @font-face {
   font-family: 'MontserratBlack';
@@ -115,6 +114,7 @@ button {
 .flex {
   display: flex;
   justify-content: center !important;
+  flex-wrap: wrap;
 }
 
 .center {
@@ -123,6 +123,14 @@ button {
 
 .right {
   justify-content: flex-end !important;
+}
+
+.no-wrap {
+  flex-wrap: nowrap !important;
+}
+
+.height-cent {
+  height: 100%;
 }
 
 .noMarginLeft {
@@ -256,6 +264,10 @@ main a:hover {
 
 .cardheight {
   height: 280px;
+}
+
+.cardheight-map {
+  height: 600px;
 }
 
 .cardheight-graph {
@@ -404,7 +416,7 @@ footer {
 }
 
 .vmap {
-  height: 300px;
+  height: 350px;
 }
 
 @media only screen and (min-width: 1201px) {
@@ -524,6 +536,10 @@ footer {
   em {
     font-size: 75px !important;
   }
+
+  .cardheight-map {
+    height: 800px;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -537,6 +553,10 @@ footer {
 
   em {
     font-size: 60px !important;
+  }
+
+  .cardheight-map {
+    height: 450px;
   }
 }
 
@@ -589,6 +609,14 @@ footer {
 
   .tableau {
     width: 100% !important;
+  }
+
+  .card-metric-value {
+    font-size: 18px !important;
+  }
+
+  .cdk-overlay-pane {
+    width: 90vw !important;
   }
 }
 

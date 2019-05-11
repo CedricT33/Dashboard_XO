@@ -5,7 +5,7 @@
   
       <div class="flex center">
         <i class="material-icons prefix margin10">local_shipping</i>  
-        <mat-form-field class="col s3 noMarginLeft">
+        <mat-form-field class="col s5 m3 noMarginLeft">
           <input matInput type="number" placeholder="Colis" formControlName="colis">
           <mat-error *ngIf="colisForm.controls['colis'].hasError('max')">
             {{errors['colisMax']}}

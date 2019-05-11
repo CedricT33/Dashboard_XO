@@ -19,14 +19,16 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
 
   messageForm: FormGroup;
   errors = errorMessages;
-  messagesList: Message[];
-  sub: Subscription;
   subUser: Subscription;
   user = new User();
   destinataires = ['DIRECTION', 'FINANCE', 'LOGISTIQUE', 'COMMERCE'];
   textInit: string;
   destinataireInit: string;
   isNotUpdate = true;
+
+  messagesList: Message[];
+
+  sub: Subscription;
 
   constructor(private dialogRef: MatDialogRef<MessagesDialogComponent>,
               private messagesService: MessagesService,

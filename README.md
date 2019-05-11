@@ -290,5 +290,6 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - [0.18.4-SNAPSHOT] - FRONT Ajout avertissement dans AdminComponent + BACK Ajout cascades dans model User.
 - [0.19.0-SNAPSHOT] - FRONT Ajout infos-bulles pour boutons +.
 - [0.19.1-SNAPSHOT] - FRONT Correction tests JUnit + ajout dépendance Spring Security Test.
+- [0.19.2-SNAPSHOT] - FRONT Modifs CSS et Ajout Top 10 DirectionDashboard + BACK Ajout try/catch sur les delete.
 
 

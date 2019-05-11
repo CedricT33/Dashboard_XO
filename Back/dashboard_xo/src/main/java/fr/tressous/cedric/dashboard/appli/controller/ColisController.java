@@ -60,8 +60,12 @@ public class ColisController {
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteColis(@PathVariable Long id) {
-		colisService.deleteColis(id);
-		return ResponseEntity.ok(null);
+		try {
+			colisService.deleteColis(id);
+			return ResponseEntity.ok(null);
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 }
