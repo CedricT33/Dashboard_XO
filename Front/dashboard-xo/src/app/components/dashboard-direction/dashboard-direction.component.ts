@@ -110,7 +110,9 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
   getBestClients(): DocEntete[] {
     const listeClients: DocEntete[] = [];
     this.listDocsEntete.filter(docs => docs.compteTiers.compteG.intitule === 'CLIENTS')
-                        .filter(d => d.piece.startsWith('FA'))
+                        .filter(d => d.piece.startsWith('FA')
+                        || d.piece.startsWith('AV')
+                        || (d.piece.startsWith('FR') && !d.piece.startsWith('FRBL')))
                         .forEach(doc => {
                           const listeClientsId = listeClients.find(client => client.compteTiers.id === doc.compteTiers.id);
                           if (!listeClientsId) {

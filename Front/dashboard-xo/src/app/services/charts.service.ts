@@ -10,15 +10,15 @@ declare var jvm: any;
 export class ChartsService {
 
   // Plugin that add the legend on each point or bar of the chart.
-  plugin = { afterDatasetsDraw: (chart: any) => {
+  plugin = { afterDatasetsDraw: (chart: any, idCanvas: string) => {
     const ctx = chart.ctx;
     chart.data.datasets.forEach((dataset, i) => {
       const meta = chart.getDatasetMeta(i);
       if (!meta.hidden) {
         meta.data.forEach((element, index) => {
           ctx.fillStyle = 'rgba(178, 104, 0, 1)';
-          const fontSize = 20;
-          const fontStyle = 'normal';
+          const fontSize = element._chart.canvas.clientWidth >= 400 ? 20 : 10;
+          const fontStyle = 'bold';
           const fontFamily = 'Montserrat';
           ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
           const dataString = dataset.data[index].toString();
