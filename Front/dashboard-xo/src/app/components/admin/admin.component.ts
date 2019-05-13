@@ -6,9 +6,10 @@ import { UsersService } from 'src/app/services/users.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { Message } from 'src/app/models/message.model';
 import { MessagesService } from 'src/app/services/messages.service';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -65,10 +66,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  ngOnDestroy() {
-    if (this.subUser) {
-      this.subUser.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

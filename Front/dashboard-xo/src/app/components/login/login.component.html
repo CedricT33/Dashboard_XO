@@ -16,6 +16,9 @@
                       <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
                         L'identifiant est <strong>obligatoire</strong>
                       </mat-error>
+                      <mat-error *ngIf="loginForm.controls['username'].hasError('maxlength')">
+                        {{errors['usernameLength']}}
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="col s12">  
@@ -23,11 +26,14 @@
                       <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
                         Le mot de passe est <strong>obligatoire</strong>
                       </mat-error>
+                      <mat-error *ngIf="loginForm.controls['password'].hasError('minlength') || loginForm.controls['password'].hasError('maxlength')">
+                        {{errors['passwordLength']}}
+                      </mat-error>
                     </mat-form-field>
                   </div>
 
                   <div class="flex right">
-                    <button class="btn orange waves-effect waves-light mat-select-trigger" type="submit" name="action">Connexion
+                    <button class="btn orange waves-effect waves-light mat-select-trigger" type="submit" name="action" [disabled]="loginForm.invalid">Connexion
                       <i class="material-icons right no-padding" aria-hidden="true">send</i>
                     </button>
                   </div>

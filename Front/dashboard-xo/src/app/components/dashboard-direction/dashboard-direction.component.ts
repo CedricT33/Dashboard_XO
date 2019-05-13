@@ -11,7 +11,9 @@ import { ComptesTiersService } from 'src/app/services/comptes-tiers.service';
 import { CompteTiers } from 'src/app/models/compteTiers.model';
 import { DocEntete } from 'src/app/models/docEntete.model';
 import { DocsEnteteService } from 'src/app/services/docs-entete.service';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-dashboard-direction',
   templateUrl: './dashboard-direction.component.html',
@@ -150,19 +152,6 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subMessages) {
-      this.subMessages.unsubscribe();
-    }
-    if (this.subCompteT) {
-      this.subCompteT.unsubscribe();
-    }
-    if (this.subCoord) {
-      this.subCoord.unsubscribe();
-    }
-    if (this.subDocsEntete) {
-      this.subDocsEntete.unsubscribe();
-    }
-
     this.messagesService.stopReload();
     this.docsEnteteService.stopReload();
 

@@ -58,8 +58,8 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
       this.getMessages();
     });
     // boucles de rechargement des données à intervalle régulier.
-    this.ecrituresComptablesService.reloadDatas(environment.interval, this.router);
-    this.messagesService.reloadDatas(environment.interval, this.router);
+    // this.ecrituresComptablesService.reloadDatas(environment.interval, this.router);
+    // this.messagesService.reloadDatas(environment.interval, this.router);
   }
 
   /**

@@ -9,7 +9,9 @@ import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
 import { UsersService } from '../../services/users.service';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-messages-dialog',
   templateUrl: './messages-dialog.component.html',
@@ -154,10 +156,6 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    if (this.subUser) {
-      this.subUser.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

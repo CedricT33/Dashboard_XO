@@ -15,8 +15,10 @@ import { DocLigne } from 'src/app/models/docLigne.model';
 import { DocsLigneService } from 'src/app/services/docs-ligne.service';
 import { ObjectifsDialogComponent } from '../objectifs-dialog/objectifs-dialog.component';
 import { MatDialog } from '@angular/material';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 declare var M: any;
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-dashboard-commerce',
   templateUrl: './dashboard-commerce.component.html',
@@ -389,18 +391,6 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subMessages) {
-      this.subMessages.unsubscribe();
-    }
-    if (this.subObjectifs) {
-      this.subObjectifs.unsubscribe();
-    }
-    if (this.subDocsEntete) {
-      this.subDocsEntete.unsubscribe();
-    }
-    if (this.subDocsLigne) {
-      this.subDocsLigne.unsubscribe();
-    }
     this.objectifsService.stopReload();
     this.docsEnteteService.stopReload();
     this.docsLigneService.stopReload();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../models/user.model';
+import { errorMessages } from '../../validators/errorMessages';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,11 @@ import { User } from '../../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
+  errors = errorMessages;
+
   loginForm = this.formBuilder.group({
     username: [null,  Validators.compose([
-      Validators.required, Validators.minLength(0), Validators.maxLength(30)])
+      Validators.required, Validators.minLength(1), Validators.maxLength(30)])
     ],
     password: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(70)])

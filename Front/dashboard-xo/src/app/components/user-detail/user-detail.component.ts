@@ -11,7 +11,9 @@ import { Location } from '@angular/common';
 import { errorMessages } from 'src/app/validators/errorMessages';
 import { CustomValidators } from 'src/app/validators/custom.validators';
 import { environment } from 'src/environments/environment';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -99,13 +101,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  ngOnDestroy() {
-    if (this.subRole) {
-      this.subRole.unsubscribe();
-    }
-    if (this.subUser) {
-      this.subUser.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

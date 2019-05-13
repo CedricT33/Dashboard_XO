@@ -9,7 +9,9 @@ import { UsersService } from 'src/app/services/users.service';
 import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
 import { errorMessages } from 'src/app/validators/errorMessages';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-colis-dialog',
   templateUrl: './colis-dialog.component.html',
@@ -20,6 +22,7 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
   colisForm: FormGroup;
   user = new User();
   errors = errorMessages;
+
   subUser: Subscription;
 
   constructor(private dialogRef: MatDialogRef<ColisDialogComponent>,
@@ -79,10 +82,6 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
       this.createColis(colis);
   }
 
-  ngOnDestroy() {
-    if (this.subUser) {
-      this.subUser.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

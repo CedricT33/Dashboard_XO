@@ -9,7 +9,9 @@ import { UsersService } from 'src/app/services/users.service';
 import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
 import { Objectif } from 'src/app/models/objectif.model';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-objectifs-dialog',
   templateUrl: './objectifs-dialog.component.html',
@@ -80,10 +82,6 @@ export class ObjectifsDialogComponent implements OnInit, OnDestroy {
       this.createObjectif(objectif);
   }
 
-  ngOnDestroy() {
-    if (this.subUser) {
-      this.subUser.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

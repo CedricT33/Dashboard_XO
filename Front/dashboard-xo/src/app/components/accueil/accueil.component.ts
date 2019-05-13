@@ -5,9 +5,10 @@ import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { MessagesDialogComponent } from 'src/app/components/messages-dialog/messages-dialog.component';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 declare var M: any;
 
-
+@AutoUnsubscribe()
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
@@ -76,10 +77,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
 }

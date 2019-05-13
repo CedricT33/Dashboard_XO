@@ -41,10 +41,19 @@ export class LoginService {
         this.router.navigate(['']);
       },
       error => {
-        // pop-up echec
-        this.snackBar.open('Erreur de login', 'ECHEC', {
-          duration: environment.durationSnackBar
-        });
+        console.log(error.status);
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar
+          });
+        }
+        if (error.status === 400) {
+          // pop-up echec login
+          this.snackBar.open('Erreur de login', 'ECHEC', {
+            duration: environment.durationSnackBar
+          });
+        }
       });
   }
 

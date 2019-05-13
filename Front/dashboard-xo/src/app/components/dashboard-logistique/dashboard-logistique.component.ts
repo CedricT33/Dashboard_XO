@@ -13,8 +13,10 @@ import { MatDialog } from '@angular/material';
 import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
 import { DatesService } from 'src/app/services/dates.service';
 import { Router } from '@angular/router';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 declare var M: any;
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-dashboard-logistique',
   templateUrl: './dashboard-logistique.component.html',
@@ -275,15 +277,6 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subDocs) {
-      this.subDocs.unsubscribe();
-    }
-    if (this.subColis) {
-      this.subColis.unsubscribe();
-    }
-    if (this.subMessages) {
-      this.subMessages.unsubscribe();
-    }
     this.docsLigneService.stopReload();
     this.colisService.stopReload();
     this.messagesService.stopReload();
