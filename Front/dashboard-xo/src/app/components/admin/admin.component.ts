@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { User } from 'src/app/models/user.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UsersService } from 'src/app/services/users.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { MessagesService } from 'src/app/services/messages.service';
 import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 
 @AutoUnsubscribe()
@@ -28,21 +27,32 @@ export class AdminComponent implements OnInit, OnDestroy {
   subUser: Subscription;
 
   constructor(private usersService: UsersService,
-              private messagesService: MessagesService,
               private snackBar: MatSnackBar,
               private location: Location) {}
 
   ngOnInit() {
     this.subUser = this.usersService.datas$.subscribe(users => {
       this.listUsers = users;
-      if (this.listUsers) {
-        this.dataSource = new MatTableDataSource<User>(this.listUsers);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      } else {
-        this.usersService.publishDatas().subscribe();
-      }
+      this.getUsers();
     });
+  }
+
+  getUsers() {
+    if (this.listUsers) {
+      this.dataSource = new MatTableDataSource<User>(this.listUsers);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    } else {
+      this.usersService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
+    }
   }
 
   onDelete(selected: User[]) {
@@ -56,7 +66,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       error => {
         // pop-up echec
         this.snackBar.open('Erreur à la suppression', 'ECHEC', {
-          duration: environment.durationSnackBar
+          duration: environment.durationSnackBar,
+          panelClass: 'echec'
         });
       });
     }

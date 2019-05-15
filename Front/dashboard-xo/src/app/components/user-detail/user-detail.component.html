@@ -1,4 +1,9 @@
-<main>
+<!-- Loader -->
+<div *ngIf="!roles" class="flex">
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
+
+<main *ngIf="roles">
   <div class="container" *ngIf="userForm">
     <div class="row flex">
 

@@ -9,7 +9,7 @@ import { Colis } from '../../models/colis.model';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { ColisDialogComponent } from '../colis-dialog/colis-dialog.component';
 import { DatesService } from 'src/app/services/dates.service';
 import { Router } from '@angular/router';
@@ -59,7 +59,8 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
               private datesService: DatesService,
               private loginService: LoginService,
               private dialog: MatDialog,
-              private router: Router) {}
+              private router: Router,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('logistique');
@@ -92,7 +93,15 @@ export class DashboardLogistiqueComponent implements OnInit, OnDestroy {
     if (this.listDocsLigne) {
       this.getCommandesExpedies(this.todayString, this.startOfTheYear);
     } else {
-      this.docsLigneService.publishDatas().subscribe();
+      this.docsLigneService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
     }
   }
 

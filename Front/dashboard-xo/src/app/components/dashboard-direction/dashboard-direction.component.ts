@@ -12,6 +12,7 @@ import { CompteTiers } from 'src/app/models/compteTiers.model';
 import { DocEntete } from 'src/app/models/docEntete.model';
 import { DocsEnteteService } from 'src/app/services/docs-entete.service';
 import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
+import { MatSnackBar } from '@angular/material';
 
 @AutoUnsubscribe()
 @Component({
@@ -41,7 +42,8 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
               private chartsService: ChartsService,
               private docsEnteteService: DocsEnteteService,
               private coordinatesService: CoordinatesService,
-              private compteTiersService: ComptesTiersService) {}
+              private compteTiersService: ComptesTiersService,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('direction');
@@ -90,7 +92,15 @@ export class DashboardDirectionComponent implements OnInit, OnDestroy {
     if (this.listCompteT) {
       this.initMapFrance();
     } else {
-      this.compteTiersService.publishDatas().subscribe();
+      this.compteTiersService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
     }
   }
 

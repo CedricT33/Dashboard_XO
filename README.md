@@ -67,8 +67,8 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 
 - Diagramme Use Case
 - Diagramme d'activité
-- Diagramme de classes (en cours...)
 - MCD, MLD, MPD
+- Diagrammes de sequence
 
 #### Diagramme Use Case
 ![Diagramme Use Case](Diagrammes/Use_Case_Diagram.JPG "Diagramme Use Case")
@@ -103,9 +103,9 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 **Visuels de l'application.** (en cours...)
 
 **Explications de codes spécifiques avec des exemples : Front et Back.** (en cours...)
-- pipe
-- validator
-- trigger
+- pipe perso
+- validator perso
+- decorateur perso
 
 **Explications Sécurity, authentification, tokens, failles xss et autres...** (en cours...)
 
@@ -149,6 +149,13 @@ Méthode pseudo-agile avec des points réguliers de l'avancement de l'applicatio
 - ROLE_FINANCE
 - ROLE_DIRECTION
 - ROLE_ADMIN
+
+**Données chargées par component (en lazy loading)**
+- Accueil : MESSAGES
+- Dashboard Direction :	MESSAGES, F_COMPTET, F_DOCENTETE
+- Dashboard Finance : MESSAGES, F_ECRITUREC
+- Dashboard Logistique : MESSAGES, F_DOCLIGNE, COLISEXPEDIES
+- Dashboard Commerce : MESSAGES, OBJECTIFSCOMMERCE, F_DOCENTETE, F_DOCLIGNE
 
 **Components Angular (front)** :
 

@@ -108,6 +108,14 @@ button {
 .btn-floating {
   margin: 0 !important;
 }
+.mat-simple-snackbar-action .mat-button {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.echec .mat-simple-snackbar-action {
+  color: #b71c1c;
+}
 
 /* --Perso--- */
 
@@ -550,7 +558,7 @@ footer {
 
 @media only screen and (max-width: 1200px) {
   html {
-    font-size: 12px !important;
+    font-size: 15px !important;
   }
 
   i.large {

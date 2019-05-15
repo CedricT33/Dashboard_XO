@@ -22,26 +22,34 @@ export class ObjectifsDialogComponent implements OnInit, OnDestroy {
   objectifForm: FormGroup;
   user = new User();
   errors = errorMessages;
+
   subUser: Subscription;
 
   constructor(private dialogRef: MatDialogRef<ObjectifsDialogComponent>,
               private formBuilder: FormBuilder,
               private objectifsService: ObjectifsService,
               private usersService: UsersService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getUser();
     this.initForm();
   }
 
-  getUser() {
+  getUser(): void {
     this.subUser = this.usersService.datas$.subscribe(users => {
       if (users) {
         const username = this.getUsername();
         this.user = users.find(user => user.username === username);
       } else {
-        this.usersService.publishDatas().subscribe();
+        this.usersService.publishDatas().subscribe(() => {}, error => {
+          // pop-up echec connexion et fermeture pop-in
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+          this.dialogRef.close();
+        });
       }
     });
   }
@@ -54,14 +62,14 @@ export class ObjectifsDialogComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  initForm() {
+  initForm(): void {
     this.objectifForm = this.formBuilder.group({
       intitule: [null, [Validators.required, Validators.maxLength(50)]],
       objectif: [null, [Validators.required, Validators.max(2000000000), Validators.min(0)]]
     });
   }
 
-  createObjectif(objectif: Objectif) {
+  createObjectif(objectif: Objectif): void {
     this.objectifsService.create(objectif).subscribe(() => {
       // pop-up succes
       this.snackBar.open('Objectif ajouté', 'SUCCES', {
@@ -72,7 +80,8 @@ export class ObjectifsDialogComponent implements OnInit, OnDestroy {
     error => {
       // pop-up fail
       this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
-        duration: environment.durationSnackBar
+        duration: environment.durationSnackBar,
+        panelClass: 'echec'
       });
     });
   }

@@ -2,7 +2,6 @@ const isFunction = (fn: any) => typeof fn === 'function';
 
 const doUnsubscribe = (subscription: any) => {
     if (subscription && isFunction(subscription.unsubscribe)) {
-        console.log('unsubscribe');
         subscription.unsubscribe();
     }
 };

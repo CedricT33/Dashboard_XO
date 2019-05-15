@@ -14,7 +14,7 @@ import { ChartsService } from 'src/app/services/charts.service';
 import { DocLigne } from 'src/app/models/docLigne.model';
 import { DocsLigneService } from 'src/app/services/docs-ligne.service';
 import { ObjectifsDialogComponent } from '../objectifs-dialog/objectifs-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
 declare var M: any;
 
@@ -68,7 +68,8 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
               private datesService: DatesService,
               private chartsService: ChartsService,
               private dialog: MatDialog,
-              private router: Router) {}
+              private router: Router,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('commerce');
@@ -124,7 +125,15 @@ export class DashboardCommerceComponent implements OnInit, OnDestroy {
       setTimeout(() => this.initChartYear());
       setTimeout(() => this.initChartBarFacture());
     } else {
-      this.docsEnteteService.publishDatas().subscribe();
+      this.docsEnteteService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
     }
   }
 

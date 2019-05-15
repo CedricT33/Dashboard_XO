@@ -1,8 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { LoginService } from './login.service';
+import { AppModule } from '../app.module';
 
 describe('LoginService', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        AppModule
+      ]
+    })
+    .compileComponents();
+  }));
+
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

@@ -3,9 +3,10 @@ import { Message } from '../../models/message.model';
 import { MessagesService } from '../../services/messages.service';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { MessagesDialogComponent } from 'src/app/components/messages-dialog/messages-dialog.component';
 import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
+import { environment } from 'src/environments/environment';
 declare var M: any;
 
 @AutoUnsubscribe()
@@ -22,6 +23,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   isDirection: boolean;
   isLogistic: boolean;
   bubble: any;
+  isFirstOpen = true;
 
   messagesList: Message[];
 
@@ -29,7 +31,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   constructor(private messagesService: MessagesService,
               private loginService: LoginService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.sub = this.messagesService.datas$.subscribe(messages => {
@@ -49,7 +52,15 @@ export class AccueilComponent implements OnInit, OnDestroy {
     if (this.messagesList) {
       this.openBubble();
     } else {
-      this.messagesService.publishDatas().subscribe();
+      this.messagesService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
     }
   }
 
@@ -57,12 +68,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
    * Si il n'y a pas de message l'info-bulle s'affiche.
    */
   openBubble(): void {
-    if (this.messagesList.length === 0) {
+    if (this.messagesList.length === 0 && this.isFirstOpen) {
       setTimeout(() => {
-      const elem = document.querySelector('.tap-target');
-      this.bubble = M.TapTarget.init(elem);
-      this.bubble.open();
-    }, 1000);
+        const elem = document.querySelector('.tap-target');
+        this.bubble = M.TapTarget.init(elem);
+        this.bubble.open();
+      }, 1000);
+      this.isFirstOpen = false;
     }
   }
 

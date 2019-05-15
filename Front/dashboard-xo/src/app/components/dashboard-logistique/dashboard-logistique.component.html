@@ -1,7 +1,7 @@
 <!-- Loader -->
 <div *ngIf="!listDocsLigne" class="flex">
-    <img src="assets/loader.svg" alt="chargement" />
-  </div>
+  <img src="assets/loader.svg" alt="chargement" />
+</div>
 
 <main *ngIf="listDocsLigne">
   <div class="container">
@@ -101,19 +101,19 @@
             <canvas
               class="card-chart chartjs-render-monitor"
               id="chartLogisticWeek"
-              height="80"
+              height="70"
               [ngStyle]="{ display: isChartWeek ? 'block' : 'none' }">
             </canvas>
             <canvas
               class="card-chart chartjs-render-monitor"
               id="chartLogisticMonth"
-              height="80"
+              height="70"
               [ngStyle]="{ display: isChartMonth ? 'block' : 'none' }">
             </canvas>
             <canvas
               class="card-chart chartjs-render-monitor"
               id="chartLogisticYear"
-              height="80"
+              height="70"
               [ngStyle]="{ display: isChartYear ? 'block' : 'none' }">
             </canvas>
           </div>

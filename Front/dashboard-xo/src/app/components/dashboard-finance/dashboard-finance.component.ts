@@ -9,7 +9,10 @@ import { EcritureComptable } from 'src/app/models/ecritureComptable.model';
 import { Encours } from 'src/app/models/encours.model';
 import { ChartsService } from 'src/app/services/charts.service';
 import { Router } from '@angular/router';
+import { AutoUnsubscribe } from 'src/app/decorators/auto-unsubscribe';
+import { MatSnackBar } from '@angular/material';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-dashboard-finance',
   templateUrl: './dashboard-finance.component.html',
@@ -43,7 +46,8 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
               private messagesService: MessagesService,
               private ecrituresComptablesService: EcrituresComptablesService,
               private chartsService: ChartsService,
-              private router: Router) {}
+              private router: Router,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loginService.changeTitleDashboard('finance');
@@ -58,8 +62,8 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
       this.getMessages();
     });
     // boucles de rechargement des données à intervalle régulier.
-    // this.ecrituresComptablesService.reloadDatas(environment.interval, this.router);
-    // this.messagesService.reloadDatas(environment.interval, this.router);
+    this.ecrituresComptablesService.reloadDatas(environment.interval, this.router);
+    this.messagesService.reloadDatas(environment.interval, this.router);
   }
 
   /**
@@ -71,7 +75,15 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
       this.getEncours();
       this.initCharts();
     } else {
-      this.ecrituresComptablesService.publishDatas().subscribe();
+      this.ecrituresComptablesService.publishDatas().subscribe(() => {}, error => {
+        if (error.status === 0) {
+          // pop-up echec connexion
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+        }
+      });
     }
   }
 
@@ -211,12 +223,6 @@ export class DashboardFinanceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subMessages) {
-      this.subMessages.unsubscribe();
-    }
-    if (this.subEcrituresC) {
-      this.subEcrituresC.unsubscribe();
-    }
     this.ecrituresComptablesService.stopReload();
     this.messagesService.stopReload();
   }

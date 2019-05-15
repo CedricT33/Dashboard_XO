@@ -42,7 +42,14 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
         const username = this.getUsername();
         this.user = users.find(user => user.username === username);
       } else {
-        this.usersService.publishDatas().subscribe();
+        this.usersService.publishDatas().subscribe(() => {}, error => {
+          // pop-up echec connexion et fermeture pop-in
+          this.snackBar.open('Problème de connexion', 'ECHEC', {
+            duration: environment.durationSnackBar,
+            panelClass: 'echec'
+          });
+          this.dialogRef.close();
+        });
       }
     });
   }
@@ -72,7 +79,8 @@ export class ColisDialogComponent implements OnInit, OnDestroy {
     error => {
       // pop-up fail
       this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
-        duration: environment.durationSnackBar
+        duration: environment.durationSnackBar,
+        panelClass: 'echec'
       });
     });
   }

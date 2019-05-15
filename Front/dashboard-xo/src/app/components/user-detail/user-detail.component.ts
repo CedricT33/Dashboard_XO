@@ -23,12 +23,13 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   username: string;
   userForm: FormGroup;
-  roles: Role[] = [];
+  roles: Role[];
   users: User[];
-  subRole: Subscription;
-  subUser: Subscription;
   isNotUsername = true;
   errors = errorMessages;
+
+  subRole: Subscription;
+  subUser: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private rolesService: RolesService,
@@ -46,7 +47,15 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.subRole = this.rolesService.datas$.subscribe(roles => {
       this.roles = roles;
       if (!this.roles) {
-        this.rolesService.publishDatas().subscribe();
+        this.rolesService.publishDatas().subscribe(() => {}, error => {
+          if (error.status === 0) {
+            // pop-up echec connexion
+            this.snackBar.open('Problème de connexion', 'ECHEC', {
+              duration: environment.durationSnackBar,
+              panelClass: 'echec'
+            });
+          }
+        });
       }
     });
   }
@@ -91,7 +100,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     error => {
       // pop-up fail
       this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
-        duration: environment.durationSnackBar
+        duration: environment.durationSnackBar,
+        panelClass: 'echec'
       });
     });
     this.router.navigate(['admin']);

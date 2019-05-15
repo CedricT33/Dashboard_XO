@@ -45,7 +45,8 @@ export class CoordinatesService {
           if (error.status === 0 && this.errors.length === 0) {
             // pop-up echec de connexion
             this.snackBar.open('Erreur de connexion', 'ECHEC', {
-              duration: environment.durationSnackBar
+              duration: environment.durationSnackBar,
+              panelClass: 'echec'
             });
             this.errors.push(error.status);
           }

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ColisDialogComponent } from './colis-dialog.component';
+import { AppModule } from 'src/app/app.module';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('ColisDialogComponent', () => {
   let component: ColisDialogComponent;
@@ -8,7 +10,13 @@ describe('ColisDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColisDialogComponent ]
+      imports: [
+        AppModule
+      ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

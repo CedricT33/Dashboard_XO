@@ -21,7 +21,6 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
 
   messageForm: FormGroup;
   errors = errorMessages;
-  subUser: Subscription;
   user = new User();
   destinataires = ['DIRECTION', 'FINANCE', 'LOGISTIQUE', 'COMMERCE'];
   textInit: string;
@@ -29,8 +28,10 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
   isNotUpdate = true;
 
   messagesList: Message[];
+  usersList: User[];
 
   sub: Subscription;
+  subUser: Subscription;
 
   constructor(private dialogRef: MatDialogRef<MessagesDialogComponent>,
               private messagesService: MessagesService,
@@ -39,7 +40,10 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.getUser();
+    this.subUser = this.usersService.datas$.subscribe(users => {
+      this.usersList = users;
+      this.getUser();
+    });
     this.sub = this.messagesService.datas$.subscribe(messages => {
       this.messagesList = messages;
       this.getMessages();
@@ -50,14 +54,19 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
   }
 
   getUser() {
-    this.subUser = this.usersService.datas$.subscribe(users => {
-      if (users) {
-        const username = this.getUsername();
-        this.user = users.find(user => user.username === username);
-      } else {
-        this.usersService.publishDatas().subscribe();
-      }
-    });
+    if (this.usersList) {
+      const username = this.getUsername();
+      this.user = this.usersList.find(user => user.username === username);
+    } else {
+      this.usersService.publishDatas().subscribe(() => {}, error => {
+        // pop-up echec connexion et fermeture pop-in
+        this.snackBar.open('Problème de connexion', 'ECHEC', {
+          duration: environment.durationSnackBar,
+          panelClass: 'echec'
+        });
+        this.dialogRef.close();
+      });
+    }
   }
 
   getUsername(): string {
@@ -95,7 +104,8 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
     error => {
       // pop-up fail
       this.snackBar.open('Erreur d\'enregistrement', 'ECHEC', {
-        duration: environment.durationSnackBar
+        duration: environment.durationSnackBar,
+        panelClass: 'echec'
       });
     });
   }
@@ -111,7 +121,8 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
     error => {
       // pop-up fail
       this.snackBar.open('Erreur de modification', 'ECHEC', {
-        duration: environment.durationSnackBar
+        duration: environment.durationSnackBar,
+        panelClass: 'echec'
       });
     });
   }
@@ -146,11 +157,13 @@ export class MessagesDialogComponent implements OnInit, OnDestroy {
         this.snackBar.open('Message supprimé', 'SUCCES', {
           duration: environment.durationSnackBar
         });
+        this.dialogRef.close();
       },
       error => {
         // pop-up fail
         this.snackBar.open('Erreur de suppression', 'ECHEC', {
-          duration: environment.durationSnackBar
+          duration: environment.durationSnackBar,
+          panelClass: 'echec'
         });
       });
     }

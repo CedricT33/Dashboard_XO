@@ -45,7 +45,7 @@ public class Application implements CommandLineRunner{
 			roleLog.setRole("ROLE_LOGISTIQUE");
 			// roleService.createNewRole(roleLog);
 			Role roleCom = new Role();
-			roleCom.setRole("ROLE_COMMERCIAL");
+			roleCom.setRole("ROLE_COMMERCE");
 			// roleService.createNewRole(roleCom);
 			Role roleFin = new Role();
 			roleFin.setRole("ROLE_FINANCE");

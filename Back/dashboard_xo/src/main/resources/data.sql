@@ -16,9 +16,9 @@ insert into users (id, username, password, idRole) values (6, 'zozo', '$2a$10$1n
 --insert into messages (id, texte, date, destinataire, idUser) values (3, 'Ce message est pour la finance...', '2019-03-25 00:00:00', 'FINANCE', 3);
 --insert into messages (id, texte, date, destinataire, idUser) values (4, 'Ce message est pour la direction...', '2019-04-04 19:00:00', 'DIRECTION', 4);
 --insert into messages (id, texte, date, destinataire, idUser) values (5, 'Ce message est aussi pour le service logistique...', '2019-04-08 09:47:00', 'LOGISTIQUE', 5);
-insert into colisExpedies (id, nbreColis, date, idUser) values (1, 5, '2019-04-19 00:00:00', 2);
-insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (1, 'CA du mois', '2019-02-26 00:00:00', 12000, 5);
-insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (2, 'Marge du mois', '2019-03-26 00:00:00', 50000, 5);
-insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (3, 'CA du mois', '2019-04-24 00:00:00', 130000, 5);
-insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (4, 'CA du mois', '2019-04-23 00:00:00', 150000, 5);
+--insert into colisExpedies (id, nbreColis, date, idUser) values (1, 5, '2019-04-19 00:00:00', 2);
+--insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (1, 'CA du mois', '2019-02-26 00:00:00', 12000, 5);
+--insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (2, 'Marge du mois', '2019-03-26 00:00:00', 50000, 5);
+--insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (3, 'CA du mois', '2019-04-24 00:00:00', 130000, 5);
+--insert into objectifsCommerce (id, intitule, date, chiffre, idUser) values (4, 'CA du mois', '2019-04-23 00:00:00', 150000, 5);
 
