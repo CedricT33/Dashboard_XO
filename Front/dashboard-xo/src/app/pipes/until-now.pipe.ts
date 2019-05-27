@@ -13,7 +13,7 @@ export class UntilNow implements PipeTransform {
     const months: number = Math.trunc(days / 30.417);
     const years: number = Math.trunc(months / 12);
     if (seconds <= 59) {
-        return 'Il y a ' + seconds + (seconds === 1 ? ' seconde' : ' secondes');
+        return 'Il y a ' + seconds + (seconds <= 1 ? ' seconde' : ' secondes');
     } else if (minutes <= 59) {
         return 'Il y a ' + minutes + (minutes === 1 ? ' minute' : ' minutes');
     } else if (hours <= 23) {
